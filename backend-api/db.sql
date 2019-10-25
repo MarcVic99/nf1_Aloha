@@ -33,7 +33,7 @@ create table photos(
                        constraint photo_id__property_id_fk foreign key (property_id) references properties(id)
 
 );
-/*
+
 create table comments(
                          id integer not null primary key auto_increment,
                          property_id int not null,
@@ -41,10 +41,11 @@ create table comments(
                          constraint comment_id__property_id_fk foreign key (property_id) references properties(id)
 
 );
-*/
+
 create table reviews(
                         id integer not null primary key auto_increment,
                         user_id int not null,
                         review varchar(255),
                         constraint review_id__user_id_fk foreign key (user_id) references users(id)
 );
+
