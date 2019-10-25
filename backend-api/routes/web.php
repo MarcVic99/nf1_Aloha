@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/properties/{id}','PropertiesController@returnProperties');
+
+Route:: get("properties/{id}", "PropertiesController@getUser");
+
+Route:: get("properties/", "PropertiesController@getUsers");
+
+
+
+
