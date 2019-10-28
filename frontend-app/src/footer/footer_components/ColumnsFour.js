@@ -6,19 +6,19 @@ import twitter from './img/twitter.png';
 const icons = [
     {
         name: 'Facebook',
-        icon: {facebook},
+        icon: facebook,
         url: 'https://Facebook.com',
     },
     {
         name: 'Instagram',
-        icon: {instagram},
+        icon: instagram,
         url: 'https://Instagram.com',
 
 
     },
     {
         name:'Twitter',
-        icon:{twitter},
+        icon:twitter,
         url:'https://Twitter.es',
     },
     ];
