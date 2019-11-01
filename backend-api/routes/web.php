@@ -21,6 +21,10 @@ Route:: get("properties/{id}", "PropertiesController@getUser");
 
 Route:: get("properties/", "PropertiesController@getUsers");
 
+Route:: post("api/v1/post/","PostController@createUser");
+
+
+
 
 
 

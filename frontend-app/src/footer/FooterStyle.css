@@ -4,12 +4,36 @@
     src: url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
 
 }
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+    color:inherit;
+
+
+}
+#footerGeneralDiv {
+    margin:auto;
+    padding: auto;
+    background-color: blue;
+
+
+
+
+}
+
+
 #FooterLinksGeneral{
-    margin: auto;
+
     height:40vmin;
     width: 80vmin;
     display: flex;
     text-align: center;
+
 
 
 
@@ -54,7 +78,7 @@ li{
 
 a{
     color: #80807c;
-    text-decoration-line: none;
+
 }
 
 h4 {
@@ -62,6 +86,26 @@ h4 {
     color: #5e5e5c;
 }
 
-.copyrightSpan{
+#copyrightSpan {
     background-color: red;
+
+
 }
+#pruebadiv{
+    margin: auto
+
+}
+
+
+
+
+/*img:hover{width:500px;height:400px;}
+@media (max-width:400px) {
+    #FooterLinksGeneral{
+        display:none;
+    }
+
+
+}
+
+ */

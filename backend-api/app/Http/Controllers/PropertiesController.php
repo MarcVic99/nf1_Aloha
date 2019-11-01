@@ -24,12 +24,12 @@ class PropertiesController extends Controller
         );
         $user2 = array(
             "id" => 1,
-            "nombre" => "Juan",
+            "nombre" => "Pedro",
             "email" => "test@test.com"
         );
         $user3 = array(
             "id" => 2,
-            "nombre" => "Juan",
+            "nombre" => "Joana",
             "email" => "test@test.com"
         );
         return [$user1, $user2, $user3];
