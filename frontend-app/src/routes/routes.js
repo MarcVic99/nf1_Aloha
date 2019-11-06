@@ -1,1 +1,1 @@
-export const APP_PRODUCTS = '/products';
+export const FOOTER_APP = '/footer';

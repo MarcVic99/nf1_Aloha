@@ -38,24 +38,49 @@ const list = [
 
     }];
 
-const ColumnFour = () => (
-    <ul className={'ulIcons'}>
+const ColumnFourIcons = () => (
+
+        <ul>
         {icons.map(itemIcons => (
             <li key={itemIcons.name}>
-                <div><a href={itemIcons.url}> <img alt={'IconsImages'} src={itemIcons.icon} width={20} height={20}></img></a></div>
+                <div ><a href={itemIcons.url}> <img alt={'IconsImages'} src={itemIcons.icon} width={20} height={20}></img></a></div>
             </li>
+
         ))}
 
-        {list.map(item =>(
-            <li key={item.name}>
-                <div><a href={item.url}> {item.name}</a></div>
-            </li>
-        ))}
+        </ul>
 
-    </ul>
+);
 
-)
+const ColumnFourLinks  = () => (
+        <ul>
+                {list.map(item =>(
+                <li key={item.name}>
+                    <div><a href={item.url}> {item.name}</a></div>
+                </li>
+            ))}
+        </ul>
+);
 
+function ColumnFour(
+
+) {
+    return (
+        <div className={'iconsLinks'}>
+            <div className={'iconsCont'}>
+               <ColumnFourIcons/>
+            </div>
+
+            <div>
+                 <ColumnFourLinks/>
+            </div>
+
+        </div>
+    );
+
+};
+
+export default ColumnFour;
 
 /*
 const ColumnFour =() => (
@@ -83,4 +108,3 @@ const ColumnFour =() => (
 
 );
 */
-export default ColumnFour;

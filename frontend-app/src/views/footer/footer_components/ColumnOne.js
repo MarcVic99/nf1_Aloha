@@ -31,6 +31,7 @@ const list = [
 
     },];
 
+
 const ColumnOne = () => (
 
     <ul>{list.map(item => (

@@ -24,6 +24,14 @@ class PostController extends Controller
 
         return $post;
     }
+
+    pulic function getUser($id){
+
+
+
+
+};
+
 };
 /*protected $fillable = ['id','name','surname','email','phone_number'];
 

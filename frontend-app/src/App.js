@@ -1,33 +1,20 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route} from "react-router-dom";
-import {APP_PRODUCTS} from "./routes/routes";
+import {FOOTER_APP} from "./routes/routes";
 import { withRouter } from "react-router";
 
 
 import './App.css';
-import FooterLinks from "./footer/footer";
+import FooterLinks from "./views/footer/footer";
+import LogIn from "./views/LogIn/LogIn";
 
-
-class App extends Component {
-  render (){
-    return (
-
-    <FooterLinks/>
-
-    );
-  }
-
-
-
-
-};
-/*function App() {
+function App() {
 
   return(
-      <BrowserRouter>
-          <Route path={APP_PRODUCTS} component={footer}/>
-      </BrowserRouter>
-  )
-}*/
+      <LogIn/>
+      //<FooterLinks/>
+  );
+
+}
 
 export default App;
