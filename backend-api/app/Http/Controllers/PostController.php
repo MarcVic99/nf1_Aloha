@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function createUser(Request $request){
+    public function createUser(Request $request)
+    {
         $request = $request->all();
 
 
@@ -24,7 +25,8 @@ class PostController extends Controller
 
         return $post;
     }
-
+}
+/*
     pulic function getUser($id){
 
 
