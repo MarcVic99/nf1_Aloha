@@ -6,12 +6,14 @@ import { withRouter } from "react-router";
 
 import './App.css';
 import FooterLinks from "./views/footer/footer";
+import SignIn from "./views/SignIn/SignIn";
 import LogIn from "./views/LogIn/LogIn";
 
 function App() {
 
   return(
       <LogIn/>
+     // <SignIn/>
       //<FooterLinks/>
   );
 

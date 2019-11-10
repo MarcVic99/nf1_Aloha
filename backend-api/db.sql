@@ -1,5 +1,5 @@
-create database aloha;
-use aloha;
+create database AlohaDB;
+use AlohaDB;
 
 create table users(
                       id integer not null primary key auto_increment,

@@ -1,83 +1,120 @@
-import React, {useState} from 'react';
+import React, { useState,useEffect } from 'react';
+import './LogIn.css'
 
-import FormGeneral from "./Components/formComponent";
-import StartSession from "./Components/Button";
-
-import './LogInStyle.css';
 
 function LogIn() {
-    const [name, setName] = useState('');
-    const [last_name, setLast_Name] = useState('');
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [remember, setRemember] = useState('');
     const [error, setError] = useState('');
 
     const data = {
-        name: name,
-        last_name: last_name,
         email: email,
-        password: password
+        password: password,
+        remember: remember,
+        error:error
     }
-// FETCH ES UNA LIBRERIA js QUE TE PERMITE HACER POSTS, GETS, ... ES ASINCRONA YA QUE PERMITE CONETAR CON BACKEND SIN TENER QUE REFRESCAR A URL O CAMBIARLA.
 
-    const handleSubmit = () =>{
-        const fetchdata = async() => {
-            const url ="http://127.0.0.1:80/api/v1/post";
+    const handleSubmit = () => {
+        const fetchdata = async () => {
+            const url = "127.0.0.1:80/login/{email}/pass/{password}";
             const options = {
-                method: 'POST',
+                method: 'GET',
                 body: JSON.stringify(data),
                 header: new Headers({
-                    Accept:'application/json',
+                    Accept: 'application/json',
                     'Content-type': 'application/json',
                 }),
-                mode:'cors'
+                mode: 'cors'
             }
-            return fetch(url,options)
-                .then(response=>{
-                    if(response.status == 201){
+            return fetch(url, options)
+                .then(response => {
+                    if (response.status == 201) {
                         alert(response.statusText);
                         return response.json();
                     }
                     return Promise.reject(response.status);
-                }). catch(error =>{
+                }).catch(error => {
                     setError(error);
                     alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
                 });
-        };
+            fetchdata();
+        }
+    }
+
+        return (
+            <div>
+                <div className="borde">
+                    <div className="marginout">
+                        <div className="marginin">
+
+                            <div className="mainform">
+                                <form method="get">
+
+                                    <div>
+                                        <h4> ~ Aloha ~</h4>
+                                        <br/>
+                                        <hr></hr>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <input
+                                        className="inputfield"
+                                        name="email"
+                                        placeholder="Dirección de correo electrónico"
+                                        value={email}
+                                        onChange={event => setEmail(event.target.value)}
+                                        required
+
+                                    />
+                                    <br/>
+
+                                    <input
+                                        className="inputfield"
+                                        name="name"
+                                        placeholder="Contraseña"
+                                        value={password}
+                                        onChange={event => setPassword(event.target.value)}
+                                        required
+
+
+                                    />
+                                    <br/>
+                                    <label>
+                                        <input type="checkbox"
+                                               name="hasAgreed"
+                                               value={remember}
+                                               onChange={event => setRemember(event.target.value)}
+
+                                        />
+                                        <p2>Recordarme</p2>
+                                    </label>
+
+                                </form>
+                                <div className="buttonmargin">
+
+                                    <div>
+
+                                        <button type="submit" onClick={handleSubmit} className="submitbutton">Inicia
+                                            Sesión
+                                        </button>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        )
 
     }
 
-    return(
-        <div>
-            <form>
-
-                <input value={name} onChange={e => setName(e.target.value)} type={"text"}/>
-                <input value={last_name} onChange={e => setLast_Name(e.target.value)} type={"text"}/>
-                <input value={email} onChange={e => setEmail(e.target.value)} type={"text"}/>
-                <input value={password} onChange={e => setPassword(e.target.value)} type={"password"}/>
-                <input type={"submit"} onClick={handleSubmit}/>
-
-
-            </form>
-
-        </div>
-    )
-
-}
-/*
-const LogIn = () =>(
-
-    <div id={'divGeneral'}>
-
-        <FormGeneral/>
-
-
-        <StartSession/>
-
-
-    </div>
-);
- */
 export default LogIn;
 
