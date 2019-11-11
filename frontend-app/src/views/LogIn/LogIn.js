@@ -19,7 +19,7 @@ function LogIn() {
         const fetchdata = async () => {
             const url ='https://127.0.0.1:8080/login';
             const options = {
-                method: 'post',
+                method: 'POST',
                 body: JSON.stringify(data),
                 header: new Headers({
                     Accept:'application/json',
@@ -52,7 +52,7 @@ function LogIn() {
                         <div className="marginin">
 
                             <div className="mainform">
-                                <form method="get" action='/backend-api/app/Http/Controllers/GetsController.php'>
+                                <form method="post" action='/backend-api/app/Http/Controllers/GetsController.php'>
 
                                     <div>
                                         <h4> ~ Aloha ~</h4>
