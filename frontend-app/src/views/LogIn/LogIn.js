@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import './LogIn.css'
 
 
+
 function LogIn() {
 
     const [email, setEmail] = useState('');
@@ -13,26 +14,28 @@ function LogIn() {
         email: email,
         password: password,
         remember: remember,
-        error:error
+        error:error,
+
     }
 
     const handleSubmit = () => {
         const fetchdata = async () => {
-            const url = "127.0.0.1:80/login/{email}/pass/{password}";
+            const url = `127.0.0.1:80/login/${data.email}/pass/${data.password}`;
             const options = {
-                method: 'GET',
-                body: JSON.stringify(data),
+                method: 'get',
+                //body: JSON.stringify(data),
                 header: new Headers({
                     Accept: 'application/json',
                     'Content-type': 'application/json',
                 }),
                 mode: 'cors'
             }
+
             return fetch(url, options)
                 .then(response => {
-                    if (response.status == 201) {
-                        alert(response.statusText);
-                        return response.json();
+                    if (response.status == 200) {
+                        alert();
+
                     }
                     return Promise.reject(response.status);
                 }).catch(error => {
@@ -40,8 +43,9 @@ function LogIn() {
                     alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
                 });
-            fetchdata();
+
         }
+        fetchdata()
     }
 
         return (
@@ -110,11 +114,13 @@ function LogIn() {
                         </div>
                     </div>
                 </div>
+
             </div>
 
         )
 
     }
+
 
 export default LogIn;
 
