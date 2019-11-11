@@ -63,4 +63,29 @@ class PostsController extends Controller{
 
 
     }
+
+    public function logIn(Request $request){
+
+        $errors = array("User not found");
+        $userEmail = $request->only(['email']);
+
+        $userPass = $request->only(['password']);
+
+        $userRecord = User::where("email","=",$userEmail)
+            ->where("password","=",$userPass)
+            ->first();
+        $idGetter = $userRecord['id'];
+
+        $comprovationMsgLogIn = array("You've been Logged. 
+                                    Nice to see ya again $idGetter");
+        if(!empty($userRecord)){
+            return $comprovationMsgLogIn[0];
+        }
+        else{
+            return $errors[0];
+        }
+    }
+
 }
+
+

@@ -12,30 +12,27 @@ function LogIn() {
 
     const data = {
         email: email,
-        password: password,
-        remember: remember,
-        error:error,
-
+        password: password
     }
 
     const handleSubmit = () => {
         const fetchdata = async () => {
-            const url = `127.0.0.1:80/login/${data.email}/pass/${data.password}`;
+            const url ='https://127.0.0.1:8080/login';
             const options = {
-                method: 'get',
-                //body: JSON.stringify(data),
+                method: 'post',
+                body: JSON.stringify(data),
                 header: new Headers({
-                    Accept: 'application/json',
+                    Accept:'application/json',
                     'Content-type': 'application/json',
                 }),
-                mode: 'cors'
+                mode:'cors'
             }
 
             return fetch(url, options)
                 .then(response => {
                     if (response.status == 200) {
                         alert();
-
+                        console.log(response);
                     }
                     return Promise.reject(response.status);
                 }).catch(error => {
@@ -55,7 +52,7 @@ function LogIn() {
                         <div className="marginin">
 
                             <div className="mainform">
-                                <form method="get">
+                                <form method="get" action='/backend-api/app/Http/Controllers/GetsController.php'>
 
                                     <div>
                                         <h4> ~ Aloha ~</h4>

@@ -36,23 +36,7 @@ class GetsController extends Controller{
         else return $errorText;
     }
 
-    public function logIn($email,$password){
 
-        $errors = array("User not found");
-        $userRecord = User::where("email","=",$email)
-            ->where("password","=",$password)
-            ->first();
-        $idGetter = $userRecord['id'];
-
-        $comprovationMsgLogIn = array("You've been Logged. 
-                                    Nice to see ya again $idGetter");
-        if(!empty($userRecord)){
-            return $comprovationMsgLogIn[0];
-        }
-        else{
-            return $errors[0];
-        }
-    }
     public function ShowUserInfo($email, $password){
 
         $errors = array("User not found");
