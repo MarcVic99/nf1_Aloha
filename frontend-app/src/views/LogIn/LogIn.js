@@ -17,33 +17,53 @@ function LogIn() {
 
     const handleSubmit = () => {
         const fetchdata = async () => {
-            const url ='https://127.0.0.1:8080/login';
+            const url = "http://127.0.0.1:80/login";
             const options = {
-                method: 'POST',
+                method: 'post',
                 body: JSON.stringify(data),
-                header: new Headers({
-                    Accept:'application/json',
-                    'Content-type': 'application/json',
-                }),
-                mode:'cors'
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    // 'Acces-Control-Allow-Headers': 'Authorization',
+                },
+                mode: 'cors'
+
             }
 
+
             return fetch(url, options)
+
                 .then(response => {
                     if (response.status == 200) {
-                        alert();
-                        console.log(response);
-                    }
+                        console.log(response);}
                     return Promise.reject(response.status);
                 }).catch(error => {
                     setError(error);
                     alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
                 });
+            /*    .then(function (response) {
+                              if (response.ok) {
+                                  alert(response.text);
+                                  return response.text;
 
-        }
+
+                              } else {
+                                  return Promise.reject(response.statusText);
+                              }
+                          })
+                          .catch(function (error) {
+                              console.log("Error"+ error)
+
+                          });
+                 */
+
+        };
+
         fetchdata()
     }
+
+//}
 
         return (
             <div>
@@ -52,7 +72,7 @@ function LogIn() {
                         <div className="marginin">
 
                             <div className="mainform">
-                                <form method="post" action='/backend-api/app/Http/Controllers/GetsController.php'>
+                                <form method="post" >
 
                                     <div>
                                         <h4> ~ Aloha ~</h4>

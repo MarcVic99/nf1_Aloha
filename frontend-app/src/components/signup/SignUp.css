@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.upperform {
+    display: flex;
+    height: 48px;
+    width: 100%;
+    padding:6px;
+    text-align: center;
+}
+
+h4 {
+    text-align:center;
+}
+
+.formcats {
+
+    display: flex;
+    height: 48px;
+    width: 100%;
+    padding:12px;
+    border: 1px solid #EBEBEB;
+    border-radius: 4px;
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+p {
+
+    font-weight: bold;
+    display: block;
+    color: rgb(72, 72, 72);
+    /* visibility:hidden; */
+
+
+}
+
+p1 {
+
+    font-weight: bold ;
+}
+
+hr {
+    color: rgb(167, 14, 14)
+}
+
+
+.marginout {
+
+    padding-left: 80px;
+    padding-right: 40px;
+    background-color: transparent;
+}
+
+
+.marginin {
+
+    background: #ffffff;;
+    border-radius: 4px;
+    padding: 32px;
+    padding-bottom: 24px;
+    padding-top: 12px;
+    width: 600px;
+    margin-top: 60px;
+}
+
+.formtitle{
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: normal;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+    color: #484848;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.mainform {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    padding: 20px;
+    border: 1px transparent lightgrey;
+    color: #484848;
+    border:solid rgb(214, 206, 206);
+
+}
+
+.inputfield {
+    display: flex;
+    height: 48px;
+    width: 100%;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 16px;
+    color: #484848;
+    box-sizing: border-box;
+    padding:12px;
+    border: 1px solid #EBEBEB;
+    border-radius: 4px;
+}
+
+
+
+.buttonmargin {
+
+    padding-top: 30px;
+    text-align: center;
+
+}
+.submitbutton {
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+    padding: 10px 22px;
+    font-weight:bold;
+    background:#FF5A5F;
+    border-color:transparent;
+    color: #ffffff;
+    width:100%
+
+}
+
+.link{
+    display:left;
+    margin-bottom:80px;
+}
+
+.boton{
+    background-color:#FF5A5F!important;
+    text-transform:none!important;
+    font-size:1.2em!important;
+    margin:10px 0 10px 0!important;
+}
+.titleSignUp{
+    font-size:1.5em!important;
+    margin-top:-70px!important;
+}
+
+.o{
+    font-size:1.5em;
+}
+.LoginOut{
+    color:#008489 !important;
+}
+
+.botonOpen{
+    color:black!important;
+    border-color:#0AE887!important;
+    background-color:#A3EFCE!important;
+    text-transform:none!important;
+    font-size:4em;
+    width:400px;
+    margin:25px!important;
+}
+
+.contain{
+    margin-bottom:50px!important;
+}

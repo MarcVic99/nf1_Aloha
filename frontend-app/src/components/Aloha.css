@@ -1,0 +1,426 @@
+*{ /* reset settings */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration:none;
+    outline: none;
+    box-sizing: border-box;  /*the common values for box-sizing*/
+    color:inherit;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body, html { /* reset settings */
+    width:100%!important;
+    height: 100%!important; /*default width and height*/
+    font-family: 'Open Sans', sans-serif;
+}
+
+.modalblack{
+    background-color:rgba(0,0,0,0.7);
+
+}
+.section_head{
+    width:100%!important;
+    height:833px!important;
+    position:static!important;
+    background-image: url("../img/aloha/luxe2.jpg");
+    background-size:cover!important;
+    max-width:100%!important;
+    margin-bottom:100px!important;
+}
+
+#header{
+    width:100%;
+    height:70px;
+}
+
+.father{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100px;
+    height:70px;
+    float:left;
+}
+
+#menu{
+    margin:0 auto; /* center automatically */
+}
+
+#menu ul a {
+    color:#fff;
+    font-size:15px;
+    font-family:Arial;
+    font-weight:bold;
+}
+
+#menu .box{
+    float:right;
+}
+
+#menu ul{
+    display:flex;
+    float:right;
+}
+
+#menu ul li {
+    height:67px;
+    padding:0 20px;
+    display: flex;
+    align-items: center; /* alineacion vertical */
+    justify-content: center;     /* alineacion horizontal */
+}
+
+#menu ul li:hover {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    margin-bottom:-20px;
+}
+
+.container_form{
+    width:100%;
+    height:400px;
+    margin-top:80px;
+}
+
+.container_form2{
+    width:82%;
+    height:100%;
+    margin:0 auto;
+}
+
+#form_ini{
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border: 0px solid #000000;
+    background-color:white;
+    width:360px;
+    height:500px;
+    padding:38px 38px 50px 38px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;color:#423F3E;
+}
+
+#form_ini h1{
+    font-size:2em;
+    margin-bottom:30px;
+}
+
+.inputlocation{
+    font-size:1em;
+    border:none;
+}
+.divinputlocation2{
+    margin-bottom:25px;
+    margin-left:-2px!important;
+}
+.inputlocation2{
+    border-radius:4px 0px 0px 4px;
+}
+.inputhuespedes{
+    font-size:1em;
+    border:none;
+}
+.divfecha1{
+    margin-bottom:25px;
+}
+.locat1{
+    padding:8px;
+    height:40px;
+    font-size:1em;
+    width:100%;
+    border:1px solid #D4D1D0;
+    border-radius:4px 0 0 4px;
+
+
+}
+.locat2{
+    padding:8px;
+    height:40px;
+    font-size:1em;
+    width:100%;
+    border:1px solid #D4D1D0;
+    border-radius:0px 4px 4px 0px;
+    border-left:none;
+}
+
+
+.description_input{
+    font-size:0.8em;
+    letter-spacing:1px;
+    margin-bottom:12px;
+}
+
+.div_donde{
+    margin-bottom:25px;
+    display:flex;
+    width:100%;
+    height:40px;
+    box-sizing:border-box;
+    padding:8px;
+    border:1px solid #D4D1D0;border-radius:4px;
+}
+
+.llegada_salida{
+    display:block;
+    width:50%;
+    float:left;
+    box-sizing:border-box;
+}
+
+.input_huespedes{
+    margin-bottom:25px;
+    display:flex;
+    width:100%;
+    height:40px;
+    box-sizing:border-box;
+    padding:8px;
+    border:1px solid #D4D1D0;
+    border-radius:4px;
+}
+
+.div_find{
+    width:100%;
+    display:block;
+    text-align:right;
+}
+.dist_img{
+    margin-left:20px;
+}
+#find{
+    background-color:#FF5A5F;
+    color:white;
+    padding:14px;
+    border:0px;
+    border-radius:4px;
+    font-size:1em;
+}
+
+
+
+
+
+
+
+/* Modal container*/
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+/* Modal container gets target and it is shown and background modal too*/
+.modal:target, .modal:target .modal-bg {
+    display: block;
+    opacity:1;
+    visibility: visible;
+}
+/* Background modal*/
+.modal-bg:active, .modal-bg:hover, .modal-bg:visited, .modal-bg:link {
+    text-decoration: none;
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-transition: all .2s;
+}
+/* Background modal overlaps to container*/
+.modal:target .modal-bg {
+    z-index: 200;
+}
+/* Modal content or body*/
+.modal-content {
+    color:#484848;
+    padding:30px;
+    width: 500px;
+    height:580px;
+    position: absolute;
+    margin-right:-10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    text-align: left;
+    z-index: 300;
+}
+
+/* Modal is closed at lose target*/
+.mode-exit:link, .modal-exit:active, .modal-exit:visited, .modal-exit:hover {
+
+    top: 5%;
+    right: 5%;
+    left:5%;
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: #F92A2A;
+}
+
+
+.mode-exit{
+    top: 0px;
+    right: 30px;
+    font-size: 30px;
+
+
+    font-weight: bold;
+    text-decoration: none;
+    color: #C0BCBB;
+    transition: all 200ms;
+}
+
+
+#cruz{
+    font-size:1.7em;
+
+}
+
+.divInp{
+    padding:8px;
+    height:20px;
+    border:1px solid #C0BCBB;
+    margin-top:30px;
+    margin-bottom:20px;
+    width:100%;
+    float:left;
+    border-radius:4px;
+}
+
+.inp,.inp2,.inp3,.inp4{
+
+    font-size:1em;
+    border:0;
+}
+
+
+input:focus, input.form-control:focus  {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+
+}
+
+img{max-width:100%;}
+
+
+.registrarse{
+    width:100%;
+    display:inline-block;
+    text-align:center;
+}
+
+#registrarse{
+    width:100%;
+    background-color:#FF5A5F;
+    color:white;
+    padding:14px;
+    border:0px;
+    border-radius:4px;
+    font-size:1em;
+}
+
+
+
+
+
+
+#div_recomended_general {
+    margin-bottom:60px;
+    width:100%;
+
+}
+
+
+.div_recomended{
+    width:220px;
+    height:300px;
+    background-color: blue;
+
+}
+
+
+footer{
+    display:block;
+    margin:25px 0 25px 0;
+}
+
+#div_footer_general {
+    display:inline-block;
+    background-color: white;
+    font-weight: 500;
+    margin:0 auto;
+    color: #939391!important;
+    text-align:left;
+    display:flex;
+    justify-content:center;
+}
+li_footer_title{
+    color:red;
+}
+
+.div_footer{
+    display:inline-block;
+    vertical-align: top;
+}
+
+.div_footer2{
+    margin-left:80px;
+    margin-bottom:25px;
+}
+.face{
+    float:left;
+}
+.insta{
+    float:right;
+}
+
+h4
+{
+    display:inline-block;
+    font-weight: bold;
+    color:#4C4C4B;
+    margin-bottom:15px;
+}
+
+hr{
+    border-top:10px;
+    color: #939391;
+    margin-top:25px;
+}
+
+.span_new{
+    margin-left:5px;
+    padding: 3px;
+    color: white;
+    background-color: rgb(0, 106, 112);
+    border-radius: 5px;
+    font-size:0.8em;
+}
+
+#redes{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.copyright{
+    color: #939391;
+    padding-top:20px;
+}
+
+.copyright span{
+    padding:15px;
+}

@@ -1,22 +1,15 @@
-import React, {Component} from 'react';
-import { BrowserRouter, Route} from "react-router-dom";
-import {FOOTER_APP} from "./routes/routes";
-import { withRouter } from "react-router";
-
-
+import React from 'react';
+/*import logo from './img/logo.svg';*/
 import './App.css';
-import FooterLinks from "./views/footer/footer";
-import SignIn from "./views/SignIn/SignIn";
-import LogIn from "./views/LogIn/LogIn";
+//import 'semantic-ui-css/semantic.min.css';
+
+import Aloha from './components/Aloha';
+
 
 function App() {
-
-  return(
-      <LogIn/>
-     // <SignIn/>
-     // <FooterLinks/>
+  return (
+      <Aloha/>
   );
-
 }
 
 export default App;

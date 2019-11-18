@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class PostsController extends Controller{
     public function createUser(Request $request){
@@ -66,24 +67,20 @@ class PostsController extends Controller{
 
     public function logIn(Request $request){
 
-        $errors = array("User not found");
+
         $userEmail = $request->only(['email']);
 
         $userPass = $request->only(['password']);
 
-        $userRecord = User::where("email","=",$userEmail)
+        $user = User::where("email","=",$userEmail)
             ->where("password","=",$userPass)
             ->first();
-        $idGetter = $userRecord['id'];
 
-        $comprovationMsgLogIn = array("You've been Logged. 
-                                    Nice to see ya again $idGetter");
-        if(!empty($userRecord)){
-            return $comprovationMsgLogIn[0];
+        if(isset($user)){
+            return response()->json($user, Response::HTTP_OK);
         }
-        else{
-            return $errors[0];
-        }
+
+        return response()->json(["errors" => ["User not found"]], Response::HTTP_NOT_FOUND);
     }
 
 }
