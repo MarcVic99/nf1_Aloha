@@ -2,20 +2,25 @@ import React from 'react';
 import './Aloha.css';
 import logo from '../img/aloha/logo_aloha.png';
 import ny from '../img/aloha/ny.jpg';
+import tailandia from '../img/aloha/tailandia.jpg';
+import kenia from '../img/aloha/kenia.jpeg';
+import japon from '../img/aloha/japon.jpg';
+
 import red1 from '../img/aloha/facebook.png';
 import red2 from '../img/aloha/twitter.png';
 import red3 from '../img/aloha/instagram_icon2.png';
 import copy from '../img/aloha/pineaple.png';
 
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import './signup/SignUp.css';
 import SignUp from './signup/SignUp';
-import LogIn2 from './login/LogIn2';
+//import LogIn2 from './login/LogIn2';
 import LogIn from '../views/LogIn/LogIn';
+import {normalizeToLocation} from "react-router-dom/modules/utils/locationUtils";
+
 const styles = theme => ({
     root: {
         margin: 0,
@@ -195,11 +200,13 @@ export default function Modal() {
 
 
 
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
+
+                <img src={ny} height="380" width="320" className="dist_img" alt={"ny"}/>
+                <img src={tailandia} height="380" width="320" className="dist_img" alt={"tailandia"}/>
+                <img src={japon} height="380" width="320" className="dist_img" alt={"japon"}/>
+                <img src={kenia} height="380" width="320" className="dist_img" alt={"kenia"}/>
+
+
 
             </div>
 

@@ -167,7 +167,6 @@ export default function SignUp() {
                                 value={hasagreed}
                                 onChange={event => setHasAgreed (event.target.value)}
 
-
                             />
                         </Grid>
                     </Grid>
