@@ -80,7 +80,7 @@ class PostsController extends Controller{
             return response()->json($user, Response::HTTP_OK);
         }
 
-        return response()->json(["errors" => ["User not found"]], Response::HTTP_NOT_FOUND);
+        return response()->json(["errors" => ["No hay ninguna cuenta asociada a esta dirección de correo electrónico. Inténtalo con otro correo electrónico."]], Response::HTTP_NOT_FOUND);
     }
 
 }

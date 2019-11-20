@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import {Popper} from "@material-ui/core";
 import './LogIn.css'
 
 
@@ -30,33 +31,29 @@ function LogIn() {
 
             }
 
+            fetch(url, options)
 
-            return fetch(url, options)
+                .then(response=> {
+                    if (response.status == 404) {
+                           response.json().then((resp=>{
+                              // console.warn("resp", resp);
 
-                .then(response => {
-                    if (response.status == 200) {
-                        console.log(response);}
-                    return Promise.reject(response.status);
+                           return Promise.reject(alert(resp.errors))
+                           }))
+                    }
+                    else if (response.status == 200){
+                        response.json().then((resp=>{
+                           // console.warn("resp",resp);
+                          return Promise.reject(alert(`Bienvenido de nuevo, ${resp.name} :)`))
+
+                        }))
+
+                    }
                 }).catch(error => {
                     setError(error);
                     alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
                 });
-            /*    .then(function (response) {
-                              if (response.ok) {
-                                  alert(response.text);
-                                  return response.text;
-
-
-                              } else {
-                                  return Promise.reject(response.statusText);
-                              }
-                          })
-                          .catch(function (error) {
-                              console.log("Error"+ error)
-
-                          });
-                 */
 
         };
 
