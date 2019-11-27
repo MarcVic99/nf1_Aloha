@@ -1,6 +1,5 @@
 import React from 'react';
 import './Aloha.css';
-import './signup/SignUp.css';
 
 import logo from '../img/aloha/logo_aloha.png';
 import ny from '../img/aloha/ny.jpg';

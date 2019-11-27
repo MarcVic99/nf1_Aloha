@@ -98,6 +98,23 @@ export default function SignUp() {
         confirm_pass: confirm_pass
     }
 
+    const [values, setValues] = React.useState({
+        showPassword: false,
+    });
+
+
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
+
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
@@ -133,33 +150,27 @@ export default function SignUp() {
 
     return (
         <Container component="main" maxWidth="xs" className={'contain'}>
-
             <div>
 
-
-                <Typography component="h1" variant="h5" className={"titleSignUp"}>
-                    Regístrate con <Link href="#" className={"LoginOut"}>Facebook</Link> o <Link href="#" className={"LoginOut"}>Google</Link>
-                </Typography>
                 <form className={classes.form}>
                     <Grid container spacing={2}>
-                        {/*        <Grid item xs={12} sm={5}>
-                        <hr/>
-                        </Grid>
-                        o
-                        <Grid item xs={12} sm={5}>
-                        <hr/>
-                        </Grid> */}
+
                         <Grid item xs={12} align={"center"} className={"o"}>
-                            <hr></hr>
+                            <hr/>
                             o
                         </Grid>
+
+                        <Typography component="h1" variant="h5" className={"titleSignUp"}>
+                            Regístrate con <Link href="#" className={"LoginOut"}>Facebook</Link> o <Link href="#" className={"LoginOut"}>Google</Link>
+                        </Typography>
+
                         <Grid item xs={12}>
                             <TextField
-                                autoComplete="fname"
-                                name="firstName"
+                                autoComplete="name"
+                                name="name"
                                 variant="outlined"
                                 fullWidth
-                                id="firstName"
+                                id="name"
                                 label="Nombre"
                                 value={name}
                                 onChange={event => setName(event.target.value)}
@@ -170,10 +181,10 @@ export default function SignUp() {
                             <TextField
                                 variant="outlined"
                                 fullWidth
-                                id="lastName"
+                                id="last_name"
                                 label="Apellido"
-                                name="lastName"
-                                autoComplete="lname"
+                                name="last_name"
+                                autoComplete="last_name"
                                 value={last_name}
                                 onChange={event => setLastName(event.target.value)}
                             />
@@ -193,30 +204,54 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                label="Establece una contraseña"
                                 required
                                 fullWidth
-                                name="password"
-                                label="Establece una contraseña"
-                                type="password"
                                 id="password"
-                                autoComplete="current-password"
+                                className={clsx(classes.margin, classes.textField)}
+                                type={values.showPassword ? 'text' : 'password'}
                                 value={password}
+                                autoComplete="current-password"
                                 onChange={event => setPassword(event.target.value)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            size={"small"}
+                                        >
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                variant="outlined"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                label="Establece una contraseña"
                                 required
                                 fullWidth
-                                name="password"
-                                label="Confirma tu contraseña"
-                                type="password"
                                 id="password"
-                                autoComplete="current-password"
+                                className={clsx(classes.margin, classes.textField)}
+                                type={values.showPassword ? 'text' : 'password'}
                                 value={confirm_pass}
+                                autoComplete="current-password"
                                 onChange={event => setConfirmPass(event.target.value)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            size={"small"}
+                                        >
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                variant="outlined"
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -226,21 +261,11 @@ export default function SignUp() {
                                 name="hasAgreed"
                                 value={hasagreed}
                                 onChange={event => setHasAgreed(event.target.value)}
-
-
                             />
                         </Grid>
                     </Grid>
 
-                    <Grid container justify="flex-start">
-                        <Grid item>
-                            <span>¿Ya tienes una cuenta de Airbnb? </span>
 
-                            <Link href="#" variant="body2" className={"link"}>
-                                Inicia sesión
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </form>
 
                 <Button
@@ -255,6 +280,25 @@ export default function SignUp() {
                 >
                     Regístrate
                 </Button>
+
+                <Grid container justify="flex-start">
+                    <Grid item>
+                        <span>¿Ya tienes una cuenta de Airbnb? </span>
+
+                        <Link onClick={handleClickOpen} className="open">
+                            Inicia sesión
+                        </Link>
+                    </Grid>
+                </Grid>
+
+                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        <hr/>
+                    </DialogTitle>
+
+                    <LogIn/>
+
+                </Dialog>
             </div>
 
         </Container>
