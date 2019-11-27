@@ -16,8 +16,7 @@ class PostsController extends Controller{
             'email' => $input['email'],
             'last_name' => $input['last_name'],
             'phone_number' => $input['phone_number'],
-            'user_photo' => $input['user_photo'],
-            'is_host' => $input['is_host']
+            'user_photo' => $input['user_photo']
         ]);
         echo "Hasta aqui llego2";
         return $post;
