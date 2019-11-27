@@ -6,9 +6,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './SignUp.css';
+import LogIn from '../login/LogIn';
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import clsx from "clsx";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -31,54 +40,93 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+
+const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon/>
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
+
 export default function SignUp() {
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const classes = useStyles();
 
-    const [email, setEmail] = useState ('');
-    const [nombre, setName] = useState('');
-    const [lastname, setLastName] = useState ('');
+
+    const [name, setName] = useState('');
+    const [last_name, setLastName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirm_pass, setConfirmPass] = useState();
     const [hasagreed, setHasAgreed] = useState('');
     const [error, setError] = useState('');
 
+
     const data = {
-        nombre: nombre,
-        lastname: lastname,
+        name: name,
+        last_name: last_name,
         email: email,
         password: password,
-        hasagreed:hasagreed
+        confirm_pass: confirm_pass
     }
-
 
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
             const url = 'http://127.0.0.1:80/api/signup';
             const options = {
-                method: 'POST',
+                method: 'post',
                 body: JSON.stringify(data),
-                headers: new Headers({
+                headers: {
                     Accept: 'application/json',
-                    'Content-type': 'application/json',
+                    'Content-Type': 'application/json',
                     //'Access-Control-Allow-Headers': 'Authorization',
-                }),
+                },
                 mode: 'cors',
             };
-            return fetch(url, options)
+
+            fetch(url, options)
                 .then(response => {
                     //debugger;
-                    if(response.status === 201) {
+                    if (response.status === 201) {
                         alert(response.statusText);
                         return response.json();
                     }
                     return Promise.reject(response.status);
                 }).then(data => {
-                    //debugger;
-                }).catch(error => {
-                    setError(error);
-                    alert("Tienes el siguiente error: " + error);
-                });
+                //debugger;
+            }).catch(error => {
+                setError(error);
+                alert("Tienes el siguiente error: " + error);
+            });
         };
         fetchdata()
     }
@@ -86,15 +134,13 @@ export default function SignUp() {
     return (
         <Container component="main" maxWidth="xs" className={'contain'}>
 
-            <div className={classes.paper}>
+            <div>
 
 
                 <Typography component="h1" variant="h5" className={"titleSignUp"}>
                     Regístrate con <Link href="#" className={"LoginOut"}>Facebook</Link> o <Link href="#" className={"LoginOut"}>Google</Link>
-
-
                 </Typography>
-                <form method="post" action='/backend-api/app/Http/Controllers/GetsController.php' className={classes.form}>
+                <form className={classes.form}>
                     <Grid container spacing={2}>
                         {/*        <Grid item xs={12} sm={5}>
                         <hr/>
@@ -115,7 +161,7 @@ export default function SignUp() {
                                 fullWidth
                                 id="firstName"
                                 label="Nombre"
-                                value={nombre}
+                                value={name}
                                 onChange={event => setName(event.target.value)}
 
                             />
@@ -128,7 +174,7 @@ export default function SignUp() {
                                 label="Apellido"
                                 name="lastName"
                                 autoComplete="lname"
-                                value={lastname}
+                                value={last_name}
                                 onChange={event => setLastName(event.target.value)}
                             />
                         </Grid>
@@ -160,30 +206,32 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Confirma tu contraseña"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                value={confirm_pass}
+                                onChange={event => setConfirmPass(event.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
                                 label="No quiero recibir mensajes de promociones de Airbnb. También puedo optar por desactivarlos en la configuración de mi cuenta o a través del enlace del mensaje."
                                 name="hasAgreed"
                                 value={hasagreed}
-                                onChange={event => setHasAgreed (event.target.value)}
+                                onChange={event => setHasAgreed(event.target.value)}
 
 
                             />
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        text-transform="none"
-                        color="secondary"
-                        size="medium"
-                        className={'boton'}
-                        onClick={handleOnSubmit}
 
-                    >
-                        Regístrate
-                    </Button>
                     <Grid container justify="flex-start">
                         <Grid item>
                             <span>¿Ya tienes una cuenta de Airbnb? </span>
@@ -194,6 +242,19 @@ export default function SignUp() {
                         </Grid>
                     </Grid>
                 </form>
+
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    text-transform="none"
+                    color="secondary"
+                    size="medium"
+                    className={'boton'}
+                    onClick={handleOnSubmit}
+                >
+                    Regístrate
+                </Button>
             </div>
 
         </Container>

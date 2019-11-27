@@ -1,7 +1,22 @@
-import React, { useState,useEffect } from 'react';
-import './LogIn.css'
+import React, { useState, useEffect } from 'react';
 
-function LogIn() {
+import './LogIn.css';
+
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Button from "@material-ui/core/Button";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Link from "@material-ui/core/Link";
+
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
+export default function LogIn() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,108 +28,163 @@ function LogIn() {
         password: password
     }
 
-    const handleSubmit = () => {
+    const [values, setValues] = useState({
+        showPassword: false,
+    });
+
+    const handleClickShowPassword = () => {
+        setValues({...values, showPassword: !values.showPassword});
+    };
+
+    const handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
+
+    const handleOnSubmit = () => {
         const fetchdata = async () => {
-            const url ='https://127.0.0.1:8080/login';
+            const url = "http://127.0.0.1:80/api/login";
             const options = {
-                method: 'POST',
+                method: 'post',
                 body: JSON.stringify(data),
-                header: new Headers({
-                    Accept:'application/json',
-                    'Content-type': 'application/json',
-                }),
-                mode:'cors'
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors'
+
             }
 
-            return fetch(url, options)
+            fetch(url, options)
+
                 .then(response => {
-                    if (response.status == 200) {
-                        alert();
-                        console.log(response);
+                    if (response.status === 404) {
+                        response.json().then((resp => {
+                            return setError(resp.errors);
+                            //return Promise.reject(alert(resp.errors))
+                        }))
+                    } else if (response.status === 200) {
+                        response.json().then((resp => {
+                             //console.warn("resp",resp);
+                            setError('');
+                            return Promise.reject(alert(`Bienvenido ${resp.name} :)`))
+
+                        }))
+
                     }
-                    return Promise.reject(response.status);
                 }).catch(error => {
-                    setError(error);
-                    alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
+                setError(error);
+                alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
-                });
+            });
 
-        }
+        };
+
         fetchdata()
     }
 
     return (
-        <div>
-            <div className="borde">
-                <div className="marginout">
-                    <div className="marginin">
+        <Container component="main" maxWidth="xs">
 
-                        <div className="mainform">
-                            <form method="post" action='/backend-api/app/Http/Controllers/GetsController.php'>
+            <div>
+                <form>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} align={"center"} className={"h1login"}>
+                            Inicia Sesión
+                            <hr></hr>
+                        </Grid>
 
-                                <div>
-                                    <h4> ~ Aloha ~</h4>
-                                    <br/>
-                                    <hr></hr>
-                                </div>
-                                <br/>
-                                <br/>
-                                <input
-                                    className="inputfield"
-                                    name="email"
-                                    placeholder="Dirección de correo electrónico"
-                                    value={email}
-                                    onChange={event => setEmail(event.target.value)}
-                                    required
+                        <Grid item xs={12}>
+                            <TextField
 
-                                />
-                                <br/>
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Dirección de correo electrónico"
+                                name="email"
+                                autoComplete="email"
+                                type="email"
+                                value={email}
+                                onChange={event => setEmail(event.target.value)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <AccountCircle/>
+                                    </InputAdornment>
+                                }}
+                            />
+                        </Grid>
 
-                                <input
-                                    className="inputfield"
-                                    name="name"
-                                    placeholder="Contraseña"
-                                    value={password}
-                                    onChange={event => setPassword(event.target.value)}
-                                    required
+                        <Grid item xs={12}>
 
-
-                                />
-                                <br/>
-                                <label>
-                                    <input type="checkbox"
-                                           name="hasAgreed"
-                                           value={remember}
-                                           onChange={event => setRemember(event.target.value)}
-
-                                    />
-                                    <p2>Recordarme</p2>
-                                </label>
-
-                            </form>
-                            <div className="buttonmargin">
-
-                                <div>
-
-                                    <button type="submit" onClick={handleSubmit} className="submitbutton">Inicia
-                                        Sesión
-                                    </button>
-
-
-                                </div>
+                            <TextField
+                                label="Contraseña"
+                                required
+                                fullWidth
+                                id="password"
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={password}
+                                autoComplete="current-password"
+                                onChange={event => setPassword(event.target.value)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            size={"small"}
+                                        >
+                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                variant="outlined"
+                            />
 
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        </Grid>
+                        <Grid item xs={12} >
+                            <p className={"error"}> {error} </p>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                type="checkbox"
+                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                                label="Recordarme"
+                                name="Remember"
+                                value={remember}
+                                onChange={event => setRemember(event.target.value)}
+                            />
+                        </Grid>
+                    </Grid>
+
+                </form>
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    text-transform="none"
+                    color="secondary"
+                    size="medium"
+                    className={'botonlogin'}
+                    onClick={handleOnSubmit}
+                >
+                    Inicia Sesión
+                </Button>
+
+                <Grid container justify="flex-start" className={"fatherLink"}>
+                    <Grid item>
+                        <span>¿No tienes cuenta ? </span>
+
+                        <Link href="#" variant="body2" className={"link"}>
+                            Regístrate
+                        </Link>
+
+                    </Grid>
+                </Grid>
+
             </div>
 
-        </div>
-
-    )
-
+        </Container>
+    );
 }
-
-
-export default LogIn;

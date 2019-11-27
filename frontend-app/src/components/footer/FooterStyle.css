@@ -1,8 +1,6 @@
 @font-face {
     font-family: 'Pacifico';
-
     src: url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
-
 }
 
 *{
@@ -13,19 +11,19 @@
     outline: none;
     box-sizing: border-box;
     color:inherit;
-
-
-
 }
+
+
+
 #footerGeneralDiv {
     height:auto;
     width: auto;
-    margin:10%;
     padding: auto;
     display: block;
     position:absolute;
     /*background-color: blue;*/
     left: 10vh;
+    margin-top:400px;
 
 }
 #FooterLinksGeneral li{
@@ -104,18 +102,9 @@ h4 {
 
 }
 
-img:hover{
-
-    width:5%;
-    height:5%;
-}
-
 img{
     size: 2px;
     margin: 10px 0px 1px 0px;
-}
-span{
-    margin: 0px 0px 0px 0px;
 }
 hr{
     border-color: #ebf2eb;

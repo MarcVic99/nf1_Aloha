@@ -1,21 +1,27 @@
 import React from 'react';
 import './Aloha.css';
+import './signup/SignUp.css';
+
 import logo from '../img/aloha/logo_aloha.png';
 import ny from '../img/aloha/ny.jpg';
-import red1 from '../img/aloha/facebook.png';
-import red2 from '../img/aloha/twitter.png';
-import red3 from '../img/aloha/instagram_icon2.png';
-import copy from '../img/aloha/pineaple.png';
+import tailandia from '../img/aloha/tailandia.jpg';
+import kenia from '../img/aloha/kenia.jpeg';
+import japon from '../img/aloha/japon.jpg';
 
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import './signup/SignUp.css';
 import SignUp from './signup/SignUp';
-import LogIn2 from './login/LogIn2';
-import LogIn from '../views/LogIn/LogIn';
+import LogIn from './login/LogIn';
+import FooterLinks from './footer/footer';
+
+
+
+
 const styles = theme => ({
     root: {
         margin: 0,
@@ -68,7 +74,7 @@ export default function Modal() {
 
 
     return (
-        <body>
+        <div>
         <section className="section_head">
             <div id="header">
                 <a href="https://www.airbnb.es">
@@ -189,17 +195,12 @@ export default function Modal() {
 
         <section>
 
-
-
             <div id="div_recomended_general">
 
-
-
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
-                <img src={ny} height="380" width="320" className="dist_img"/>
+                <img src={ny} height="380" width="320" className="dist_img" alt={"ny"}/>
+                <img src={tailandia} height="380" width="320" className="dist_img" alt={"tailandia"}/>
+                <img src={japon} height="380" width="320" className="dist_img" alt={"japon"}/>
+                <img src={kenia} height="380" width="320" className="dist_img" alt={"kenia"}/>
 
             </div>
 
@@ -207,110 +208,11 @@ export default function Modal() {
 
         <footer>
 
-            <div id="div_footer_general">
-                <ul>
-                    <div className="div_footer">
-
-                        <li>
-                            <div className="div_footer_aloha">
-                                <ul>
-                                    <li className="li_footer_title"><h4> Aloha </h4></li>
-
-                                    <li><a href="https://www.google.com"> Empleo </a></li>
-                                    <li><a href="">Noticias </a></li>
-                                    <li><a href="">Políticas </a></li>
-                                    <li><a href="">Ayuda </a></li>
-                                    <li><a href="">Diversidad e inclusión </a></li>
-                                    <li><a href="">Accesibilidad </a> <span className="span_new">Nuevo</span></li>
-                                    <li><a href="">Datos de la empresa </a></li>
-                                </ul>
-                            </div>
-                        </li>
-
-                    </div>
-                    <div className="div_footer">
-
-                        <li>
-                            <div className="div_footer2">
-                                <ul>
-                                    <li><h4> Descubre Aloha </h4></li>
-
-                                    <li><a href="https://www.google.com"> Confianza y seguridad </a></li>
-                                    <li><a href="">Crédito para viajar </a></li>
-                                    <li><a href="">Airbnb Citizen </a></li>
-                                    <li><a href="">Viajes de negocios </a></li>
-                                    <li><a href="">Actividades </a> <span className="span_new">Nuevo</span></li>
-                                    <li><a href="">Airbnbmag </a></li>
-
-                                </ul>
-                            </div>
-                        </li>
-
-                    </div>
-                    <div className="div_footer">
-
-                        <li>
-                            <div className="div_footer2">
-
-                                <ul>
-                                    <li><h4> Hospedar </h4></li>
-
-                                    <li><a href="https://www.google.com"> Razones para hospedar </a></li>
-                                    <li><a href=""> Hospitalidad </a></li>
-                                    <li><a href="">Ser un anfitrión responsable </a></li>
-                                    <li><a href="">Centro de la comunidad</a></li>
-                                    <li><a href="">Ofrece una experiencia </a> <span className="span_new">Nuevo </span>
-                                    </li>
-                                    <li><a href="">Open Homes </a></li>
-                                </ul>
-
-                            </div>
-
-                        </li>
-
-                    </div>
-                    <div className="div_footer div_footer2">
-
-                        <li>
-                            <div>
-
-                                <ul>
-                                    <li className="li_footer_title">
-                                        <div id="redes">
-                                            <a href="https://www.facebook.com"><img src={red1} width="20"
-                                                                                    height="20" className={'face'}/></a>
-                                            <a href="https://twitter.com"><img src={red2} width="20"
-                                                                               height="20"/></a>
-                                            <a href="https://instagram.com"><img src={red3}
-                                                                                 width="20" height="20" className={'insta'}/></a>
-                                        </div>
-                                    </li>
-                                    <div>
-
-                                        <li><a>Condiciones</a></li>
-                                        <li><a>Privacidad </a></li>
-                                        <li><a>Mapa del sitio</a></li>
-
-                                    </div>
-                                </ul>
-                            </div>
-                        </li>
-                    </div>
-
-
-                    <hr></hr>
-                    <div className="copyright">
-                        <img src={copy} height="25"/> <span className="span_copyrigth"><bold>© 2019 Aloha, Inc. All rights reserved.</bold></span>
-                    </div>
-
-                </ul>
-
-            </div>
-
+            <FooterLinks/>
 
         </footer>
 
-        </body>
+        </div>
 
     );
 
