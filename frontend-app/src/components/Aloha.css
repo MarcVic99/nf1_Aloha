@@ -1,6 +1,5 @@
 
 
-
 *{ /* reset settings */
     margin: 0;
     padding: 0;
@@ -41,9 +40,9 @@ body, html { /* reset settings */
 }
 
 .father{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
     width:100px;
     height:70px;
     float:left;
@@ -332,6 +331,16 @@ input:focus, input.form-control:focus  {
     font-size:1em;
 }
 
+
+
+.makeStyles-paper-1651 {
+    margin-top:0!important;
+}
+
+.makeStyles-paper-69{
+    margin-top:0!important;
+}
+
 #div_recomended_general {
     text-align:center;
     min-height:100%;
@@ -367,6 +376,10 @@ input:focus, input.form-control:focus  {
 footer{
     display:block;
     margin:60px 0 25px 0;
+}
+
+.div_footer li{
+    margin:10px!important;
 }
 
 #div_footer_general {
@@ -406,7 +419,7 @@ h4
 
 hr{
     border-top:10px;
-    color: #939391;
+    color: #939391!important;
     margin-top:25px;
 }
 
@@ -429,6 +442,6 @@ hr{
     padding-top:20px;
 }
 
-.copyright span{
-    padding:15px;
+.copyright span {
+    padding: 15px;
 }

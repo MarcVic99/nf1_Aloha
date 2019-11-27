@@ -6,9 +6,18 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import './SignUp.css';
+import LogIn from '../login/LogIn';
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import clsx from "clsx";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -31,17 +40,55 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+
+const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon/>
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
+
 export default function SignUp() {
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const classes = useStyles();
 
-    const [email, setEmail] = useState ('');
+
     const [name, setName] = useState('');
-    const [last_name, setLastName] = useState ('');
+    const [last_name, setLastName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirm_pass, setConfirmPass] = useState();
     const [hasagreed, setHasAgreed] = useState('');
     const [error, setError] = useState('');
-    const [confirm_pass, setConfirmPass] = useState();
+
 
     const data = {
         name: name,
@@ -51,6 +98,22 @@ export default function SignUp() {
         confirm_pass: confirm_pass
     }
 
+    const [values, setValues] = React.useState({
+        showPassword: false,
+    });
+
+
+    const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
 
 
     const handleOnSubmit = () => {
@@ -59,63 +122,55 @@ export default function SignUp() {
             const options = {
                 method: 'post',
                 body: JSON.stringify(data),
-                headers:{
+                headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                     //'Access-Control-Allow-Headers': 'Authorization',
-            },
+                },
                 mode: 'cors',
             };
 
             fetch(url, options)
                 .then(response => {
                     //debugger;
-                    if(response.status === 201) {
+                    if (response.status === 201) {
                         alert(response.statusText);
                         return response.json();
                     }
                     return Promise.reject(response.status);
                 }).then(data => {
-                    //debugger;
-                }).catch(error => {
-                    setError(error);
-                    alert("Tienes el siguiente error: " + error);
-                });
+                //debugger;
+            }).catch(error => {
+                setError(error);
+                alert("Tienes el siguiente error: " + error);
+            });
         };
         fetchdata()
     }
 
     return (
         <Container component="main" maxWidth="xs" className={'contain'}>
+            <div>
 
-            <div className={classes.paper}>
-
-
-                <Typography component="h1" variant="h5" className={"titleSignUp"}>
-                    Regístrate con <Link href="#" className={"LoginOut"}>Facebook</Link> o <Link href="#" className={"LoginOut"}>Google</Link>
-
-
-                </Typography>
-                <form method= "post" className={classes.form}>
+                <form className={classes.form}>
                     <Grid container spacing={2}>
-                        {/*        <Grid item xs={12} sm={5}>
-                        <hr/>
-                        </Grid>
-                        o
-                        <Grid item xs={12} sm={5}>
-                        <hr/>
-                        </Grid> */}
+
                         <Grid item xs={12} align={"center"} className={"o"}>
-                            <hr></hr>
+                            <hr/>
                             o
                         </Grid>
+
+                        <Typography component="h1" variant="h5" className={"titleSignUp"}>
+                            Regístrate con <Link href="#" className={"LoginOut"}>Facebook</Link> o <Link href="#" className={"LoginOut"}>Google</Link>
+                        </Typography>
+
                         <Grid item xs={12}>
                             <TextField
-                                autoComplete="fname"
-                                name="firstName"
+                                autoComplete="name"
+                                name="name"
                                 variant="outlined"
                                 fullWidth
-                                id="firstName"
+                                id="name"
                                 label="Nombre"
                                 value={name}
                                 onChange={event => setName(event.target.value)}
@@ -126,10 +181,10 @@ export default function SignUp() {
                             <TextField
                                 variant="outlined"
                                 fullWidth
-                                id="lastName"
+                                id="last_name"
                                 label="Apellido"
-                                name="lastName"
-                                autoComplete="lname"
+                                name="last_name"
+                                autoComplete="last_name"
                                 value={last_name}
                                 onChange={event => setLastName(event.target.value)}
                             />
@@ -149,55 +204,70 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                label="Establece una contraseña"
                                 required
                                 fullWidth
-                                name="password"
-                                label="Establece una contraseña"
-                                type="password"
                                 id="password"
-                                autoComplete="current-password"
+                                className={clsx(classes.margin, classes.textField)}
+                                type={values.showPassword ? 'text' : 'password'}
                                 value={password}
+                                autoComplete="current-password"
                                 onChange={event => setPassword(event.target.value)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            size={"small"}
+                                        >
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                variant="outlined"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                variant="outlined"
+                                label="Establece una contraseña"
                                 required
                                 fullWidth
-                                name="password"
-                                label="Confirma tu contraseña"
-                                type="password"
                                 id="password"
-                                autoComplete="current-password"
+                                className={clsx(classes.margin, classes.textField)}
+                                type={values.showPassword ? 'text' : 'password'}
                                 value={confirm_pass}
+                                autoComplete="current-password"
                                 onChange={event => setConfirmPass(event.target.value)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            size={"small"}
+                                        >
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                variant="outlined"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
                                 label="No quiero recibir mensajes de promociones de Airbnb. También puedo optar por desactivarlos en la configuración de mi cuenta o a través del enlace del mensaje."
                                 name="hasAgreed"
                                 value={hasagreed}
-                                onChange={event => setHasAgreed (event.target.value)}
-
+                                onChange={event => setHasAgreed(event.target.value)}
                             />
                         </Grid>
                     </Grid>
 
-                    <Grid container justify="flex-start">
-                        <Grid item>
-                            <span>¿Ya tienes una cuenta de Airbnb? </span>
 
-                            <Link href="#" variant="body2" className={"link"}>
-                                Inicia sesión
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </form>
-                //He cambiado la estructura y he colocado el submit fuera del form.
+
                 <Button
                     type="submit"
                     fullWidth
@@ -207,10 +277,28 @@ export default function SignUp() {
                     size="medium"
                     className={'boton'}
                     onClick={handleOnSubmit}
-
                 >
                     Regístrate
                 </Button>
+
+                <Grid container justify="flex-start">
+                    <Grid item>
+                        <span>¿Ya tienes una cuenta de Airbnb? </span>
+
+                        <Link onClick={handleClickOpen} className="open">
+                            Inicia sesión
+                        </Link>
+                    </Grid>
+                </Grid>
+
+                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        <hr/>
+                    </DialogTitle>
+
+                    <LogIn/>
+
+                </Dialog>
             </div>
 
         </Container>
