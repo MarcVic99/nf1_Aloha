@@ -1,37 +1,15 @@
 <?php
-/*namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Response;
 
-class PostsController extends Controller{
+namespace App\Http\Controllers\Auth;
 
-
+class UserAuthController extends Controller
+{
     public function __construct()
     {
-        $this->middleware('auth:api',['except'=>['logIn','signUp']]);
+        $this->middleware('auth:api',['except'=>['logInUser','signUpUser']]);
     }
 
-
-    public function createUser(Request $request){
-        $input = $request->all();
-        echo $request->input('name');
-        $post = User::create([
-            'name' => $input['name'],
-            'password' => $input['password'],
-            'email' => $input['email'],
-            'last_name' => $input['last_name'],
-            'phone_number' => $input['phone_number'],
-            'user_photo' => $input['user_photo'],
-            'is_host' => $input['is_host']
-        ]);
-        echo "Hasta aqui llego2";
-        return $post;
-    }
-
-    public function signUp(Request $request)
-    {
+    public function signUpUser(Request $request){
         $errors = array("User exists","Invalid email format");
         $passErrors = array("Password must contain at least 8 characters",
             "Password must contain at least 1 number",
@@ -64,55 +42,46 @@ class PostsController extends Controller{
             else{
                 $userPost = User::create([
                     'name' => $input['name'],
-                    'password' => $input['password'],
+                    'password' => bcrypt($input['password']),
                     'email' => $input['email'],
                     'last_name' => $input['last_name']
                 ]);
                 return $userPost . $query . $comprovationMsg[0];
             }
         }
-
-
     }
 
-    public function logIn(Request $request){
+    public function logInUser(Request $request){
 
         $userRequest = request(['email','password']);
-        // $userEmail = $request->only(['email']);
-
-        // $userPass = $request->only(['password']);
-
-        // $user = User::where("email","=",$userEmail)
-        //     ->where("password","=",$userPass)
-        //     ->first();
 
         if(!$token = auth()->attempt($userRequest))
         {
             return response()->json(['error'=>'Unauthorized'],401);
         }
+
         return $this->respondWithToken($token);
-        //return response()->json($user,$token, Response::HTTP_OK);
-        //return response()->json(["errors" => ["No hay ninguna cuenta asociada a esta dirección de correo electrónico. Inténtalo con otro correo electrónico."]], Response::HTTP_NOT_FOUND);
+
+   }
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
     }
 
     public function me()
     {
         return response()->json(auth()->user());
     }
-
+/*
     public function payload()
     {
         return response()->json(auth()->payload());
     }
-
-    public function logout()
+*/
+    public function logOutUser()
     {
         auth()->logout();
         return response()->json(['message'=>'successfully logged out']);
-    }
-    public function refresh()
-    {
-        return $this->respondWithToken(auth()->refresh());
     }
 
     public function respondWithToken($token)
@@ -121,9 +90,38 @@ class PostsController extends Controller{
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' =>auth()->factory()->getTTL() * 60,
-            // 'user' =>auth()->User(),
         ]);
     }
-}
+//5   public function logOutUser{
+// here the logOutUser function
+//}
+//3  public function editUserInfo{
+//// here the editUserInfo function
+////}
+/*4
+ *     public function showUserInfo($email, $password){
+
+        $errors = array("User not found");
+
+        $searchUserInfo = User::where("email","=",$email)
+            ->where("password","=",$password)
+            ->first();
+        $userInfo = array($searchUserInfo['id'],$searchUserInfo['name'],
+            $searchUserInfo['last_name'],$searchUserInfo['email'],
+            $searchUserInfo['password']);
+
+        $comprovationMsg = array("You are the user $userInfo[0] with name $userInfo[1] $userInfo[2]
+                                and email $userInfo[3]. Your password is $userInfo[4]");
+
+        if(!empty($searchUserInfo))
+        {
+            return $comprovationMsg[0];
+        }
+        else{
+            return $errors[0];
+        }
+    }
 */
+
+}
 

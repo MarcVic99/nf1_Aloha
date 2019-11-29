@@ -51,5 +51,11 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+//additions JWT
+// Uncomment this line
+$app->register(App\Providers\AuthServiceProvider::class);
+
+// Add this line
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 return $app;
