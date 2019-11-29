@@ -21,6 +21,7 @@ Route::post('/login','PostsController@logIn');
 Route::get('/info/{email}/pass/{password}', 'GetsController@ShowUserInfo');
 Route::post('/post', 'PostsController@createUser');
 Route::post('/signup', 'PostsController@signUp');
+Route::post('/property', 'PropertiesController@createProperty');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -2,37 +2,42 @@
 
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class PropertiesController extends Controller
 {
-    public function getUser($id){
-        $user=array(
-            "id"=>$id,
-            "nombre"=>"Juan",
-            "email"=>"test@test.com"
-        );
-        return $user;
-    }
+    public function createProperty(Request $request){
 
-    public function getUsers()
-    {
-        $user1 = array(
-            "id" => 0,
-            "nombre" => "Juan",
-            "email" => "test@test.com"
-        );
-        $user2 = array(
-            "id" => 1,
-            "nombre" => "Pedro",
-            "email" => "test@test.com"
-        );
-        $user3 = array(
-            "id" => 2,
-            "nombre" => "Joana",
-            "email" => "test@test.com"
-        );
-        return [$user1, $user2, $user3];
+        $request = $request->all();
+        $post = "";
+        $address = $request["address"];
+
+        $find = PropertiesAloha::where('address', '=', $address)->first();
+
+        if(!empty($find))
+        {
+            $post = "Property already created";
+            return $post;
+        }
+
+        else {
+            $post = PropertiesAloha::create([
+                "name_header" => $request["name_header"],
+                "country" => $request["country"],
+                "city" => $request["city"],
+                "address" => $request["address"],
+                "description" => $request["description"],
+                "additional_info" => $request["additional_info"],
+                "bedrooms" => $request["bedrooms"],
+                "bathrooms" => $request["bathrooms"],
+                "guest_number" => $request["guest_number"],
+                "user_id" => $request["user_id"]
+            ]);
+            return $post;
+        }
     }
 }
 
