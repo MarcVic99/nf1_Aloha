@@ -27,7 +27,13 @@ create table properties(
                            rating float,
                            user_id integer not null,
                            constraint property_id__user_id_fk foreign key (user_id) references users(id)
-);
+                       );
+alter table properties add updated_at timestamp default CURRENT_TIMESTAMP;
+alter table properties add created_at timestamp default CURRENT_TIMESTAMP;
+alter table properties add bedrooms varchar(255) not null;
+alter table properties add bathrooms varchar(255) not null ;
+alter table properties add guest_number varchar(255) not null ;
+
 create table photos(
                        id integer not null primary key auto_increment,
                        property_id int not null,
