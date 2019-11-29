@@ -7,14 +7,14 @@ create table users(
                       last_name varchar(30) not null,
                       password varchar(50) not null,
                       email varchar(255) not null,
-                       phone_number varchar(255) not null ,
-                       birthdate date,
-                        user_photo varchar(2048),
-                       is_host boolean not null,
                       updated_at timestamp default CURRENT_TIMESTAMP ,
                       created_at timestamp default CURRENT_TIMESTAMP
 
 );
+alter table users drop phone_number;
+alter table users drop birthdate;
+alter table users drop user_photo;
+alter table users add is_host boolean not null;
 
 create table properties(
                            id integer not null primary key auto_increment,
