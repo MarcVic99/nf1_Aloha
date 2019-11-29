@@ -1,3 +1,6 @@
+
+
+
 *{ /* reset settings */
     margin: 0;
     padding: 0;
@@ -51,10 +54,10 @@ body, html { /* reset settings */
 }
 
 #menu ul a {
-    color:#fff;
-    font-size:15px;
-    font-family:Arial;
-    font-weight:bold;
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
 }
 
 #menu .box{
@@ -100,13 +103,13 @@ body, html { /* reset settings */
     border: 0px solid #000000;
     background-color:white;
     width:360px;
-    height:500px;
+    height:480px;
     padding:38px 38px 50px 38px;
     font-family: Verdana, Arial, Helvetica, sans-serif;color:#423F3E;
 }
 
 #form_ini h1{
-    font-size:2em;
+    font-size:1.55em;
     margin-bottom:30px;
 }
 
@@ -188,8 +191,12 @@ body, html { /* reset settings */
     display:block;
     text-align:right;
 }
-.dist_img{
-    margin-left:20px;
+
+.nuevo{
+    height:320px;
+    width:320px;
+    display:inline-block;
+    float:left;
 }
 #find{
     background-color:#FF5A5F;
@@ -199,12 +206,6 @@ body, html { /* reset settings */
     border-radius:4px;
     font-size:1em;
 }
-
-
-
-
-
-
 
 /* Modal container*/
 .modal {
@@ -272,8 +273,6 @@ body, html { /* reset settings */
     top: 0px;
     right: 30px;
     font-size: 30px;
-
-
     font-weight: bold;
     text-decoration: none;
     color: #C0BCBB;
@@ -314,7 +313,7 @@ input:focus, input.form-control:focus  {
 
 }
 
-img{max-width:100%;}
+
 
 
 .registrarse{
@@ -333,29 +332,41 @@ img{max-width:100%;}
     font-size:1em;
 }
 
-
-
-
-
-
 #div_recomended_general {
-    margin-bottom:60px;
-    width:100%;
+    text-align:center;
+    min-height:100%;
+    display:block;
+}
 
+.listimg{
+    float:left;
+    display:inline-block;
+}
+
+.divimg{
+    background: #333944;
+    float:left;
+    display:inline-block;
+}
+
+.boximg{
+    width: 320px;
+    height: 380px;
+    float:left;
+    display:inline-block;
+}
+
+.dist_img{
+    margin:0 10px 0 10px;
 }
 
 
-.div_recomended{
-    width:220px;
-    height:300px;
-    background-color: blue;
-
-}
-
+.boximg>img{width:320px;
+    height:380px;}
 
 footer{
     display:block;
-    margin:25px 0 25px 0;
+    margin:60px 0 25px 0;
 }
 
 #div_footer_general {
@@ -367,9 +378,6 @@ footer{
     text-align:left;
     display:flex;
     justify-content:center;
-}
-li_footer_title{
-    color:red;
 }
 
 .div_footer{

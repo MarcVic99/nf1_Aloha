@@ -18,7 +18,7 @@ function LogIn() {
 
     const handleSubmit = () => {
         const fetchdata = async () => {
-            const url = "http://127.0.0.1:80/login";
+            const url = "http://127.0.0.1:80/api/login";
             const options = {
                 method: 'post',
                 body: JSON.stringify(data),

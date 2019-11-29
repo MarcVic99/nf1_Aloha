@@ -36,18 +36,19 @@ export default function SignUp() {
     const classes = useStyles();
 
     const [email, setEmail] = useState ('');
-    const [nombre, setName] = useState('');
-    const [lastname, setLastName] = useState ('');
+    const [name, setName] = useState('');
+    const [last_name, setLastName] = useState ('');
     const [password, setPassword] = useState('');
     const [hasagreed, setHasAgreed] = useState('');
     const [error, setError] = useState('');
+    const [confirm_pass, setConfirmPass] = useState();
 
     const data = {
-        nombre: nombre,
-        lastname: lastname,
+        name: name,
+        last_name: last_name,
         email: email,
         password: password,
-        hasagreed:hasagreed
+        confirm_pass: confirm_pass
     }
 
 
@@ -56,16 +57,17 @@ export default function SignUp() {
         const fetchdata = async () => {
             const url = 'http://127.0.0.1:80/api/signup';
             const options = {
-                method: 'POST',
+                method: 'post',
                 body: JSON.stringify(data),
-                headers: new Headers({
+                headers:{
                     Accept: 'application/json',
-                    'Content-type': 'application/json',
+                    'Content-Type': 'application/json',
                     //'Access-Control-Allow-Headers': 'Authorization',
-                }),
+            },
                 mode: 'cors',
             };
-            return fetch(url, options)
+
+            fetch(url, options)
                 .then(response => {
                     //debugger;
                     if(response.status === 201) {
@@ -94,7 +96,7 @@ export default function SignUp() {
 
 
                 </Typography>
-                <form method="post" action='/backend-api/app/Http/Controllers/GetsController.php' className={classes.form}>
+                <form method= "post" className={classes.form}>
                     <Grid container spacing={2}>
                         {/*        <Grid item xs={12} sm={5}>
                         <hr/>
@@ -115,7 +117,7 @@ export default function SignUp() {
                                 fullWidth
                                 id="firstName"
                                 label="Nombre"
-                                value={nombre}
+                                value={name}
                                 onChange={event => setName(event.target.value)}
 
                             />
@@ -128,7 +130,7 @@ export default function SignUp() {
                                 label="Apellido"
                                 name="lastName"
                                 autoComplete="lname"
-                                value={lastname}
+                                value={last_name}
                                 onChange={event => setLastName(event.target.value)}
                             />
                         </Grid>
@@ -160,6 +162,20 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Confirma tu contraseña"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                value={confirm_pass}
+                                onChange={event => setConfirmPass(event.target.value)}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                                 label="No quiero recibir mensajes de promociones de Airbnb. También puedo optar por desactivarlos en la configuración de mi cuenta o a través del enlace del mensaje."
@@ -167,23 +183,10 @@ export default function SignUp() {
                                 value={hasagreed}
                                 onChange={event => setHasAgreed (event.target.value)}
 
-
                             />
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        text-transform="none"
-                        color="secondary"
-                        size="medium"
-                        className={'boton'}
-                        onClick={handleOnSubmit}
 
-                    >
-                        Regístrate
-                    </Button>
                     <Grid container justify="flex-start">
                         <Grid item>
                             <span>¿Ya tienes una cuenta de Airbnb? </span>
@@ -194,6 +197,20 @@ export default function SignUp() {
                         </Grid>
                     </Grid>
                 </form>
+                //He cambiado la estructura y he colocado el submit fuera del form.
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    text-transform="none"
+                    color="secondary"
+                    size="medium"
+                    className={'boton'}
+                    onClick={handleOnSubmit}
+
+                >
+                    Regístrate
+                </Button>
             </div>
 
         </Container>

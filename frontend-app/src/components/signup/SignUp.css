@@ -17,15 +17,12 @@ h4 {
 }
 
 .formcats {
-
     display: flex;
     height: 48px;
     width: 100%;
     padding:12px;
     border: 1px solid #EBEBEB;
     border-radius: 4px;
-
-
 }
 
 * {
@@ -37,17 +34,13 @@ h4 {
 
 
 p {
-
     font-weight: bold;
     display: block;
     color: rgb(72, 72, 72);
     /* visibility:hidden; */
-
-
 }
 
 p1 {
-
     font-weight: bold ;
 }
 
@@ -57,7 +50,6 @@ hr {
 
 
 .marginout {
-
     padding-left: 80px;
     padding-right: 40px;
     background-color: transparent;
@@ -87,8 +79,6 @@ hr {
     padding: 0px;
 }
 
-
-
 .mainform {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 14px;
@@ -97,7 +87,6 @@ hr {
     border: 1px transparent lightgrey;
     color: #484848;
     border:solid rgb(214, 206, 206);
-
 }
 
 .inputfield {
@@ -113,14 +102,11 @@ hr {
     border-radius: 4px;
 }
 
-
-
 .buttonmargin {
-
     padding-top: 30px;
     text-align: center;
-
 }
+
 .submitbutton {
     cursor: pointer;
     border-radius: 4px;
@@ -137,7 +123,7 @@ hr {
 
 .link{
     display:left;
-    margin-bottom:80px;
+    margin-bottom:90px;
 }
 
 .boton{
@@ -168,6 +154,9 @@ hr {
     margin:25px!important;
 }
 
+.MuiTypography-body1{
+    font-size:0.8em!important;
+}
 .contain{
     margin-bottom:50px!important;
 }
