@@ -118,7 +118,7 @@ export default function SignUp() {
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
-            const url = 'http://127.0.0.1:80/api/signup';
+            const url = 'http://127.0.0.1:80/api/signUp';
             const options = {
                 method: 'post',
                 body: JSON.stringify(data),
@@ -132,17 +132,24 @@ export default function SignUp() {
 
             fetch(url, options)
                 .then(response => {
-                    //debugger;
-                    if (response.status === 201) {
-                        alert(response.statusText);
-                        return response.json();
+                    if (response.status === 404) {
+                        response.json().then((resp => {
+                            return setError(resp.errors);
+                            return (alert(resp.errors))
+                        }))
+                    } else if (response.status === 200) {
+                        response.json().then((resp => {
+                            //console.warn("resp",resp);
+                            setError('');
+                            return Promise.reject(alert(`Aloha ${resp.name} :)`))
+
+                        }))
+
                     }
-                    return Promise.reject(response.status);
-                }).then(data => {
-                //debugger;
-            }).catch(error => {
+                }).catch(error => {
                 setError(error);
-                alert("Tienes el siguiente error: " + error);
+                alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
+
             });
         };
         fetchdata()
@@ -253,6 +260,9 @@ export default function SignUp() {
                                 }}
                                 variant="outlined"
                             />
+                        </Grid>
+                        <Grid item xs={12} >
+                            <p className={"error"}> {error} </p>
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel

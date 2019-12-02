@@ -42,7 +42,7 @@ export default function LogIn() {
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
-            const url = "http://127.0.0.1:80/api/login";
+            const url = "http://127.0.0.1:80/api/auth/login";
             const options = {
                 method: 'post',
                 body: JSON.stringify(data),
@@ -57,16 +57,16 @@ export default function LogIn() {
             fetch(url, options)
 
                 .then(response => {
-                    if (response.status === 404) {
+                    if (response.status === 401) {
                         response.json().then((resp => {
                             return setError(resp.errors);
-                            //return Promise.reject(alert(resp.errors))
+                            return Promise.reject(alert(resp.errors))
                         }))
                     } else if (response.status === 200) {
                         response.json().then((resp => {
                              //console.warn("resp",resp);
                             setError('');
-                            return Promise.reject(alert(`Bienvenido ${resp.name} :)`))
+                            return Promise.reject(alert(`Bienvenido ${resp.access_token[1]} :)`))
 
                         }))
 
