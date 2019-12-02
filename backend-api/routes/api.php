@@ -12,16 +12,38 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('signUp', 'AuthController@signUp');
+Route::group([
+    'prefix' => 'auth',
+], function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/property/{id}', 'GetsController@getProperty');
-Route::get('/users/{id}', 'GetsController@getUsers');
-Route::post('/login','PostsController@logIn');
-Route::get('/info/{email}/pass/{password}', 'GetsController@ShowUserInfo');
-Route::post('/post', 'PostsController@createUser');
-Route::post('/signup', 'PostsController@signUp');
+Route::group([
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    //'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function (/*$router) {
+
+
+    Route::get('/property/{id}', 'GetsController@getProperty');
+    Route::get('/users/{id}', 'GetsController@getUsers');
+  //  Route::post('/login', 'PostsController@logIn');
+    Route::get('/info/{email}/pass/{password}', 'GetsController@ShowUserInfo');
+    Route::post('/post', 'PostsController@createUser');
+    Route::post('/login', 'AuthController@login');
+    //Route::post('/signup', 'PostsController@signUp');
+
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
+*/
