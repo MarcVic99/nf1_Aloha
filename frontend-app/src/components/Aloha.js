@@ -5,6 +5,7 @@ import logo from '../img/aloha/logo_aloha.png';
 import ny from '../img/aloha/ny.jpg';
 import tailandia from '../img/aloha/tailandia.jpg';
 import kenia from '../img/aloha/kenia.jpeg';
+
 import japon from '../img/aloha/japon.jpg';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -13,10 +14,13 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import {Link }from 'react-router-dom';
+
 import './signup/SignUp.css';
 import SignUp from './signup/SignUp';
 import LogIn from './login/LogIn';
 import FooterLinks from './footer/footer';
+import Profile from './Profilechange/Profile';
 
 
 
@@ -77,7 +81,7 @@ export default function Modal() {
         <section className="section_head">
             <div id="header">
                 <a href="https://www.airbnb.es">
-                    <div className="father">
+                <div className="father">
                         <img src={logo} alt="Imagen ALOHA" width="40px;"/>
                     </div>
                 </a>
@@ -94,10 +98,12 @@ export default function Modal() {
                                 <li>Ofrece una experiencia</li>
                             </a>
                         </div>
+
                         <div className="box">
-                            <a href="#">
-                                <li>Ayuda</li>
-                            </a>
+                            <Link to="/profile">
+                                <li>Perfil</li>
+                            </Link>
+
                         </div>
                         <div className="box">
 
@@ -127,6 +133,7 @@ export default function Modal() {
                                 </DialogTitle>
 
                                 <LogIn/>
+
 
                             </Dialog>
 
