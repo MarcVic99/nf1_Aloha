@@ -276,7 +276,7 @@ export default function SignUp( props) {
                         <Grid item xs={12} >
                             <p className={"error"}> {error} </p>
 
-                            {error ? <p className={"error"}> {error} </p>: <p> Bienvenido {name} </p>}
+                            {/*  {error ? <p className={"error"}> {error} </p>: <p> Bienvenido {name} </p>}*/}
                         </Grid>
 
 
