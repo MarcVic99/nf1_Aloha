@@ -1,59 +1,74 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState, useReducer } from "react";
 import "./Profilechange.css";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
 import FooterLinks from "../footer/footer";
+import {
+  getToken,
+  saveInLocalStorage,
+  getFromLocalStorage,
+  TOKEN_KEY
+} from "../../utils/localstorage";
+import { Link, withRouter } from "react-router-dom";
 
 export default function ChangeProfile() {
-  const [about, setAbout] = useState("");
-  const [where, setWhere] = useState("");
-  const [languages, setLanguages] = useState("");
-  const [job, setJob] = useState("");
-  const [error, setError] = useState("");
-
-  const data = {
-    about: about,
-    where: where,
-    languages: languages,
-    job: job
+  const VIEW_USER = "VIEW_USER";
+  const SET_ERROR = "SET_ERROR";
+  const token = getToken();
+  const initialState = {
+    userData: [],
+    error: false
   };
-
-  const handleOnChange = () => {
-    const fetchdata = async () => {
-      const url = "localhost:80/api/profileinfo/";
-
+  
+  const userReducer = (state = initialState, action) => {
+    const newState = { ...state };
+    const { type } = { ...action };
+    if (type === VIEW_USER) {
+      newState.userData = action.userData;
+    }
+    if (type === SET_ERROR) {
+      newState.error = action.error;
+    }
+    return newState;
+  };
+  const [state, dispatch] = useReducer(userReducer, initialState);
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `http://127.0.0.1/api/users/2?token=${token.access_token}`;
       const options = {
-        method: "POST",
-        body: JSON.stringify(data),
+        method: "GET",
         headers: new Headers({
           Accept: "application/json",
-          "Content-type": "application/json"
-          //'Access-Control-Allow-Headers': 'Authorization',
+          "Access-Control-Allow-Headers": "Authorization",
+          "Content-Type": "application/json"
         }),
         mode: "cors"
       };
       return fetch(url, options)
         .then(response => {
-          if (response.status === 201) {
-            alert(response.statusText);
+          if (response.status === 200) {
             return response.json();
           }
           return Promise.reject(response.status);
         })
         .then(data => {
-          //alert("Succesful, codigo 200"); alert("Error.\n\nOptions body:\n" + options.body +"\n\nURL called:\n" + url +
+          dispatch({
+            type: VIEW_USER,
+            userData: data
+          });
         })
-        .catch(error => {
-          setError(error);
-          alert("sdf " + error);
-        });
+        .catch(error =>
+          dispatch({
+            type: SET_ERROR,
+            error: true
+          })
+        );
     };
+    fetchData();
+  }, []);
 
-    fetchdata();
-  };
-
-  return (
+  return state.userData ? (
     <div id="main">
       <section>
         <div>
@@ -164,5 +179,8 @@ export default function ChangeProfile() {
         <FooterLinks />
       </footer>
     </div>
+  ) : (
+    <p>hola</p>
   );
 }
+

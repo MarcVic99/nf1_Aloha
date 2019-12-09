@@ -7,6 +7,7 @@ import Switch from "react-router-dom/Switch";
 import Changeprofile from "./components/Profilechange/Profilechange";
 import Editphoto from "./components/Profilechange/Editphoto"
 
+
 function App() {
     return (
         <Switch>
