@@ -7,7 +7,7 @@ import Switch from "react-router-dom/Switch";
 import Changeprofile from "./components/Profilechange/Profilechange";
 import Editphoto from "./components/Profilechange/Editphoto"
 
-export const AuthContext = React.useContext();
+export const AuthContext = React.createContext();
 
 const InitialState = {
     token: null,

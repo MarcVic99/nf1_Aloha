@@ -50,10 +50,11 @@ function LogIn(props) {
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
+            debugger;
             const url = "http://127.0.0.1:80/api/auth/login";
             const options = {
                 method: 'post',
-                body: JSON.stringify(data),
+                body: JSON.stringify(formData),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
@@ -127,6 +128,7 @@ function LogIn(props) {
                                 id="password"
                                 type={values.showPassword ? 'text' : 'password'}
                                 value={formData.password}
+                                name = "password"
                                 autoComplete="current-password"
                                 onChange={event => handleInputChange(event)}
                                 InputProps={{
@@ -147,7 +149,7 @@ function LogIn(props) {
 
                         </Grid>
                         <Grid item xs={12} >
-                            <p className={"error"}> {formData.errorMessage} </p>
+                            {/*} <p className={"error"}> {formData.errorMessage} </p>*/}
                         </Grid>
 
                         <Grid item xs={12}>
