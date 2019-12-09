@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
 import FooterLinks from "../footer/footer"
+import {getToken} from "../../utils/localstorage";
 
 
 export default function ChangeProfile() {
@@ -12,6 +13,8 @@ export default function ChangeProfile() {
     const [languages, setLanguages] = useState('');
     const [job, setJob] = useState('');
     const [error, setError] = useState('');
+
+
 
     const data = {
         about: about,
@@ -24,10 +27,10 @@ export default function ChangeProfile() {
     const handleOnChange = () => {
 
         const fetchdata = async () => {
-            const url = 'localhost:80/api/profileinfo/';
+            const url = `localhost:80/api/profileinfo/?token=${getToken()}`;
 
             const options = {
-                method: 'POST',
+                method: 'GET',
                 body: JSON.stringify(data),
                 headers: new Headers({
                     Accept: 'application/json',
