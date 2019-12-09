@@ -69,8 +69,8 @@ const DialogTitle = withStyles(styles)(props => {
 export default function SignUp( props) {
 
     const { handleOpenLogin } = props;
-    const classes = useStyles();
 
+    const classes = useStyles();
 
     const [name, setName] = useState('');
     const [last_name, setLastName] = useState('');
@@ -331,7 +331,7 @@ export default function SignUp( props) {
                     <Grid item>
                         <span>¿Ya tienes una cuenta de Airbnb? </span>
 
-                        <Link onClick={handleOpenLogin} className="open">
+                        <Link onClick={handleOpenLogin} className="open link">
                             Inicia sesión
                         </Link>
                     </Grid>

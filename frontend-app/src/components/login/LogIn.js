@@ -16,7 +16,9 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-export default function LogIn() {
+export default function LogIn(props) {
+
+    const { handleOpenSignUp } = props;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -176,7 +178,7 @@ export default function LogIn() {
                     <Grid item>
                         <span>¿No tienes cuenta ? </span>
 
-                        <Link href="#" variant="body2" className={"link"}>
+                        <Link onClick={handleOpenSignUp} variant="body2" className={"link"}>
                             Regístrate
                         </Link>
 

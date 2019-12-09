@@ -19,8 +19,7 @@ const list = [
 
     },{
         name:'Diversidad e inclusión',
-        url:'',
-
+        url:''
 
     },{
         name:'Accesibilidad',

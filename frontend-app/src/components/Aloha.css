@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration:none;
+    text-decoration:none!important;
     outline: none;
     box-sizing: border-box;  /*the common values for box-sizing*/
     color:inherit;
@@ -342,33 +342,64 @@ input:focus, input.form-control:focus  {
 }
 
 #div_recomended_general {
-    text-align:center;
-    min-height:100%;
-    display:block;
+text-align:center!important;
+    width:100%;
+    height:380px;
+    background-color:red;
+    position:relative;
 }
 
-.listimg{
-    float:left;
+.ny{
+    background-image:url('../img/aloha/ny.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    display:inline-block;
+    }
+
+
+
+.tailandia{
+    background-image:url('../img/aloha/tailandia.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
     display:inline-block;
 }
 
-.divimg{
-    background: #333944;
-    float:left;
+.japon{
+    background-image:url('../img/aloha/japon.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
     display:inline-block;
 }
 
-.boximg{
-    width: 320px;
-    height: 380px;
-    float:left;
+.kenia{
+    background-image:url('../img/aloha/kenia.jpeg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
     display:inline-block;
 }
 
 .dist_img{
-    margin:0 10px 0 10px;
+    margin:0 20px 0 20px;
+    display:inline-block;
 }
+.div_bottom{
+    position:absolute;
+    height: 40px;
+    bottom: 0!important;
+    width: 100%;
+    background-color:blue;
 
+
+}
 
 .boximg>img{width:320px;
     height:380px;}
@@ -383,7 +414,6 @@ footer{
 }
 
 #div_footer_general {
-    display:inline-block;
     background-color: white;
     font-weight: 500;
     margin:0 auto;
