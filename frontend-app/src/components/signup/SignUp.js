@@ -66,18 +66,9 @@ const DialogTitle = withStyles(styles)(props => {
     );
 });
 
-export default function SignUp() {
+export default function SignUp( props) {
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
+    const { handleOpenLogin } = props;
     const classes = useStyles();
 
 
@@ -102,7 +93,6 @@ export default function SignUp() {
         showPassword: false,
     });
 
-
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -112,6 +102,24 @@ export default function SignUp() {
     };
 
     const handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
+
+
+
+    const [values2, setValues2] = React.useState({
+        showPassword2: false,
+    });
+
+    const handleChange2 = prop => event => {
+        setValues2({ ...values, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword2 = () => {
+        setValues2({ ...values2, showPassword2: !values2.showPassword2 });
+    };
+
+    const handleMouseDownPassword2 = event => {
         event.preventDefault();
     };
 
@@ -131,6 +139,7 @@ export default function SignUp() {
             };
 
             fetch(url, options)
+
                 .then(response => {
                     if (response.status === 404) {
                         response.json().then((resp => {
@@ -151,7 +160,9 @@ export default function SignUp() {
                 alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
             });
+
         };
+
         fetchdata()
     }
 
@@ -237,12 +248,12 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                label="Establece una contraseña"
+                                label="Repite la contraseña"
                                 required
                                 fullWidth
                                 id="password"
                                 className={clsx(classes.margin, classes.textField)}
-                                type={values.showPassword ? 'text' : 'password'}
+                                type={values2.showPassword2 ? 'text' : 'password'}
                                 value={confirm_pass}
                                 autoComplete="current-password"
                                 onChange={event => setConfirmPass(event.target.value)}
@@ -250,20 +261,25 @@ export default function SignUp() {
                                     endAdornment: <InputAdornment position="end">
                                         <IconButton
                                             aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
+                                            onClick={handleClickShowPassword2}
+                                            onMouseDown={handleMouseDownPassword2}
                                             size={"small"}
                                         >
-                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            {values2.showPassword2 ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 }}
                                 variant="outlined"
                             />
                         </Grid>
+
                         <Grid item xs={12} >
                             <p className={"error"}> {error} </p>
+
+                            {/*  {error ? <p className={"error"}> {error} </p>: <p> Bienvenido {name} </p>}*/}
                         </Grid>
+
+
                         <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}
@@ -273,6 +289,10 @@ export default function SignUp() {
                                 onChange={event => setHasAgreed(event.target.value)}
                             />
                         </Grid>
+
+
+
+
                     </Grid>
 
 
@@ -295,20 +315,11 @@ export default function SignUp() {
                     <Grid item>
                         <span>¿Ya tienes una cuenta de Airbnb? </span>
 
-                        <Link onClick={handleClickOpen} className="open">
+                        <Link onClick={handleOpenLogin} className="open">
                             Inicia sesión
                         </Link>
                     </Grid>
                 </Grid>
-
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        <hr/>
-                    </DialogTitle>
-
-                    <LogIn/>
-
-                </Dialog>
             </div>
 
         </Container>

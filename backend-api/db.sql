@@ -7,14 +7,14 @@ create table users(
                       last_name varchar(30) not null,
                       password varchar(50) not null,
                       email varchar(255) not null,
+                       phone_number varchar(255) not null ,
+                       birth_date date,
+                        user_photo varchar(2048),
+                       is_host boolean not null,
                       updated_at timestamp default CURRENT_TIMESTAMP ,
                       created_at timestamp default CURRENT_TIMESTAMP
 
 );
-alter table users drop phone_number;
-alter table users drop birthdate;
-alter table users drop user_photo;
-alter table users add is_host boolean not null;
 
 create table properties(
                            id integer not null primary key auto_increment,
@@ -26,14 +26,9 @@ create table properties(
                            additional_info varchar(255),
                            rating float,
                            user_id integer not null,
-                           constraint property_id__user_id_fk foreign key (user_id) references users(id)
-                       );
+                           constraint property_id__user_id_fk foreign key (user_id) references users(id));
 alter table properties add updated_at timestamp default CURRENT_TIMESTAMP;
 alter table properties add created_at timestamp default CURRENT_TIMESTAMP;
-alter table properties drop rating;
-alter table properties add bedrooms varchar(255) not null;
-alter table properties add bathrooms varchar(255) not null ;
-alter table properties add guest_number varchar(255) not null ;
 
 create table photos(
                        id integer not null primary key auto_increment,
