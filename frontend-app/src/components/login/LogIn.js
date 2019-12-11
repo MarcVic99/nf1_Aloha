@@ -12,26 +12,21 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Link from "@material-ui/core/Link";
 
-import {withRouter} from 'react-router-dom';
-
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {saveToken} from "../../utils/localstorage";
-import {AuthContext} from "../../App";
 
-function LogIn(props) {
-    const history = props.history;
-    const {dispatch}=React.useContext(AuthContext);
+export default function LogIn() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [remember, setRemember] = useState('');
+    const [error, setError] = useState('');
 
     const data = {
-        email: '',
-        password: '',
-        errorMessage: null,
-        isSubmitting:false
-    };
-
-    const [formData, setFormData] = React.useState(data);
+        email: email,
+        password: password
+    }
 
     const [values, setValues] = useState({
         showPassword: false,
@@ -44,48 +39,48 @@ function LogIn(props) {
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };
-    const handleInputChange = (event) => {
-        setFormData({...formData,[event.target.name]:event.target.value})
-    };
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
-            debugger;
-            const url = "http://127.0.0.1:80/api/auth/login";
+
+            const url = "http://127.0.0.1:80/api/login";
             const options = {
                 method: 'post',
-                body: JSON.stringify(formData),
+                body: JSON.stringify(data),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 mode: 'cors'
 
-            };
+            }
 
             fetch(url, options)
 
                 .then(response => {
                     if (response.status === 401) {
-                        return Promise.reject(response.status);
+                        response.json().then((resp => {
+                            return setError(resp.errors);
+                            return Promise.reject(alert(resp.errors))
+                        }))
                     } else if (response.status === 200) {
                         return response.json();
                     }
                 }).then( data => {
+                    console.log(data);
                     dispatch({
+
                         type: "LOGIN",
                         payload: data
                     });
                 }
 
-            ).catch(error => {
-                setFormData({...formData,isSubmitting: false, errorMessage: error});
             });
 
         };
 
         fetchdata()
-    };
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -109,8 +104,8 @@ function LogIn(props) {
                                 name="email"
                                 autoComplete="email"
                                 type="email"
-                                value={formData.email}
-                                onChange={event => handleInputChange(event)}
+                                value={email}
+                                onChange={event => setEmail(event.target.value)}
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">
                                         <AccountCircle/>
@@ -127,10 +122,9 @@ function LogIn(props) {
                                 fullWidth
                                 id="password"
                                 type={values.showPassword ? 'text' : 'password'}
-                                value={formData.password}
-                                name = "password"
+                                value={password}
                                 autoComplete="current-password"
-                                onChange={event => handleInputChange(event)}
+                                onChange={event => setPassword(event.target.value)}
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">
                                         <IconButton
@@ -149,7 +143,7 @@ function LogIn(props) {
 
                         </Grid>
                         <Grid item xs={12} >
-                            {/*} <p className={"error"}> {formData.errorMessage} </p>*/}
+                            <p className={"error"}> {error} </p>
                         </Grid>
 
                         <Grid item xs={12}>
@@ -158,8 +152,8 @@ function LogIn(props) {
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}
                                 label="Recordarme"
                                 name="Remember"
-                                //value={remember}
-                                //onChange={event => setRemember(event.target.value)}
+                                value={remember}
+                                onChange={event => setRemember(event.target.value)}
                             />
                         </Grid>
                     </Grid>
@@ -167,7 +161,6 @@ function LogIn(props) {
                 </form>
                 <Button
                     type="submit"
-                    disabled={formData.isSubmitting}
                     fullWidth
                     variant="contained"
                     text-transform="none"
@@ -195,5 +188,3 @@ function LogIn(props) {
         </Container>
     );
 }
-
-export default withRouter(LogIn);
