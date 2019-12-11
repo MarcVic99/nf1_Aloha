@@ -85,7 +85,7 @@ const Header = () => {
                                 <Link to="/profile">
                                     <li>Perfil</li>
                                 </Link>
-                                <div onClick={dispatch(
+                                <div onClick={() => dispatch(
                                     {type: "LOGOUT"}
                                 )}>
                                     Logout
