@@ -82,19 +82,10 @@ class AuthController extends Controller
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['errors' => '"No hay ninguna cuenta asociada a esta dirección de correo electrónico o la contraseña es incorrecta. Inténtelo de nuevo."'], 401);
-        }/*
-        if(isset($user) && Hash::check($userPass, $user->password)){
-
-            return response()->json($user, Response::HTTP_OK);
-        }*/
+        }
 
         return $this->respondWithToken($token);
-        //return response()->json($user, Response::HTTP_OK);
-        //FALTA SACAR DEL ARRAY EL $USER.
-        /*  if(isset($user) && Hash::check($userPass, $user->password)){
 
-            return response()->json($user, Response::HTTP_OK);
-        }*/
     }
 
     /**
@@ -144,6 +135,13 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user(),
         ]);
+
+
+    }
+
+    public function show () {
+        $user = User::all();
+        return response() -> json($user);
     }
 
     public function update(Request $request)

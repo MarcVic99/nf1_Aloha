@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Aloha from './components/Aloha';
 import Profile from "./components/Profilechange/Profile";
@@ -52,9 +52,10 @@ const reducer = (state,action) => {
 function App() {
     const [state,dispatch] = React.useReducer(reducer,InitialState);
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        const token = JSON.parse(localStorage.getItem('access_token'));
+    React.useEffect(()=>{
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = JSON.parse(localStorage.getItem("token"));
 
         if (user && token) {
             dispatch({
