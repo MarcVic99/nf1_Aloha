@@ -21,7 +21,7 @@ export default function ChangeProfile() {
 
   const handleOnChange = () => {
     const fetchdata = async () => {
-      const url = "localhost:80/api/profileinfo/";
+      const url = `http://127.0.0.1/api/users/2?token=${token.access_token}`;
 
       const options = {
         method: "POST",
