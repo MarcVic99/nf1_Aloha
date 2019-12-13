@@ -88,7 +88,7 @@ class AuthController extends Controller
             return response()->json($user, Response::HTTP_OK);
         }*/
 
-        return $this->respondWithToken([$token,$user->name]);
+        return $this->respondWithToken($token);
         //return response()->json($user, Response::HTTP_OK);
         //FALTA SACAR DEL ARRAY EL $USER.
         /*  if(isset($user) && Hash::check($userPass, $user->password)){
@@ -141,7 +141,42 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user(),
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $user->name  	= $request->input('name');
+        $user->email 	= $request->input('email');
+        $user->last_name 	= $request->input('last_name');
+        $user->avatar	= $request->input('avatar');
+        $user->save();
+    }
+
+    public function getUser()
+    {
+        $user = \App\User::find(Auth::user()->id);
+        return response()->json($user);
+    }
+
+    public function showUser($id)
+    {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function upload(Request $request)
+    {
+
+        $data = array(
+            'code' => 404,
+            'status' => 'error',
+            'message' => 'Error al subir imagen'
+        );
+
+        return response()->json($data, $data['code']);
     }
 }

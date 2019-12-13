@@ -13,10 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 Route::post('signUp', 'AuthController@signUp');
+Route::post('login', 'AuthController@login');
+Route::get('users', 'AuthController@getUser');
+Route::put('update', 'AuthController@update');
 Route::group([
     'prefix' => 'auth',
 ], function () {
-    Route::post('login', 'AuthController@login');
+
+    Route::post('uploade', 'AuthController@upload');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');

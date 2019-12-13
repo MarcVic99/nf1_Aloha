@@ -12,6 +12,9 @@ import FullScreenDialog from "./Container";
 import logo from './logo.jpg'
 import "./Profilemenu.css"
 import Avatarsmall from "./Avatarsmall";
+import HeaderLogo from "../Header/HeaderLogo";
+import ModalProfile from "./ModalProfile";
+
 
 
 const styles = theme => ({
@@ -70,11 +73,11 @@ function Navbar() {
     <section>
             
             <div id="header">
-                <a href="/">
+
                     <div className="father">
-                        <img src={logo} alt="Imagen ALOHA" margin-left="60px" width="75px;" />
+                        <HeaderLogo/>
                     </div>
-                </a>
+
 
                 <nav id="menu">
                     <ul>
@@ -103,11 +106,11 @@ function Navbar() {
                                 <li>Ayuda</li>
                             </a>
                         </div>
-                        <div className="box">
-                            <a href="#">
-                                <Avatarsmall />
-                            </a>
+                        <div className="profile">
+                            <ModalProfile/>
+
                         </div>
+
                         {/* <Profilemenu/> */}
                     </ul>
                 </nav>

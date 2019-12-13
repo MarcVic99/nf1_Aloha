@@ -79,3 +79,11 @@
 .show {
   display: block;
 }
+
+
+#paper {
+    display: flex!important;
+}
+#menu-list-grow {
+display: flex!important;
+}

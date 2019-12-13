@@ -88,13 +88,13 @@ export default function Profile() {
                                             <Link to="/profile/edit">Editar perfil</Link>
                                         </div>
                                         <div className="profileform">
-                                        
-                                            
-                                                
+
+
+
                                         </div>
                                         <div className="profileform">
                                             Vive en: Barcelona
-                                            
+
 
                                         </div>
                                         <div className="profileform">
@@ -115,7 +115,7 @@ export default function Profile() {
 
             <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
-{/* Footer */}
+            {/* Footer */}
             <footer>
 
                 <FooterLinks />
@@ -124,5 +124,4 @@ export default function Profile() {
         </div>
     );
 }
-
 

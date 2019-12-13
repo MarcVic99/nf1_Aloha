@@ -50,8 +50,8 @@ function LogIn(props) {
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
-            debugger;
-            const url = "http://127.0.0.1:80/api/auth/login";
+
+            const url = "http://127.0.0.1:80/api/login";
             const options = {
                 method: 'post',
                 body: JSON.stringify(formData),
@@ -72,7 +72,9 @@ function LogIn(props) {
                         return response.json();
                     }
                 }).then( data => {
+                    console.log(data);
                     dispatch({
+
                         type: "LOGIN",
                         payload: data
                     });
