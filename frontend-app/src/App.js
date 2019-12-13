@@ -20,7 +20,7 @@ const reducer = (state,action) => {
         case "LOGIN":
             localStorage.setItem("user",JSON.stringify(action.payload.user));
             localStorage.setItem("token",JSON.stringify(action.payload.access_token));
-            debugger;
+
 
             return {
                 ...state,
