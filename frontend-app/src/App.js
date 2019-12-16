@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Aloha from './components/Aloha';
 import Profile from "./components/Profilechange/Profile";
@@ -8,7 +8,7 @@ import Changeprofile from "./components/Profilechange/Profilechange";
 import Editphoto from "./components/Profilechange/Editphoto"
 import Empleo from "./components/footer/footer_components/Empleo";
 import Noticias from "./components/footer/footer_components/Noticias";
-import Políticas from "./components/footer/footer_components/Políticas";
+import Politicas from "./components/footer/footer_components/Politicas";
 import Ayuda from "./components/footer/footer_components/Ayuda";
 import DiversidadEInclusion from "./components/footer/footer_components/DiversidadEInclusion";
 import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
@@ -26,7 +26,7 @@ const reducer = (state,action) => {
     switch (action.type) {
         case "LOGIN":
             localStorage.setItem("user", JSON.stringify(action.payload.user));
-            localStorage.setItem("token", JSON.stringify(action.payload.access_token));
+            localStorage.setItem("acces_token", JSON.stringify(action.payload.token));
 
             return {
                 ...state,
@@ -52,10 +52,10 @@ const reducer = (state,action) => {
 function App() {
     const [state,dispatch] = React.useReducer(reducer,InitialState);
 
-    React.useEffect(()=>{
+    useEffect(()=>{
 
         const user = JSON.parse(localStorage.getItem("user"));
-        const token = JSON.parse(localStorage.getItem("token"));
+        const token = JSON.parse(localStorage.getItem("acces_token"));
 
         if (user && token) {
             dispatch({
@@ -94,9 +94,11 @@ function App() {
                 <Route exact path="/noticias">
                     <Noticias />
                 </Route>
+
                 <Route exact path="/políticas">
-                    <Políticas />
+                    <Politicas />
                 </Route>
+
                 <Route exact path="/ayuda">
                     <Ayuda />
                 </Route>

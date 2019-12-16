@@ -9,6 +9,10 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from "./Avatar";
 import "./Profilemenu.css"
+import Avatarsmall from "./Avatarsmall";
+import "./ModalProfile.css"
+import {AuthContext} from "../../App";
+import Navbar from "./Navbar";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,6 +27,7 @@ export default function MenuListComposition() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const {state, dispatch} = React.useContext(AuthContext);
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen);
@@ -62,7 +67,7 @@ export default function MenuListComposition() {
                     aria-haspopup="true"
                     onClick={handleToggle}
                 >
-                    <Avatar/>
+                    <Avatarsmall/>
                 </Button>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                     {({ TransitionProps, placement }) => (
@@ -73,15 +78,20 @@ export default function MenuListComposition() {
                             <Paper id={'paper'}>
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={handleClose}>Cuenta</MenuItem>
-                                        <MenuItem onClick={handleClose}>Invita a tus amigos</MenuItem>
-                                        <MenuItem onClick={handleClose}>Invita a infitriones</MenuItem>
-                                        <MenuItem onClick={handleClose}>Tu guia</MenuItem>
-                                        <MenuItem onClick={handleClose}>Rbnair For work</MenuItem>
-                                        <MenuItem onClick={handleClose}>Espanole</MenuItem>
-                                        <MenuItem onClick={handleClose}>Moneda</MenuItem>
-                                        <MenuItem onClick={handleClose}>Cerrar sesion</MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile" href="/profile">Profile</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Cuenta</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Invita a tus amigos</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Invita a infitriones</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Tu guia</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Rbnair For work</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Espanole</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Moneda</a></MenuItem>
+                                        <MenuItem onClick={handleClose}>
+                                            {state.booleanAuth &&(<a className="box_profile">
+                                                    <div onClick={()=> dispatch(
+                                                        {type: "LOGOUT"}
+                                                    )}>Cerrar sesion </div></a>)}
+                                        </MenuItem>
                                         </MenuList>
                                 </ClickAwayListener>
                             </Paper>

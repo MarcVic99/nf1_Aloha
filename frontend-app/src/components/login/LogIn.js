@@ -81,7 +81,7 @@ function LogIn(props) {
                 }
 
             ).catch(error => {
-                setFormData({...formData,isSubmitting: false, errorMessage: error});
+                setFormData({...formData, isSubmitting: false, errorMessage: error});
             });
 
         };

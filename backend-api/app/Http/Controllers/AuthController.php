@@ -130,7 +130,7 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
-            'access_token' => $token,
+            'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user(),
@@ -146,21 +146,39 @@ class AuthController extends Controller
 
     public function update(Request $request)
     {
+
         $user = User::find(Auth::user()->id);
         $user->name  	= $request->input('name');
         $user->email 	= $request->input('email');
         $user->last_name 	= $request->input('last_name');
-        $user->avatar	= $request->input('avatar');
+        //$user->avatar	= $request->input('avatar');
         $user->save();
+
+        $data = array(
+            'code' => 200,
+            'status' => 'succes',
+            'user' => $user,
+        );
+
+        return response()->json($data);
     }
 
+    //Mostrar usuario logeado
     public function getUser()
     {
-        $user = \App\User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         return response()->json($user);
     }
 
-    public function showUser($id)
+    //Mostrar todos los usuario
+    public function showUser()
+    {
+        $user = User::all();
+        return response()->json($user);
+    }
+     //Mostrar usuario con id
+
+    public function showUserByid($id)
     {
         $user = User::find($id);
         return response()->json($user);
@@ -168,12 +186,27 @@ class AuthController extends Controller
 
     public function upload(Request $request)
     {
+        //recoger los datos
+        $image = $request->file(file0);
 
-        $data = array(
-            'code' => 404,
-            'status' => 'error',
-            'message' => 'Error al subir imagen'
-        );
+        //guardar imagen
+        if($image){
+            $image_name = time() .$image->getClientOriginalName();
+            \storage::disk('users')->put($image_name, \File::get($image));
+            $data = array(
+                'code' => 200,
+                'status' => 'succes',
+                'image' => $image_name
+            );
+
+        }else{
+            $data = array(
+                'code' => 404,
+                'status' => 'error',
+                'message' => 'Error al subir imagen'
+            );
+        }
+
 
         return response()->json($data, $data['code']);
     }

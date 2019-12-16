@@ -11,8 +11,6 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Navbar from "../Profilechange/Navbar";
 import "../Aloha.css"
-import Avatarsmall from "../Profilechange/Avatarsmall";
-import ModalProfile from "../Profilechange/ModalProfile";
 
 
 const styles = theme => ({
@@ -65,15 +63,15 @@ const Header = () => {
     };
 
     return (
-        <div>
+    <div>
             {state.booleanAuth &&(
                 <div className="box">
                     <li><Navbar/></li>
-                    <div onClick={()=> dispatch(
-                        {type: "LOGOUT"}
-                    )}>
-                        Logout
-                    </div>
+                    {/*<div onClick={()=> dispatch(*/}
+                    {/*    {type: "LOGOUT"}*/}
+                    {/*)}>*/}
+                    {/*    Logout*/}
+                    {/*</div>*/}
                 </div>
             )}
             {!state.booleanAuth && (

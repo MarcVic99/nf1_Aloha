@@ -4,7 +4,7 @@ import FooterLinks from "../footer";
 
 
 
-const Políticas = () =>{
+const Politicas = () =>{
 
     return(
         <div className="components_footer">
@@ -23,4 +23,4 @@ const Políticas = () =>{
 
 }
 
-export default Políticas;
+export default Politicas;

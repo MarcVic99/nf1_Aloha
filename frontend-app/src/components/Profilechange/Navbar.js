@@ -71,13 +71,12 @@ function Navbar() {
     return (
 
     <section>
-            
+
             <div id="header">
 
                     <div className="father">
                         <HeaderLogo/>
                     </div>
-
 
                 <nav id="menu">
                     <ul>
@@ -106,16 +105,14 @@ function Navbar() {
                                 <li>Ayuda</li>
                             </a>
                         </div>
-                        <div className="profile">
-                            <ModalProfile/>
-
-                        </div>
-
-                        {/* <Profilemenu/> */}
                     </ul>
                 </nav>
+                <div className="father">
+                    <li><ModalProfile/></li>
+                </div>
             </div>
         </section >
+
     );
 
 }

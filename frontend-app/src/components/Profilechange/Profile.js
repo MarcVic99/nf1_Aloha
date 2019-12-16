@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profilechange.css';
 import Avatar from "./Avatar";
 import Navbar from "./Navbar";
@@ -6,15 +6,28 @@ import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
 import ChangeProfile from "./Profilechange"
 import FooterLinks from "../footer/footer"
+import {AuthContext} from "../../App";
 
 
 
 export default function Profile() {
+    const {state, dispatch} = React.useContext(AuthContext);
     const [about, setAbout] = useState('');
     const [where, setWhere] = useState('');
     const [languages, setLanguages] = useState('');
     const [job, setJob] = useState('');
     const [error, setError] = useState('');
+    const [name, setName] = useState('');
+    const [last_name, setLast_name] = useState('');
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        if(state.user){
+            setName(state.user.name);
+            setLast_name(state.user.last_name);
+            setEmail(state.user.email);
+        }
+    });
 
     const data = {
         about: about,
@@ -80,7 +93,7 @@ export default function Profile() {
                             <div>
 
                                 <div className="intro">
-                                    <h1>Hola:Soy Zsofia</h1>
+                                    <h1>Hola:Soy {name} {last_name} </h1>
                                     <div className="regedit">
                                         <p>Se registró en 2019</p>
 
