@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Profilechange.css';
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
 import FooterLinks from "../footer/footer"
 import {getToken} from "../../utils/localstorage";
+import {AuthContext} from "../../App";
 
 
 export default function ChangeProfile() {
+    const {state, dispatch} = React.useContext(AuthContext);
     const [about, setAbout] = useState('');
     const [where, setWhere] = useState('');
     const [languages, setLanguages] = useState('');
     const [job, setJob] = useState('');
     const [error, setError] = useState('');
+    const [name, setName] = useState('');
+    const [last_name, setLast_name] = useState('');
+    const [email, setEmail] = useState('');
 
 
 
@@ -64,7 +69,13 @@ export default function ChangeProfile() {
         fetchdata();
 
     };
-
+    useEffect(() => {
+        if(state.user){
+            setName(state.user.name);
+            setLast_name(state.user.last_name);
+            setEmail(state.user.email);
+        }
+    });
 
     return (
         <div id="main">
@@ -82,7 +93,7 @@ export default function ChangeProfile() {
                             <div>
 
                                 <div className="intro">
-                                    <h1>Hola:Soy Zsofia</h1>
+                                    <h1>Hola:{name} {last_name}</h1>
                                     <div className="regedit">
                                         <p>Se registró en 2019</p>
 

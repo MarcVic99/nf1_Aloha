@@ -13,6 +13,7 @@ import Ayuda from "./components/footer/footer_components/Ayuda";
 import DiversidadEInclusion from "./components/footer/footer_components/DiversidadEInclusion";
 import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
 import DatosDeLaEmpresa from "./components/footer/footer_components/DatosDeLaEmpresa";
+import Account from "./components/Profilechange/Account";
 
 export const AuthContext = React.createContext();
 
@@ -110,6 +111,9 @@ function App() {
                 </Route>
                 <Route exact path="/datos de la empresa">
                     <DatosDeLaEmpresa />
+                </Route>
+                <Route exact path="/account">
+                    <Account />
                 </Route>
 
 
