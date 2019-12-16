@@ -49,7 +49,6 @@ export default function ChangeProfile() {
                 .then(response => {
 
                     if (response.status === 201) {
-                        alert(response.statusText);
                         return response.json();
                     }
                     return Promise.reject(response.status);
@@ -61,7 +60,6 @@ export default function ChangeProfile() {
                 .catch(error => {
 
                     setError(error);
-                    alert("sdf " + error);
 
                 });
         };

@@ -143,21 +143,17 @@ export default function SignUp( props) {
                 .then(response => {
                     if (response.status === 404) {
                         response.json().then((resp => {
-                            return setError(resp.errors);
-                            return (alert(resp.errors))
+                            setError(resp.errors);
                         }))
                     } else if (response.status === 200) {
                         response.json().then((resp => {
                             //console.warn("resp",resp);
                             setError('');
-                            return Promise.reject(alert(`Aloha ${resp.name} :)`))
-
                         }))
 
                     }
                 }).catch(error => {
                 setError(error);
-                alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
             });
 
