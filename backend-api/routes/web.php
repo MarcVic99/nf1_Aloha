@@ -1,4 +1,6 @@
 <?php
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,13 +15,29 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::get('/property/{id}', 'GetsController@getProperty');
-//Route::get('/users/{id}', 'GetsController@getUsers');
-//Route::post('/login','PostsController@logIn');
-//Route::get('/info/{email}/pass/{password}', 'GetsController@ShowUserInfo');
-//Route::post('/post', 'PostsController@createUser');
-//Route::post('/signup', 'PostsController@signUp');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/api/signUp', 'AuthController@signUp');
+Route::post('/api/login', 'AuthController@login');
+Route::put('/api/update', 'AuthController@update');
+
+//Mostrar usuaros
+Route::get('/api/user', 'AuthController@getUser');
+Route::get('/api/users', 'AuthController@showUser');
+Route::get('/api/users/{id}', 'AuthController@showUserByid');
+
+
+Route::group([
+    'prefix' => 'auth',
+], function () {
+
+    Route::post('uploade', 'AuthController@upload');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::get('me', 'AuthController@me');
+
 });
+
+
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+   // return $request->user();
+//

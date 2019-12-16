@@ -12,21 +12,26 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Link from "@material-ui/core/Link";
 
+import {withRouter} from 'react-router-dom';
+
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import {saveToken} from "../../utils/localstorage";
+import {AuthContext} from "../../App";
 
-export default function LogIn() {
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState('');
-    const [error, setError] = useState('');
+function LogIn(props) {
+    const history = props.history;
+    const {dispatch}=React.useContext(AuthContext);
 
     const data = {
-        email: email,
-        password: password
-    }
+        email: '',
+        password: '',
+        errorMessage: null,
+        isSubmitting:false
+    };
+
+    const [formData, setFormData] = React.useState(data);
 
     const [values, setValues] = useState({
         showPassword: false,
@@ -39,6 +44,9 @@ export default function LogIn() {
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };
+    const handleInputChange = (event) => {
+        setFormData({...formData,[event.target.name]:event.target.value})
+    };
 
     const handleOnSubmit = () => {
         const fetchdata = async () => {
@@ -46,23 +54,20 @@ export default function LogIn() {
             const url = "http://127.0.0.1:80/api/login";
             const options = {
                 method: 'post',
-                body: JSON.stringify(data),
+                body: JSON.stringify(formData),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 mode: 'cors'
 
-            }
+            };
 
             fetch(url, options)
 
                 .then(response => {
                     if (response.status === 401) {
-                        response.json().then((resp => {
-                            return setError(resp.errors);
-                            return Promise.reject(alert(resp.errors))
-                        }))
+                        return Promise.reject(response.status);
                     } else if (response.status === 200) {
                         return response.json();
                     }
@@ -75,12 +80,14 @@ export default function LogIn() {
                     });
                 }
 
+            ).catch(error => {
+                setFormData({...formData, isSubmitting: false, errorMessage: error});
             });
 
         };
 
         fetchdata()
-    }
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -104,8 +111,8 @@ export default function LogIn() {
                                 name="email"
                                 autoComplete="email"
                                 type="email"
-                                value={email}
-                                onChange={event => setEmail(event.target.value)}
+                                value={formData.email}
+                                onChange={event => handleInputChange(event)}
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">
                                         <AccountCircle/>
@@ -122,9 +129,10 @@ export default function LogIn() {
                                 fullWidth
                                 id="password"
                                 type={values.showPassword ? 'text' : 'password'}
-                                value={password}
+                                value={formData.password}
+                                name = "password"
                                 autoComplete="current-password"
-                                onChange={event => setPassword(event.target.value)}
+                                onChange={event => handleInputChange(event)}
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">
                                         <IconButton
@@ -143,7 +151,7 @@ export default function LogIn() {
 
                         </Grid>
                         <Grid item xs={12} >
-                            <p className={"error"}> {error} </p>
+                            {/*} <p className={"error"}> {formData.errorMessage} </p>*/}
                         </Grid>
 
                         <Grid item xs={12}>
@@ -152,8 +160,8 @@ export default function LogIn() {
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}
                                 label="Recordarme"
                                 name="Remember"
-                                value={remember}
-                                onChange={event => setRemember(event.target.value)}
+                                //value={remember}
+                                //onChange={event => setRemember(event.target.value)}
                             />
                         </Grid>
                     </Grid>
@@ -161,6 +169,7 @@ export default function LogIn() {
                 </form>
                 <Button
                     type="submit"
+                    disabled={formData.isSubmitting}
                     fullWidth
                     variant="contained"
                     text-transform="none"
@@ -188,3 +197,5 @@ export default function LogIn() {
         </Container>
     );
 }
+
+export default withRouter(LogIn);

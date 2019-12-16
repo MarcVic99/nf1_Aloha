@@ -3,33 +3,33 @@ import React from 'react';
 const list = [
     {
         name:'Empleo',
-        url:''
+        url:'/Empleo'
 
     }, {
         name:'Noticias',
-        url:''
+        url:'/noticias'
 
     },{
         name:'Políticas',
-        url:''
+        url:'/políticas'
 
     },{
         name:'Ayuda',
-        url:''
+        url:'/ayuda'
 
     },{
         name:'Diversidad e inclusión',
-        url:'',
+        url:'/diversidad e inclusion'
 
 
     },{
         name:'Accesibilidad',
-        url:'',
+        url:'/accesibilidad',
         new:'yes'
 
     },{
         name:'Datos de la empresa',
-        url:''
+        url:'/datos de la empresa'
 
     },];
 

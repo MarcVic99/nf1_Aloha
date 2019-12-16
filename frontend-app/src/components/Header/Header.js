@@ -9,6 +9,9 @@ import {withStyles} from "@material-ui/core/styles";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import Navbar from "../Profilechange/Navbar";
+import "../Aloha.css"
+
 
 const styles = theme => ({
     root: {
@@ -60,7 +63,21 @@ const Header = () => {
     };
 
     return (
+    <div>
+            {state.booleanAuth &&(
+                <div className="box">
+                    <li><Navbar/></li>
+                    {/*<div onClick={()=> dispatch(*/}
+                    {/*    {type: "LOGOUT"}*/}
+                    {/*)}>*/}
+                    {/*    Logout*/}
+                    {/*</div>*/}
+                </div>
+            )}
+            {!state.booleanAuth && (
         <section className="section_head">
+
+
             <div id="header">
                 <a href="https://www.airbnb.es">
                     <div className="father">
@@ -80,19 +97,6 @@ const Header = () => {
                                 <li>Ofrece una experiencia</li>
                             </a>
                         </div>
-                        {state.booleanAuth &&(
-                            <div className="box">
-                                <Link to="/profile">
-                                    <li>Perfil</li>
-                                </Link>
-                                <div onClick={() => dispatch(
-                                    {type: "LOGOUT"}
-                                )}>
-                                    Logout
-                                </div>
-                            </div>
-                        )}
-                        {!state.booleanAuth && (
                             <div>
                                 <div className="box">
                                     <a onClick={handleClickOpen} className="open">
@@ -117,12 +121,9 @@ const Header = () => {
                                     </Dialog>
                                 </div>
                             </div>
-                        )}
                     </ul>
                 </nav>
             </div>
-
-
 
             <div className="container_form">
                 <div className="container_form2">
@@ -169,7 +170,10 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+        )}
         </section>
+    )}
+    </div>
     )
 };
 
