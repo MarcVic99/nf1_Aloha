@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Aloha from './components/Aloha';
 import Profile from "./components/Profilechange/Profile";
-import Route from 'react-router-dom/Route';
-import Switch from "react-router-dom/Switch";
+import { Route, Switch } from "react-router-dom";
 import Changeprofile from "./components/Profilechange/Profilechange";
 import Editphoto from "./components/Profilechange/Editphoto"
 import Empleo from "./components/footer/footer_components/Empleo";
@@ -25,9 +24,21 @@ const InitialState = {
 
 const reducer = (state,action) => {
     switch (action.type) {
+        case "SIGNUP":
+            localStorage.setItem("user", JSON.stringify(action.payload.user));
+            localStorage.setItem("token", JSON.stringify(action.payload.token));
+
+            return {
+                ...state,
+                user:action.payload.user,
+                token:action.payload.token,
+                booleanAuth: true
+            };
+
+
         case "LOGIN":
             localStorage.setItem("user", JSON.stringify(action.payload.user));
-            localStorage.setItem("acces_token", JSON.stringify(action.payload.token));
+            localStorage.setItem("token", JSON.stringify(action.payload.token));
 
             return {
                 ...state,
@@ -56,7 +67,7 @@ function App() {
     useEffect(()=>{
 
         const user = JSON.parse(localStorage.getItem("user"));
-        const token = JSON.parse(localStorage.getItem("acces_token"));
+        const token = JSON.parse(localStorage.getItem("token"));
 
         if (user && token) {
             dispatch({
@@ -115,7 +126,6 @@ function App() {
                 <Route exact path="/account">
                     <Account />
                 </Route>
-
 
             </Switch >
         </AuthContext.Provider>

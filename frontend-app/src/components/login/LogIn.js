@@ -22,16 +22,16 @@ import {AuthContext} from "../../App";
 
 function LogIn(props) {
     const history = props.history;
-    const {dispatch}=React.useContext(AuthContext);
+    const {state, dispatch}=React.useContext(AuthContext);
 
-    const data = {
+    const initialState = {
         email: '',
         password: '',
         errorMessage: null,
         isSubmitting:false
     };
 
-    const [formData, setFormData] = React.useState(data);
+    const [data, setData] = React.useState(initialState);
 
     const [values, setValues] = useState({
         showPassword: false,
@@ -45,16 +45,19 @@ function LogIn(props) {
         event.preventDefault();
     };
     const handleInputChange = (event) => {
-        setFormData({...formData,[event.target.name]:event.target.value})
+        setData({...data,[event.target.name]:event.target.value})
     };
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = event => {
+        event.preventDefault();
+        setData({...data, isSubmitting: true, errorMessage: null
+        });
         const fetchdata = async () => {
 
             const url = "http://127.0.0.1:80/api/login";
             const options = {
                 method: 'post',
-                body: JSON.stringify(formData),
+                body: JSON.stringify({email: data.email, password: data.password}),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
@@ -66,23 +69,24 @@ function LogIn(props) {
             fetch(url, options)
 
                 .then(response => {
-                    if (response.status === 401) {
-                        return Promise.reject(response.status);
-                    } else if (response.status === 200) {
+                    if (response.ok) {
                         return response.json();
                     }
-                }).then( data => {
-                    console.log(data);
+                    throw response;
+                })
+                .then(responseJson => {
                     dispatch({
-
                         type: "LOGIN",
-                        payload: data
+                        payload: responseJson
+                    })
+                })
+                .catch(error => {
+                    setData({
+                        ...data,
+                        isSubmitting: false,
+                        errorMessage: error.message || error.statusText
                     });
-                }
-
-            ).catch(error => {
-                setFormData({...formData, isSubmitting: false, errorMessage: error});
-            });
+                });
 
         };
 
@@ -111,7 +115,7 @@ function LogIn(props) {
                                 name="email"
                                 autoComplete="email"
                                 type="email"
-                                value={formData.email}
+                                value={data.email}
                                 onChange={event => handleInputChange(event)}
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">
@@ -129,7 +133,7 @@ function LogIn(props) {
                                 fullWidth
                                 id="password"
                                 type={values.showPassword ? 'text' : 'password'}
-                                value={formData.password}
+                                value={data.password}
                                 name = "password"
                                 autoComplete="current-password"
                                 onChange={event => handleInputChange(event)}
@@ -147,7 +151,6 @@ function LogIn(props) {
                                 }}
                                 variant="outlined"
                             />
-
 
                         </Grid>
                         <Grid item xs={12} >
@@ -169,7 +172,7 @@ function LogIn(props) {
                 </form>
                 <Button
                     type="submit"
-                    disabled={formData.isSubmitting}
+                    disabled={data.isSubmitting}
                     fullWidth
                     variant="contained"
                     text-transform="none"
