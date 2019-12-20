@@ -81,8 +81,8 @@ function Navbar() {
                 <nav id="menu">
                     <ul>
                         <div className="box">
-                            <a href="#">
-                                <li>Conviértete en anfitrion</li>
+                            <a href="/RegisterProperties">
+                                <li>Conviértete en anfitrión</li>
                             </a>
                         </div>
                         <div className="box">

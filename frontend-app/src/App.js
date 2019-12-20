@@ -8,13 +8,14 @@ import Changeprofile from "./components/Profilechange/Profilechange";
 import Editphoto from "./components/Profilechange/Editphoto"
 import Empleo from "./components/footer/footer_components/Empleo";
 import Noticias from "./components/footer/footer_components/Noticias";
-import Politicas from "./components/footer/footer_components/Politicas";
+import Políticas from "./components/footer/footer_components/Políticas";
 import Ayuda from "./components/footer/footer_components/Ayuda";
 import DiversidadEInclusion from "./components/footer/footer_components/DiversidadEInclusion";
 import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
 import DatosDeLaEmpresa from "./components/footer/footer_components/DatosDeLaEmpresa";
 import Account from "./components/Profilechange/Account";
 
+import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
 export const AuthContext = React.createContext();
 
 const InitialState = {
@@ -27,7 +28,7 @@ const reducer = (state,action) => {
     switch (action.type) {
         case "LOGIN":
             localStorage.setItem("user", JSON.stringify(action.payload.user));
-            localStorage.setItem("acces_token", JSON.stringify(action.payload.token));
+            localStorage.setItem("token", JSON.stringify(action.payload.access_token));
 
             return {
                 ...state,
@@ -53,10 +54,10 @@ const reducer = (state,action) => {
 function App() {
     const [state,dispatch] = React.useReducer(reducer,InitialState);
 
-    useEffect(()=>{
+    React.useEffect(()=>{
 
         const user = JSON.parse(localStorage.getItem("user"));
-        const token = JSON.parse(localStorage.getItem("acces_token"));
+        const token = JSON.parse(localStorage.getItem("acces_   token"));
 
         if (user && token) {
             dispatch({
@@ -77,6 +78,11 @@ function App() {
                 <Route path="/" exact>
                     <Aloha />
                 </Route>
+
+                <Route path="/RegisterProperties" exact>
+                    <RegisterProperties/>
+                </Route>
+
                 <Route exact path="/profile">
                     <Profile />
                 </Route>
@@ -95,11 +101,9 @@ function App() {
                 <Route exact path="/noticias">
                     <Noticias />
                 </Route>
-
                 <Route exact path="/políticas">
-                    <Politicas />
+                    <Políticas />
                 </Route>
-
                 <Route exact path="/ayuda">
                     <Ayuda />
                 </Route>

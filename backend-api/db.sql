@@ -5,7 +5,7 @@ create table users(
                       id integer not null primary key auto_increment,
                       name varchar(30) not null,
                       last_name varchar(30) not null,
-                      password varchar(50) not null,
+                      password varchar(255) not null,
                       email varchar(255) not null,
                       updated_at timestamp default CURRENT_TIMESTAMP ,
                       created_at timestamp default CURRENT_TIMESTAMP
