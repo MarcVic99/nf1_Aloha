@@ -88,6 +88,11 @@ const Header = () => {
                 <nav id="menu">
                     <ul>
                         <div className="box">
+                            <a href="/RegisterProperties">
+                                <li>Conviértete en anfitrión</li>
+                            </a>
+                        </div>
+                        <div className="box">
                             <a href="#">
                                 <li>Hospeda un alojamiento</li>
                             </a>
