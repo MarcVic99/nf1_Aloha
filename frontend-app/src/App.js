@@ -13,7 +13,7 @@ import DiversidadEInclusion from "./components/footer/footer_components/Diversid
 import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
 import DatosDeLaEmpresa from "./components/footer/footer_components/DatosDeLaEmpresa";
 import Account from "./components/Profilechange/Account";
-
+import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
 export const AuthContext = React.createContext();
 
 const InitialState = {
@@ -67,7 +67,7 @@ function App() {
     useEffect(()=>{
 
         const user = JSON.parse(localStorage.getItem("user"));
-        const token = JSON.parse(localStorage.getItem("token"));
+        const token = JSON.parse(localStorage.getItem("acces_token"));
 
         if (user && token) {
             dispatch({
@@ -87,6 +87,9 @@ function App() {
             <Switch>
                 <Route path="/" exact>
                     <Aloha />
+                </Route>
+                <Route path="/RegisterProperties" exact>
+                    <RegisterProperties></RegisterProperties>
                 </Route>
                 <Route exact path="/profile">
                     <Profile />
