@@ -5,7 +5,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import TriggersTooltips from "./Button";
+import Questionnaire from "./questions";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,7 +28,7 @@ function getSteps() {
 function getStepContent(stepIndex) {
     switch (stepIndex) {
         case 0:
-            return 'Select campaign settings...';
+            return 'Cuéntanos sobre tu hogar ...';
         case 1:
             return 'What is an ad group anyways?';
         case 2:
@@ -35,15 +36,19 @@ function getStepContent(stepIndex) {
         default:
             return 'Unknown stepIndex';
     }
+
 }
 
 export default function HorizontalLabelPositionBelowStepper() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [submit, setSubmit] = React.useState(false);
     const steps = getSteps();
+
 
     const handleNext = () => {
         setActiveStep(prevActiveStep => prevActiveStep + 1);
+        if(setActiveStep === 2){};
     };
 
     const handleBack = () => {
@@ -52,6 +57,11 @@ export default function HorizontalLabelPositionBelowStepper() {
 
     const handleReset = () => {
         setActiveStep(0);
+
+    };
+
+    const handleFinish = () => {
+        setSubmit(true);
     };
 
     return (
@@ -63,9 +73,12 @@ export default function HorizontalLabelPositionBelowStepper() {
                     </Step>
                 ))}
             </Stepper>
-            <TriggersTooltips>
 
-            </TriggersTooltips>
+            <div className="button_style">
+
+            <Questionnaire activeStep={activeStep} submit={submit} />
+
+            </div>
             <div>
                 {activeStep === steps.length ? (
                     <div>
@@ -83,13 +96,17 @@ export default function HorizontalLabelPositionBelowStepper() {
                             >
                                 Back
                             </Button>
-                            <Button variant="contained" color="primary" onClick={handleNext}>
+                            <Button variant="contained" color="primary" onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}>
                                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                             </Button>
+
                         </div>
                     </div>
                 )}
             </div>
+
         </div>
+
     );
+
 }

@@ -1,49 +1,68 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { green, purple } from '@material-ui/core/colors';
 
-export default function TriggersTooltips() {
-    const [open, setOpen] = React.useState(false);
+const BootstrapButton = withStyles({
+    root: {
+        boxShadow: 'none',
+        textTransform: 'none',
+        fontSize: 16,
+        padding: '6px 12px',
+        border: '1px solid',
+        lineHeight: 1.5,
+        backgroundColor: '#007bff',
+        borderColor: '#007bff',
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        '&:hover': {
+            backgroundColor: '#0069d9',
+            borderColor: '#0062cc',
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#0062cc',
+            borderColor: '#005cbf',
+        },
+        '&:focus': {
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+        },
+    },
+})(Button);
 
-    const handleTooltipClose = () => {
-        setOpen(false);
-    };
 
-    const handleTooltipOpen = (props) => {
-        setOpen(true);
-    };
+const useStyles = makeStyles(theme => ({
+    margin: {
+        margin: theme.spacing(1),
+    },
+}));
+
+const theme = createMuiTheme({
+    palette: {
+        primary: green,
+    },
+});
+
+export default function CustomizedButtons(props) {
+    const classes = useStyles();
 
     return (
         <div>
-            <Grid container justify="center">
-                <Grid item>
-                    <Tooltip disableFocusListener title="Add">
-                        <Button>Hogar</Button>
-                    </Tooltip>
-                </Grid>
 
-                <Grid item>
-                    <ClickAwayListener onClickAway={handleTooltipClose}>
-                        <div>
-                            <Tooltip
-                                PopperProps={{
-                                    disablePortal: true,
-                                }}
-                                onClose={handleTooltipClose}
-                                open={open}
-                                disableFocusListener
-                                disableHoverListener
-                                disableTouchListener
-                                title="Add"
-                            >
-                                <Button onClick={handleTooltipOpen}>Click</Button>
-                            </Tooltip>
-                        </div>
-                    </ClickAwayListener>
-                </Grid>
-            </Grid>
+            <BootstrapButton variant="contained" color="primary" className={classes.margin}>
+                {props.value}
+            </BootstrapButton>
         </div>
     );
 }

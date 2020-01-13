@@ -1,0 +1,19 @@
+
+*{ /* reset settings */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration:none;
+    outline: none;
+    /*the common values for box-sizing*/
+    color:inherit;
+}
+
+#Q1{
+
+    display: flex;
+    margin:0;
+    padding: 10px 10px 10px 10px;
+    background-color: lightyellow;
+
+}
