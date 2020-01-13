@@ -152,6 +152,10 @@ class AuthController extends Controller
         $user->email 	= $request->input('email');
         $user->last_name 	= $request->input('last_name');
         //$user->avatar	= $request->input('avatar');
+        $user->about 	= $request->input('about');
+        $user->where 	= $request->input('where');
+        $user->job 	= $request->input('job');
+        $user->languages 	= $request->input('languages');
         $user->save();
 
         $data = array(

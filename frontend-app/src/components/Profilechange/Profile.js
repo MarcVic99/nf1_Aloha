@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Profilechange.css';
-import Avatar from "./Avatar";
+
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
-import ChangeProfile from "./Profilechange"
+
 import FooterLinks from "../footer/footer"
 import {AuthContext} from "../../App";
 
@@ -20,6 +20,7 @@ export default function Profile() {
     const [name, setName] = useState('');
     const [last_name, setLast_name] = useState('');
     const [email, setEmail] = useState('');
+    const [created_at,setCreated_at]=useState('');
 
     useEffect(() => {
         if(state.user){
@@ -29,54 +30,19 @@ export default function Profile() {
         }
     });
 
+
     const data = {
+        name:name,
+        last_name:last_name,
+        email:email,
         about: about,
         where: where,
         languages: languages,
         job: job,
+        created_at:created_at,
     }
 
 
-    const handleOnChange = () => {
-
-        const fetchdata = async () => {
-            const url = 'localhost:80/api/profile/';
-
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: new Headers({
-                    Accept: 'application/json',
-                    'Content-type': 'application/json',
-                    //'Access-Control-Allow-Headers': 'Authorization',
-
-                }),
-                mode: 'cors',
-            };
-            return fetch(url, options)
-                .then(response => {
-
-                    if (response.status === 201) {
-                        alert(response.statusText);
-                        return response.json();
-                    }
-                    return Promise.reject(response.status);
-                })
-                .then(data => {
-
-                    //alert("Succesful, codigo 200"); alert("Error.\n\nOptions body:\n" + options.body +"\n\nURL called:\n" + url +
-                })
-                .catch(error => {
-
-                    setError(error);
-                    alert("sdf " + error);
-
-                });
-        };
-
-        fetchdata();
-
-    };
 
 
     return (
@@ -93,9 +59,9 @@ export default function Profile() {
                             <div>
 
                                 <div className="intro">
-                                    <h1>Hola:Soy {name} {last_name} </h1>
+                                    <h1>Hola:Soy {name} </h1>
                                     <div className="regedit">
-                                        <p>Se registró en 2019</p>
+                                        <p>Se registró en {created_at} 2019</p>
 
                                         <div className="editprofile">
                                             <Link to="/profile/edit">Editar perfil</Link>
@@ -106,18 +72,20 @@ export default function Profile() {
 
                                         </div>
                                         <div className="profileform">
-                                            Vive en: Barcelona
+                                            Vive en: {where}
 
 
                                         </div>
                                         <div className="profileform">
-                                            Trabaja en: Informatica
+                                            Trabaja en: {job}
                                         </div>
                                         <div className="profileform">
-                                            Destinos favoritos: Bali, Tailandia
+                                            Idiomas: {languages}
                                         </div>
+                                        <div className="profileform">
+                                            Cerca de: {about}
 
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -126,9 +94,7 @@ export default function Profile() {
                 </div>
             </section>
 
-            <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
-            {/* Footer */}
             <footer>
 
                 <FooterLinks />
