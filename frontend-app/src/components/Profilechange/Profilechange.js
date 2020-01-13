@@ -9,7 +9,7 @@ import {AuthContext} from "../../App";
 
 
 export default function ChangeProfile() {
-    const {state, dispatch} = React.useContext(AuthContext);
+    const {state} = React.useContext(AuthContext);
     const [about, setAbout] = useState('');
     const [where, setWhere] = useState('');
     const [languages, setLanguages] = useState('');
@@ -73,7 +73,7 @@ export default function ChangeProfile() {
             setLast_name(state.user.last_name);
             setEmail(state.user.email);
         }
-    });
+    }, [state.user]);
 
     return (
         <div id="main">

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import logo from "../../img/aloha/logo_aloha.png";
-import {Link} from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import SignUp from "../signup/SignUp";
 import LogIn from "../login/LogIn";
@@ -11,6 +10,10 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Navbar from "../Profilechange/Navbar";
 import "../Aloha.css"
+import Calendario from "../Calendario";
+import PropertiesList from "../Properties/PropertiesList";
+
+
 
 
 const styles = theme => ({
@@ -40,7 +43,8 @@ const DialogTitle = withStyles(styles)(props => {
 });
 
 const Header = () => {
-    const {state, dispatch} = React.useContext(AuthContext);
+
+    const {state} = React.useContext(AuthContext);
 
     const [open, setOpen] = React.useState(false);
 
@@ -67,11 +71,7 @@ const Header = () => {
             {state.booleanAuth &&(
                 <div className="box">
                     <li><Navbar/></li>
-                    {/*<div onClick={()=> dispatch(*/}
-                    {/*    {type: "LOGOUT"}*/}
-                    {/*)}>*/}
-                    {/*    Logout*/}
-                    {/*</div>*/}
+
                 </div>
             )}
             {!state.booleanAuth && (
@@ -122,7 +122,8 @@ const Header = () => {
                                         <DialogTitle id="customized-dialog-title" onClose={handleClose2}>
                                             <br></br>
                                         </DialogTitle>
-                                        <LogIn/>
+                                        <LogIn />
+
                                     </Dialog>
                                 </div>
                             </div>
@@ -136,25 +137,29 @@ const Header = () => {
                         <h1>Reserva alojamientos y experiencias únicas.</h1>
                         <form action="/action_page.php">
                             <div className="description_input"><b>DÓNDE</b>
+                                
                             </div>
-                            <div className="div_donde">
+                            <div className="div_donde" placeholder="Dónde">
                                 <input type="text" name="location" placeholder="Dónde" className={'inputlocation'}/>
                             </div>
 
                             <div className="llegada_salida">
                                 <div className="description_input"><b>LLEGADA</b>
+                                    <Calendario/>
                                 </div>
-                                <div className={'divinputlocation2'}>
-                                    <input className="locat1" type="text" name="location" placeholder="dd/mm/aaaa"/>
-                                </div>
+                                {/*<div className={'divinputlocation2'}>*/}
+                                {/*    <input className="locat1" type="text" name="location" placeholder="dd/mm/aaaa"/>*/}
+                                {/*</div>*/}
                             </div>
-
+                            {/*placeholder="MM/dd/yyyy"*/}
                             <div className="llegada_salida">
                                 <div className="description_input"><b>SALIDA</b>
+                                    <Calendario/>
+
                                 </div>
-                                <div className="divfecha1">
-                                    <input className="locat2" type="text" name="location" placeholder="dd/mm/aaaa"/>
-                                </div>
+                                {/*<div className="divfecha1">*/}
+                                {/*    <input className="locat2" type="text" name="location" placeholder="dd/mm/aaaa"/>*/}
+                                {/*</div>*/}
                             </div>
 
                             <div className="description_input"><b>HUÉPEDES</b>

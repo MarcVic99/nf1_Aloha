@@ -2,18 +2,15 @@ import React from 'react';
 
 
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import './Profilechange.css';
-import FullScreenDialog from "./Container";
-import logo from './logo.jpg'
 import "./Profilemenu.css"
-import Avatarsmall from "./Avatarsmall";
+
 import HeaderLogo from "../Header/HeaderLogo";
 import ModalProfile from "./ModalProfile";
+import {AuthContext} from "../../App";
 
 
 

@@ -17,12 +17,51 @@ import {withRouter} from 'react-router-dom';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {saveToken} from "../../utils/localstorage";
 import {AuthContext} from "../../App";
+import Dialog from "@material-ui/core/Dialog";
+import {withStyles} from "@material-ui/core";
+import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import SignUp from "../signup/SignUp";
+
+const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+
+const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon/>
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
 
 function LogIn(props) {
     const history = props.history;
-    const {state, dispatch}=React.useContext(AuthContext);
+    const {dispatch}=React.useContext(AuthContext);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const initialState = {
         email: '',
@@ -182,18 +221,26 @@ function LogIn(props) {
                     onClick={handleOnSubmit}
                 >
                     Inicia Sesión
+
                 </Button>
 
                 <Grid container justify="flex-start" className={"fatherLink"}>
                     <Grid item>
                         <span>¿No tienes cuenta ? </span>
 
-                        <Link href="#" variant="body2" className={"link"}>
-                            Regístrate
+                        <Link onClick={handleClickOpen} className="open">
+                            Registrate
                         </Link>
-
                     </Grid>
                 </Grid>
+                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        <hr/>
+                    </DialogTitle>
+
+                    <SignUp/>
+
+                </Dialog>
 
             </div>
 

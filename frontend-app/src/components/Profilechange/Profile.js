@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Profilechange.css';
-import Avatar from "./Avatar";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
-import ChangeProfile from "./Profilechange"
 import FooterLinks from "../footer/footer"
 import {AuthContext} from "../../App";
 
@@ -62,8 +60,6 @@ export default function Profile() {
                     return Promise.reject(response.status);
                 })
                 .then(data => {
-
-                    //alert("Succesful, codigo 200"); alert("Error.\n\nOptions body:\n" + options.body +"\n\nURL called:\n" + url +
                 })
                 .catch(error => {
 
