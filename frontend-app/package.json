@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jscpd": "jscpd src/* -r html"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@material-ui/core": "^4.7.0",
-    "@material-ui/icons": "^4.5.1"
+    "@material-ui/icons": "^4.5.1",
+    "jscpd": "^2.0.16"
   }
 }

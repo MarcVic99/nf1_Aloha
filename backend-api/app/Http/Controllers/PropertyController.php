@@ -15,7 +15,7 @@ class PropertyController extends Controller
         $this->middleware('auth:api',
             ['except' =>
             ['index', 'show', 'getPropertyByCategory',
-            'getPropertyByUser', 'getImage', 'search']]);
+            'getPropertyByUser', 'getImage', 'search','store']]);
     }
 
     public function index()
@@ -59,14 +59,21 @@ class PropertyController extends Controller
         if (!empty($params_array)) {
             //Validar los datos
             $validate = \Validator::make($params_array, [
-                'name_header' => 'required',
+                'nameHeader' => 'required',
+                'rooms' => 'required',
+                'beds'=> 'required',
+                'toilets'=> 'required',
                 'country' => 'required',
                 'city' => 'required',
                 'address' => 'required',
-                'category_id' => 'required',
-                'image' => 'required'
+                'title'=> 'required',
+                'description' => 'required',
+                'price' => 'required',
+                'category_id' => 'null',
+                'image' => 'null'
 
             ]);
+
 
             //Guardar la propiedad
             if ($validate->fails()) {
@@ -78,10 +85,16 @@ class PropertyController extends Controller
             } else {
                 $property = new Property();
                 $property->user_id = Auth::user()->id;
-                $property->name_header = $params_array['name_header'];
+                $property->nameHeader = $params_array['nameHeader'];
+                $property->rooms = $params_array['rooms'];
+                $property->beds = $params_array['beds'];
+                $property->toilets = $params_array['toilets'];
                 $property->country = $params_array['country'];
                 $property->city = $params_array['city'];
                 $property->address = $params_array['address'];
+                $property->title = $params_array['title'];
+                $property->description = $params_array['description'];
+                $property->price = $params_array['price'];
                 $property->category_id = $params_array['category_id'];
                 $property->image  =  $params_array['image'];
                 $property->save();

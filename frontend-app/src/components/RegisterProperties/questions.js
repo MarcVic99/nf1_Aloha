@@ -3,6 +3,7 @@ import CustomizedButtons from "./Button";
 import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
 import Button from "@material-ui/core/Button";
+import ''
 
 export default function Questionnaire (props) {
     const [nameHeader, setNameHeader] = useState('');
@@ -76,7 +77,7 @@ export default function Questionnaire (props) {
     };
 
    if (submit) {
-       handleOnSubmit();
+      // handleOnSubmit();
    }
 
     if (props.activeStep===0){
@@ -167,7 +168,7 @@ export default function Questionnaire (props) {
                     <span>CALENDARIO</span>
 
                 </div>
-
+            <button onClick={handleOnSubmit}/>
 
             </div>
 
@@ -184,6 +185,3 @@ export default function Questionnaire (props) {
     }
 };
 
-/*
-
- */

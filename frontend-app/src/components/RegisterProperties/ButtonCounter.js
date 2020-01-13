@@ -27,17 +27,9 @@ export default function ButtonSizes(props) {
             <div className="main">
                 <div className="subMain">
 
-                    <div className="addButton">
-                    <Fab size="small" color="primary" aria-label="add" className={classes.margin} onClick={ () => setCount(count+1)}>
-                        <AddIcon />
-                    </Fab>
-                     </div>
-
-                    <div className="result">{count}</div>
-
                     <div className="removeButton">
                     <Fab size="small" color="primary" aria-label="add" className={classes.margin} onClick={ () => {
-                        if (count < 0)  {
+                        if (count <= 0)  {
                             setCount(0);
                         } else {
                             setCount(count-1);
@@ -45,6 +37,13 @@ export default function ButtonSizes(props) {
                     }}>
                          <RemoveIcon/>
                     </Fab>
+                    </div>
+
+                    <div className="result">{count}</div>
+                    <div className="addButton">
+                        <Fab size="small" color="primary" aria-label="add" className={classes.margin} onClick={ () => setCount(count+1)}>
+                            <AddIcon />
+                        </Fab>
                     </div>
                 </div>
             </div>
