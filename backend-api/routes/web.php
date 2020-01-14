@@ -37,7 +37,36 @@ Route::group([
 
 });
 
+//Ctegories
+Route::resource('/api/category', 'CategoryController');
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-   // return $request->user();
-//
+//Properties
+
+Route::resource('/api/property', 'PropertyController');
+Route::post('/api/property/upload', 'PropertyController@upload');
+Route::get('/api/property/image/{filename}', 'PropertyController@getImage');
+Route::get('/api/property/category/{id}', 'PropertyController@getPropertyByCategory');
+Route::get('/api/property/user/{id}', 'PropertyController@getPropertyByUser');
+
+
+//Bookings
+Route::resource('/api/booking', 'BookingsController');
+//Route::get('/api/search/booking/checkin/{checkin}/checkout/{checkout}', 'BookingsController@search');
+
+//Messages
+Route::resource('/api/message', 'MessagesController');
+
+//Cmments
+Route::resource('/api/comment', 'CommentsController');
+
+//Map
+Route::resource('/api/maps', 'MapController');
+
+//Buscar
+Route::get('/api/search/property/{city}', 'PropertyController@search');
+
+
+
+
+
+

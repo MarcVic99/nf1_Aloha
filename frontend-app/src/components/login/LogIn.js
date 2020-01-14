@@ -17,21 +17,60 @@ import {withRouter} from 'react-router-dom';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {saveToken} from "../../utils/localstorage";
 import {AuthContext} from "../../App";
+import Dialog from "@material-ui/core/Dialog";
+import {withStyles} from "@material-ui/core";
+import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import SignUp from "../signup/SignUp";
+
+const styles = theme => ({
+    root: {
+        margin: 0,
+        padding: theme.spacing(2),
+    },
+    closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+});
+
+const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+        <MuiDialogTitle disableTypography className={classes.root} {...other}>
+            {onClose ? (
+                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+                    <CloseIcon/>
+                </IconButton>
+            ) : null}
+        </MuiDialogTitle>
+    );
+});
 
 function LogIn(props) {
     const history = props.history;
     const {dispatch}=React.useContext(AuthContext);
+    const [open, setOpen] = React.useState(false);
 
-    const data = {
+    const handleClickOpen = () => {
+        setOpen(true);
+
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const initialState = {
         email: '',
         password: '',
         errorMessage: null,
         isSubmitting:false
     };
 
-    const [formData, setFormData] = React.useState(data);
+    const [data, setData] = React.useState(initialState);
 
     const [values, setValues] = useState({
         showPassword: false,
@@ -45,16 +84,19 @@ function LogIn(props) {
         event.preventDefault();
     };
     const handleInputChange = (event) => {
-        setFormData({...formData,[event.target.name]:event.target.value})
+        setData({...data,[event.target.name]:event.target.value})
     };
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = event => {
+        event.preventDefault();
+        setData({...data, isSubmitting: true, errorMessage: null
+        });
         const fetchdata = async () => {
 
             const url = "http://127.0.0.1:80/api/login";
             const options = {
                 method: 'post',
-                body: JSON.stringify(formData),
+                body: JSON.stringify({email: data.email, password: data.password}),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
@@ -66,23 +108,24 @@ function LogIn(props) {
             fetch(url, options)
 
                 .then(response => {
-                    if (response.status === 401) {
-                        return Promise.reject(response.status);
-                    } else if (response.status === 200) {
+                    if (response.ok) {
                         return response.json();
                     }
-                }).then( data => {
-                    console.log(data);
+                    throw response;
+                })
+                .then(responseJson => {
                     dispatch({
-
                         type: "LOGIN",
-                        payload: data
+                        payload: responseJson
+                    })
+                })
+                .catch(error => {
+                    setData({
+                        ...data,
+                        isSubmitting: false,
+                        errorMessage: error.message || error.statusText
                     });
-                }
-
-            ).catch(error => {
-                setFormData({...formData, isSubmitting: false, errorMessage: error});
-            });
+                });
 
         };
 
@@ -111,7 +154,7 @@ function LogIn(props) {
                                 name="email"
                                 autoComplete="email"
                                 type="email"
-                                value={formData.email}
+                                value={data.email}
                                 onChange={event => handleInputChange(event)}
                                 InputProps={{
                                     endAdornment: <InputAdornment position="end">
@@ -129,7 +172,7 @@ function LogIn(props) {
                                 fullWidth
                                 id="password"
                                 type={values.showPassword ? 'text' : 'password'}
-                                value={formData.password}
+                                value={data.password}
                                 name = "password"
                                 autoComplete="current-password"
                                 onChange={event => handleInputChange(event)}
@@ -147,7 +190,6 @@ function LogIn(props) {
                                 }}
                                 variant="outlined"
                             />
-
 
                         </Grid>
                         <Grid item xs={12} >
@@ -169,7 +211,7 @@ function LogIn(props) {
                 </form>
                 <Button
                     type="submit"
-                    disabled={formData.isSubmitting}
+                    disabled={data.isSubmitting}
                     fullWidth
                     variant="contained"
                     text-transform="none"
@@ -179,18 +221,26 @@ function LogIn(props) {
                     onClick={handleOnSubmit}
                 >
                     Inicia Sesión
+
                 </Button>
 
                 <Grid container justify="flex-start" className={"fatherLink"}>
                     <Grid item>
                         <span>¿No tienes cuenta ? </span>
 
-                        <Link href="#" variant="body2" className={"link"}>
-                            Regístrate
+                        <Link onClick={handleClickOpen} className="open">
+                            Registrate
                         </Link>
-
                     </Grid>
                 </Grid>
+                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        <hr/>
+                    </DialogTitle>
+
+                    <SignUp/>
+
+                </Dialog>
 
             </div>
 

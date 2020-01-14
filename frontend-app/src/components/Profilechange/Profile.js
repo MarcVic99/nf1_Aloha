@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Profilechange.css';
-
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
@@ -29,7 +28,6 @@ export default function Profile() {
             setEmail(state.user.email);
         }
     });
-
 
     const data = {
         name:name,

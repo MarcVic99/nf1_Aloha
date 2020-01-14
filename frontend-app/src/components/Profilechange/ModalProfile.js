@@ -7,12 +7,11 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from "./Avatar";
 import "./Profilemenu.css"
 import Avatarsmall from "./Avatarsmall";
 import "./ModalProfile.css"
 import {AuthContext} from "../../App";
-import Navbar from "./Navbar";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -87,10 +86,10 @@ export default function MenuListComposition() {
                                         <MenuItem onClick={handleClose}><a className="box_profile">Espanole</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile">Moneda</a></MenuItem>
                                         <MenuItem onClick={handleClose}>
-                                            {state.booleanAuth &&(<a className="box_profile">
-                                                    <div onClick={()=> dispatch(
-                                                        {type: "LOGOUT"}
-                                                    )}>Cerrar sesion </div></a>)}
+                                            {state.booleanAuth &&(<a href="/"
+                                                     onClick={()=> dispatch(
+                                                        {type: "LOGOUT"})}>Cerrar sesion
+                                                     </a>)}
                                         </MenuItem>
                                         </MenuList>
                                 </ClickAwayListener>

@@ -1,0 +1,51 @@
+
+*{ /* reset settings */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration:none;
+    outline: none;
+    box-sizing: border-box;  /*the common values for box-sizing*/
+    color:inherit;
+}
+
+.main{
+
+    margin: 2px;
+    height: auto;
+    width: auto;
+   /* background-color: lightblue;*/
+
+}
+
+.subMain{
+
+    display: flex;
+}
+
+.addButton{
+
+    /*background-color: lightcoral;*/
+    margin: 0;
+    padding:  2px 2px 2px 2px;
+
+}
+
+.removeButton{
+   /* background-color: lightcyan;*/
+    margin: 0;
+    padding:  2px 2px 2px 2px;
+}
+
+.result{
+
+    margin: 0;
+    padding:  20px 2px 2px 2px;
+   /* background-color: lightyellow;*/
+    height:8vh;
+    width: 5vh;
+    text-align: center;
+    justify-content: center;
+
+
+}
