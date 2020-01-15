@@ -63,7 +63,7 @@ Route::resource('/api/comment', 'CommentsController');
 Route::resource('/api/maps', 'MapController');
 
 //Buscar
-Route::get('/api/search/property/{city}', 'PropertyController@search');
+Route::get('/api/search/location/{location}', 'PropertyController@search');
 
 
 

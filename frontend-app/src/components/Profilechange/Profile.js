@@ -26,6 +26,10 @@ export default function Profile() {
             setName(state.user.name);
             setLast_name(state.user.last_name);
             setEmail(state.user.email);
+            setAbout(state.user.about);
+            setWhere(state.user.where);
+            setLanguages(state.user.languages);
+            setJob(state.user.job);
         }
     });
 

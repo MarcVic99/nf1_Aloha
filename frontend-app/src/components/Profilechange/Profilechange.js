@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
 import FooterLinks from "../footer/footer"
-import {getToken} from "../../utils/localstorage";
 import {AuthContext} from "../../App";
 
 
@@ -21,48 +20,44 @@ export default function ChangeProfile() {
 
 
 
+    const data = {
+        name:name,
+        last_name:last_name,
+        email:email,
+        about: about,
+        where: where,
+        languages: languages,
+        job: job,
+        token: JSON.parse(localStorage.getItem('token'))
+    }
 
 
 
     const handleOnSubmit = () => {
 
-        const fetchdata = async () => {
-            const data = {
-                name:name,
-                last_name:last_name,
-                email:email,
-                about: about,
-                where: where,
-                languages: languages,
-                job: job,
-            }
-
-            const url = 'http://127.0.0.1:80/api/profile/edit';
+        const fetchdata = async (token) => {
+            const url = `http://localhost/api/update`;
 
             const options = {
-
-                method:'PUT',
+                method: 'PUT',
                 body: JSON.stringify(data),
                 headers: new Headers({
                     Accept: 'application/json',
                     'Content-type': 'application/json',
-                    //'Access-Control-Allow-Headers': 'Authorization',
 
                 }),
                 mode: 'cors',
             };
-            debugger;
             return fetch(url, options)
                 .then(response => {
-    debugger;
+
                     if (response.status === 201) {
                         return response.json();
                     }
                     return Promise.reject(response.status);
                 })
                 .then(data => {
-                    setAbout(data.about);
-                    //setWhere(data.)
+
                     //alert("Succesful, codigo 200"); alert("Error.\n\nOptions body:\n" + options.body +"\n\nURL called:\n" + url +
                 })
                 .catch(error => {
@@ -81,11 +76,12 @@ export default function ChangeProfile() {
             setLast_name(state.user.last_name);
             setEmail(state.user.email);
             setAbout(state.user.about);
-            setJob(state.user.job);
             setWhere(state.user.where);
+            setLanguages(state.user.languages);
+            setJob(state.user.job);
 
         }
-    });
+    }, [state.user]);
 
     return (
         <div id="main">
@@ -93,64 +89,67 @@ export default function ChangeProfile() {
                 <div>
                     <Navbar />
 
-
                     <div className="marginout">
-
                         <Profilephoto />
 
                         <div className="changeform">
                             <div>
-
                                 <div className="intro">
-                                    <h1>Hola:Soy {name}</h1>
-
+                                    <h1>Hola:{name} {last_name}</h1>
+                                    <div className="regedit">
+                                        <p>Se registró en 2019</p>
+                                    </div>
                                 </div>
                                 <br />
+
                                 <div>
                                     <div className="formlabel">
-                                        <label>Name </label>
+                                        <label>Nombre</label>
                                     </div>
-                                    <input
-
-
-                                        className="inputfield"
+                                    <textarea
+                                        className="aboutinfo"
                                         name="name"
-                                        defaultValue={name}
+                                        rows="4"
+                                        spellCheck={true}
+                                        value={name}
                                         onChange={event => setName(event.target.value)}
                                         tabIndex="1"
                                     />
                                 </div>
-                                <br/>
+                                <br />
+
                                 <div>
                                     <div className="formlabel">
-                                        <label>Last name </label>
+                                        <label>Apellido</label>
                                     </div>
-                                    <input
-
-
-                                        className="inputfield"
+                                    <textarea
+                                        className="aboutinfo"
                                         name="last_name"
-                                        defaultValue={last_name}
+                                        rows="4"
+                                        spellCheck={true}
+                                        value={last_name}
                                         onChange={event => setLast_name(event.target.value)}
-                                        tabIndex="2"
+                                        tabIndex="1"
                                     />
                                 </div>
-                                <br/>
+                                <br />
+
                                 <div>
                                     <div className="formlabel">
                                         <label>Email</label>
                                     </div>
-                                    <input
-
-
-                                        className="inputfield"
+                                    <textarea
+                                        className="aboutinfo"
                                         name="email"
-                                        defaultValue={email}
+                                        rows="4"
+                                        spellCheck={true}
+                                        value={email}
                                         onChange={event => setEmail(event.target.value)}
-                                        tabIndex="3"
+                                        tabIndex="1"
                                     />
                                 </div>
-                                <br/>
+                                <br />
+
                                 <div>
                                     <div className="formlabel">
                                         <label>Acerca de</label>
@@ -162,7 +161,7 @@ export default function ChangeProfile() {
                                         spellCheck={true}
                                         value={about}
                                         onChange={event => setAbout(event.target.value)}
-                                        tabIndex="4"
+                                        tabIndex="1"
                                     />
                                 </div>
                                 <br />
@@ -172,12 +171,11 @@ export default function ChangeProfile() {
                                     </div>
                                     <input
 
-
                                         className="inputfield"
                                         name="where"
                                         value={where}
                                         onChange={event => setWhere(event.target.value)}
-                                        tabIndex="5"
+                                        tabIndex="2"
                                     />
                                 </div>
                                 <br />
@@ -186,7 +184,6 @@ export default function ChangeProfile() {
                                         <label>Idiomas que hablo</label>
                                     </div>
                                     <input
-
                                         className="inputfield"
                                         name="languages"
                                         value={languages}
@@ -199,7 +196,6 @@ export default function ChangeProfile() {
                                     <div className="formlabel">
                                         <label>Trabajo</label>
                                     </div>
-
                                     <input
 
                                         className="inputfield"
@@ -207,7 +203,7 @@ export default function ChangeProfile() {
                                         type="job"
                                         value={job}
                                         onChange={event => setJob(event.target.value)}
-                                        tabIndex="6"
+                                        tabIndex="5"
                                     />
                                 </div>
                                 <br />
@@ -232,14 +228,14 @@ export default function ChangeProfile() {
                 </div>
             </section>
             <br/>
-            <br/>
-            <br/>
             <footer>
 
                 <FooterLinks />
 
             </footer>
-
+        
         </div>
     );
 }
+
+

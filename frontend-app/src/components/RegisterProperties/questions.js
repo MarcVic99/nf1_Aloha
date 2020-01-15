@@ -4,7 +4,6 @@ import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
 import Button from "@material-ui/core/Button";
 
-
 export default function Questionnaire (props) {
     const [nameHeader, setNameHeader] = useState('');
     const [rooms, setRooms] = useState(0);
@@ -54,7 +53,7 @@ export default function Questionnaire (props) {
                     if (response.status === 404) {
                         response.json().then((resp => {
                             return setError(resp.errors);
-                            return (alert(resp.errors))
+
                         }))
                     } else if (response.status === 200) {
                         response.json().then((resp => {
