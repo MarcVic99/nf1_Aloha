@@ -90,21 +90,31 @@ import Property from "./Property.js"
 
 const PropertiesList = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const { properties, errorMessage, loading } = state;
 
     useEffect(() => {
-        async function fetchData() {
-
-            await fetch('http://localhost/api/property')
-
-                .then(jsonResponse => {
-                    dispatch({
-                        type: "SEARCH_PROPERTIES_SUCCESS",
-                        payload: jsonResponse.data.Search
-                    });
+        axios.get('http://127.0.0.1:80/api/search/location/barcelona')
+            .then(jsonResponse => {
+                dispatch({
+                    type: "SEARCH_PROPERTIES_SUCCESS",
+                    payload: jsonResponse.state.properties.Search
                 });
-        }
-          fetchData()  }, []);
-
+            });
+    }, []);
+    console.log(state);
+    // useEffect(() => {
+    //     async function fetchData() {
+    //
+    //         await fetch('http://localhost/api/property')
+    //
+    //             .then(jsonResponse => {
+    //                 dispatch({
+    //                     type: "SEARCH_PROPERTIES_SUCCESS",
+    //                     payload: jsonResponse.data.Search
+    //                 });
+    //             });
+    //     }
+    //       fetchData()  }, []);
 
 
     const search = searchValue => {
@@ -112,7 +122,7 @@ const PropertiesList = () => {
             type: "SEARCH_PROPERTIES_REQUEST"
         });
 
-        axios(`http://localhost/api/search/property/${searchValue}`)
+        axios(`http://127.0.0.1:80/api/search/location/${searchValue}`)
             .then(jsonResponse => {
                 if (jsonResponse.data.Response === "True") {
                     dispatch({
@@ -129,7 +139,7 @@ const PropertiesList = () => {
         );
     };
 
-    const { properties, errorMessage, loading } = state;
+
 
     const retrievedProperties =
         loading && !errorMessage ? (
@@ -147,9 +157,8 @@ const PropertiesList = () => {
                 <header className="App-header">
                     <h2>PropertiesList</h2>
                 </header>
-                <Search search={search} />
+                <Search search={search}/>
                 <p className="App-intro">Sharing a few of our better properties</p>
-
                 <div className="properties">{retrievedProperties}</div>
             </div>
         </div>
