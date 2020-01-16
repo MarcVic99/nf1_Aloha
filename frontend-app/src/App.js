@@ -87,6 +87,9 @@ function App() {
                 <Route path="/" exact>
                     <Aloha />
                 </Route>
+                <Route path="/RegisterProperties" exact>
+                    <RegisterProperties />
+                </Route>
                 <Route exact path="/profile">
                     <Profile />
                 </Route>

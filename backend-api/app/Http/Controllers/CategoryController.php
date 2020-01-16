@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,7 @@ class CategoryController extends Controller{
         if(!empty($params_array)) {
             //Validar los datos
             $validate = \Validator::make($params_array, [
-                'name' => 'required|unique:categories'
+                'name' => 'required|unique:categories',
             ]);
 
             //Guardar la categoria
@@ -60,15 +61,15 @@ class CategoryController extends Controller{
                     'message' => 'La categoria ya existe'
                 ];
             } else {
+                $category = User::find(Auth::user()->id);
                 $category = new Category();
-                $category->user_id  = Auth::user()->id;
                 $category->name = $params_array['name'];
                 $category->save();
 
                 $data = [
                     'code' => 200,
                     'status' => 'succes',
-                    'message' => $category
+                    'category' => $category
                 ];
             }
 
