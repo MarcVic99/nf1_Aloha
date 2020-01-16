@@ -3,9 +3,11 @@ import CustomizedButtons from "./Button";
 import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
 import Button from "@material-ui/core/Button";
-import ''
+import {AuthContext} from "../../App";
 
 export default function Questionnaire (props) {
+
+    const {state, dispatch} = React.useContext(AuthContext);
     const [nameHeader, setNameHeader] = useState('');
     const [rooms, setRooms] = useState(0);
     const [beds, setBeds] = useState(0);
@@ -19,6 +21,8 @@ export default function Questionnaire (props) {
     const [error, setError] = useState('');
     const array = ['Casa', 'Apartamento', 'Piso', 'Bed & Breakfast', 'Chalet'];
 
+    const token = JSON.parse(localStorage.getItem('token'));
+
     const submit = props.submit;
 
     const data = {
@@ -31,18 +35,24 @@ export default function Questionnaire (props) {
         address:address,
         title:title,
         description:description,
-        price:price
+        price:price,
+        additional_info:null,
+        rating:null,
         };
 
-   const handleOnSubmit = () => {
+
+
+    const handleOnSubmit = () => {
+        console.log(data);
         const fetchdata = async () => {
             const url = 'http://127.0.0.1:80/api/property';
             const options = {
-                method: 'post',
+                method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': `bearer ${token}`
                     //'Access-Control-Allow-Headers': 'Authorization',
                 },
                 mode: 'cors',
@@ -168,7 +178,7 @@ export default function Questionnaire (props) {
                     <span>CALENDARIO</span>
 
                 </div>
-            <button onClick={handleOnSubmit}/>
+                <button onClick={handleOnSubmit}>Subir Información </button>
 
             </div>
 
