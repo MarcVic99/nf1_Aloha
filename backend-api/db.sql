@@ -11,9 +11,16 @@ create table users(
                       created_at timestamp default CURRENT_TIMESTAMP
 
 );
-alter table users drop phone_number;
-alter table users drop birthdate;
-alter table users drop user_photo;
+alter table users add name varchar(30) not null;
+alter table users add password varchar(255) not null;
+alter table users add birth_date date null;
+alter table users add   is_host    tinyint(1)                          null;
+alter table users add  about      varchar(255)                        null;
+alter table users add  job        varchar(255)                        null;
+alter table users add languages  varchar(255)                        null;
+alter table users add `where`    varchar(255)                        null;
+
+
 alter table users add is_host boolean not null;
 
 create table properties(
