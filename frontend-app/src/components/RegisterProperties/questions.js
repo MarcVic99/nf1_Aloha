@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import {AuthContext} from "../../App";
 
 export default function Questionnaire (props) {
- 
+
     const {state, dispatch} = React.useContext(AuthContext);
     const [nameHeader, setNameHeader] = useState('');
     const [rooms, setRooms] = useState(0);
