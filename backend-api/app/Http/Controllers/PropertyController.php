@@ -15,7 +15,7 @@ class PropertyController extends Controller
         $this->middleware('auth:api',
             ['except' =>
             ['index', 'show', 'getPropertyByCategory',
-            'getPropertyByUser', 'getImage', 'search','store']]);
+            'getPropertyByUser', 'getImage', 'search',]]);
     }
 
     public function index()
@@ -69,20 +69,20 @@ class PropertyController extends Controller
                 'title'=> 'required',
                 'description' => 'required',
                 'price' => 'required',
-                'category_id' => 'null',
-                'image' => 'null'
+               // 'category_id' => 'null',
+               // 'image' => 'null'
 
             ]);
 
-
             //Guardar la propiedad
-            if ($validate->fails()) {
+           if ($validate->fails()) {
                 $data = [
                     'code' => 404,
                     'status' => 'error',
                     'message' => 'La propiedad ya existe'
                 ];
             } else {
+
                 $property = new Property();
                 $property->user_id = Auth::user()->id;
                 $property->nameHeader = $params_array['nameHeader'];
@@ -95,8 +95,8 @@ class PropertyController extends Controller
                 $property->title = $params_array['title'];
                 $property->description = $params_array['description'];
                 $property->price = $params_array['price'];
-                $property->category_id = $params_array['category_id'];
-                $property->image  =  $params_array['image'];
+                //$property->category_id = $params_array['category_id'];
+                //$property->image  =  $params_array['image'];
                 $property->save();
 
 
