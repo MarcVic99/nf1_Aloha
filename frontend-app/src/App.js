@@ -13,10 +13,11 @@ import DiversidadEInclusion from "./components/footer/footer_components/Diversid
 import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
 import DatosDeLaEmpresa from "./components/footer/footer_components/DatosDeLaEmpresa";
 import Account from "./components/Profilechange/Account";
-import PropertiesList from "./components/Properties/PropertiesList";
+import PropertiesSearch from "./components/Properties/PropertiesSearch";
 import LogIn from "./components/login/LogIn";
 import {BrowserRouter} from 'react-router-dom';
 import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
+import PropertiesList from "./components/Properties/PropertiesList";
 
 export const AuthContext = React.createContext();
 
@@ -131,6 +132,9 @@ function App() {
                 </Route>
                 <Route exact path="/account">
                     <Account />
+                </Route>
+                <Route exact path="/search/property">
+                    <PropertiesSearch />
                 </Route>
                 <Route exact path="/property">
                     <PropertiesList />

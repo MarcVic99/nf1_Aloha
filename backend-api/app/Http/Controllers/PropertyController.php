@@ -283,15 +283,6 @@ class PropertyController extends Controller
     public function search($city)
     {
 
-//        $properties = Bookings::where('checkin', '<=', $checkout)
-//            ->where('checkout', '>=', $checkin)
-//            ->join('properties', 'properties.id', '=', 'bookings.property_id');
-//            //->pluck('bookings.listing_id');
-//        return response()->json([
-//            'status' => 'succes',
-//           'proeprties' => $properties
-//        ], 200);
-
        $properties = Property::where('properties.city', $city)->get();
 
        return response()->json([

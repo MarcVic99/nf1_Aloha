@@ -49,9 +49,10 @@ Route::get('/api/property/category/{id}', 'PropertyController@getPropertyByCateg
 Route::get('/api/property/user/{id}', 'PropertyController@getPropertyByUser');
 
 
+
 //Bookings
 Route::resource('/api/booking', 'BookingsController');
-//Route::get('/api/search/booking/checkin/{checkin}/checkout/{checkout}', 'BookingsController@search');
+
 
 //Messages
 Route::resource('/api/message', 'MessagesController');
@@ -63,7 +64,7 @@ Route::resource('/api/comment', 'CommentsController');
 Route::resource('/api/maps', 'MapController');
 
 //Buscar
-Route::get('/api/search/location/{location}', 'PropertyController@search');
+Route::get('/api/search/city/{city}', 'PropertyController@search');
 
 
 

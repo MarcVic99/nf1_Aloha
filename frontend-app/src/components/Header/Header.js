@@ -11,7 +11,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Navbar from "../Profilechange/Navbar";
 import "../Aloha.css"
 import Calendario from "../Calendario";
-import PropertiesList from "../Properties/PropertiesList";
+import PropertiesSearch from "../Properties/PropertiesSearch";
 
 
 
