@@ -22,6 +22,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontFlash = [
+        //nunca me envies password o pasword_confirmation
         'password',
         'password_confirmation',
     ];
@@ -33,6 +34,7 @@ class Handler extends ExceptionHandler
      * @return void
      */
     public function report(Exception $exception)
+        //Que vamos a hacer con esta excepción. Logea la excepción.
     {
         parent::report($exception);
     }
@@ -45,6 +47,7 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
+        //Que vamos a hacer con esta excepción, coge las de laravel y devuélveme lo de la librería. Enviar el usuario ( la respuesta) lo hace este Render.
     {
         return parent::render($request, $exception);
     }

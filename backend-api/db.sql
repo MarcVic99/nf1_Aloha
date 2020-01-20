@@ -12,9 +12,16 @@ create table users(
 
 
 );
-alter table users drop phone_number;
-alter table users drop birthdate;
-alter table users drop user_photo;
+alter table users add name varchar(30) not null;
+alter table users add password varchar(255) not null;
+alter table users add birth_date date null;
+alter table users add   is_host    tinyint(1)                          null;
+alter table users add  about      varchar(255)                        null;
+alter table users add  job        varchar(255)                        null;
+alter table users add languages  varchar(255)                        null;
+alter table users add `where`    varchar(255)                        null;
+
+
 alter table users add is_host boolean not null;
 alter table users add about varchar(255);
 alter table users add where varchar (255);
@@ -23,17 +30,25 @@ alter table users add languages varchar (255);
 
 
 create table properties(
-                           id integer not null primary key auto_increment,
-                           name_header varchar(255) not null,
-                           country varchar(100) not null,
-                           city varchar(100) not null,
-                           address varchar(255),
-                           description varchar(255),
-                           additional_info varchar(255),
-                           rating float,
-                           user_id integer not null,
-                           constraint property_id__user_id_fk foreign key (user_id) references users(id)
-                       );
+                        id integer not null primary key auto_increment,
+                        nameHeader varchar (255) not null,
+                        rooms integer,
+                        beds integer,
+                        toilets integer,
+                        country varchar (100) not null,
+                        city varchar (100) not null,
+                        address varchar (255),
+                        description varchar (255),
+                        price float,
+                        additional_info varchar (255),
+                        rating float,
+                        updated_at timestamp default CURRENT_TIMESTAMP,
+                        created_at timestamp default CURRENT_TIMESTAMP,
+                        user_id integer not null,
+                        category_id integer not null,
+                        CONSTRAINT fk_property_user FOREIGN KEY (user_id) REFERENCES users(id)
+
+      );
 alter table properties add updated_at timestamp default CURRENT_TIMESTAMP;
 alter table properties add created_at timestamp default CURRENT_TIMESTAMP;
 alter table properties drop rating;

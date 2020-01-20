@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
@@ -17,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','signUp']]);
+        $this->middleware('auth:api', ['except' => ['login','signUp', 'update']]);
     }
 
     /**
@@ -81,7 +80,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['errors' => '"No hay ninguna cuenta asociada a esta dirección de correo electrónico o la contraseña es incorrecta. Inténtelo de nuevo."'], 401);
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return $this->respondWithToken($token);
@@ -151,6 +150,10 @@ class AuthController extends Controller
         $user->name  	= $request->input('name');
         $user->email 	= $request->input('email');
         $user->last_name 	= $request->input('last_name');
+        $user->about  	= $request->input('about');
+        $user->where  	= $request->input('where');
+        $user->languages  	= $request->input('languages');
+        $user->job  	= $request->input('job');
         //$user->avatar	= $request->input('avatar');
         $user->about 	= $request->input('about');
         $user->where 	= $request->input('where');

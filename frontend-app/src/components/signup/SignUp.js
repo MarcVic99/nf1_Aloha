@@ -66,9 +66,18 @@ const DialogTitle = withStyles(styles)(props => {
     );
 });
 
-export default function SignUp( props) {
+export default function SignUp() {
 
-    const { handleOpenLogin } = props;
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const classes = useStyles();
 
 
@@ -93,6 +102,7 @@ export default function SignUp( props) {
         showPassword: false,
     });
 
+
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -102,24 +112,6 @@ export default function SignUp( props) {
     };
 
     const handleMouseDownPassword = event => {
-        event.preventDefault();
-    };
-
-
-
-    const [values2, setValues2] = React.useState({
-        showPassword2: false,
-    });
-
-    const handleChange2 = prop => event => {
-        setValues2({ ...values, [prop]: event.target.value });
-    };
-
-    const handleClickShowPassword2 = () => {
-        setValues2({ ...values2, showPassword2: !values2.showPassword2 });
-    };
-
-    const handleMouseDownPassword2 = event => {
         event.preventDefault();
     };
 
@@ -139,7 +131,6 @@ export default function SignUp( props) {
             };
 
             fetch(url, options)
-
                 .then(response => {
                     if (response.status === 404) {
                         response.json().then((resp => {
@@ -160,9 +151,7 @@ export default function SignUp( props) {
                 alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
             });
-
         };
-
         fetchdata()
     }
 
@@ -248,12 +237,12 @@ export default function SignUp( props) {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                label="Repite la contraseña"
+                                label="Establece una contraseña"
                                 required
                                 fullWidth
                                 id="password"
                                 className={clsx(classes.margin, classes.textField)}
-                                type={values2.showPassword2 ? 'text' : 'password'}
+                                type={values.showPassword ? 'text' : 'password'}
                                 value={confirm_pass}
                                 autoComplete="current-password"
                                 onChange={event => setConfirmPass(event.target.value)}
@@ -261,25 +250,20 @@ export default function SignUp( props) {
                                     endAdornment: <InputAdornment position="end">
                                         <IconButton
                                             aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword2}
-                                            onMouseDown={handleMouseDownPassword2}
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
                                             size={"small"}
                                         >
-                                            {values2.showPassword2 ? <Visibility /> : <VisibilityOff />}
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 }}
                                 variant="outlined"
                             />
                         </Grid>
-
                         <Grid item xs={12} >
                             <p className={"error"}> {error} </p>
-
-                            {/*  {error ? <p className={"error"}> {error} </p>: <p> Bienvenido {name} </p>}*/}
                         </Grid>
-
-
                         <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}
@@ -289,10 +273,6 @@ export default function SignUp( props) {
                                 onChange={event => setHasAgreed(event.target.value)}
                             />
                         </Grid>
-
-
-
-
                     </Grid>
 
 
@@ -315,11 +295,20 @@ export default function SignUp( props) {
                     <Grid item>
                         <span>¿Ya tienes una cuenta de Airbnb? </span>
 
-                        <Link onClick={handleOpenLogin} className="open">
+                        <Link onClick={handleClickOpen} className="open">
                             Inicia sesión
                         </Link>
                     </Grid>
                 </Grid>
+
+                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
+                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        <hr/>
+                    </DialogTitle>
+
+                    <LogIn/>
+
+                </Dialog>
             </div>
 
         </Container>
