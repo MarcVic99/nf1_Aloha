@@ -6,7 +6,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import './Profilechange.css';
-import "./Profilemenu.css"
+
 
 import HeaderLogo from "../Header/HeaderLogo";
 import ModalProfile from "./ModalProfile";

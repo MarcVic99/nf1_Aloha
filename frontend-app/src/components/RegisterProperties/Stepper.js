@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-    return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
+    return['Paso 1: Empieza por lo esencial', 'Paso 2: Presenta tu espacio', 'Paso 3:Indica la disponibilidad'];
 }
 
 function getStepContent(stepIndex) {

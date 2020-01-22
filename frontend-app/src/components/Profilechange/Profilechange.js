@@ -95,7 +95,7 @@ export default function ChangeProfile() {
                         <div className="changeform">
                             <div>
                                 <div className="intro">
-                                    <h1>Hola:{name} {last_name}</h1>
+                                    <h1>Hola {name}! </h1>
                                     <div className="regedit">
                                         <p>Se registró en 2019</p>
                                     </div>
@@ -106,10 +106,9 @@ export default function ChangeProfile() {
                                     <div className="formlabel">
                                         <label>Nombre</label>
                                     </div>
-                                    <textarea
-                                        className="aboutinfo"
+                                    <input
+                                        className="inputfield"
                                         name="name"
-                                        rows="4"
                                         spellCheck={true}
                                         value={name}
                                         onChange={event => setName(event.target.value)}
@@ -122,10 +121,9 @@ export default function ChangeProfile() {
                                     <div className="formlabel">
                                         <label>Apellido</label>
                                     </div>
-                                    <textarea
-                                        className="aboutinfo"
+                                    <input
+                                        className="inputfield"
                                         name="last_name"
-                                        rows="4"
                                         spellCheck={true}
                                         value={last_name}
                                         onChange={event => setLast_name(event.target.value)}
@@ -138,10 +136,9 @@ export default function ChangeProfile() {
                                     <div className="formlabel">
                                         <label>Email</label>
                                     </div>
-                                    <textarea
-                                        className="aboutinfo"
+                                    <input
+                                        className="inputfield"
                                         name="email"
-                                        rows="4"
                                         spellCheck={true}
                                         value={email}
                                         onChange={event => setEmail(event.target.value)}

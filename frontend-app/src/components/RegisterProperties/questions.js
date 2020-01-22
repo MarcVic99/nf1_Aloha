@@ -99,7 +99,7 @@ export default function Questionnaire (props) {
 
             <div className="questionSubMain">
                 <div id="Q1">
-                    <span className="questionsSpan"> ¿Que tipo de alojamiento tienes? </span>
+                    <div className="questionsSpan">¿Que tipo de alojamiento quieres anunciar?? </div>
                     {array.map(v => (
                         <Button variant="contained" color={v === nameHeader ? 'Primary' : 'Secondary'}  onClick={() => {setNameHeader(v)}}>
                             {v}
@@ -110,34 +110,34 @@ export default function Questionnaire (props) {
 
 
                 <div id="Q2">
-                <span>¿ De cuántas habitaciones dispone?</span>
+                <div className="questionsSpan">¿ De cuántas habitaciones dispone?</div>
                     <ButtonSizes count={rooms} setCount={setRooms}/>
                  </div>
 
                 <div id="Q3">
-                    <span>¿ De cuántas camas dispone?</span>
+                    <div className="questionsSpan">¿ De cuántas camas dispone?</div>
                     <ButtonSizes count={beds} setCount={setBeds}/>
                 </div>
 
                 <div id="Q4">
-                    <span>¿ De cuántos lavabos dispone?</span>
+                    <div className="questionsSpan">¿ De cuántos lavabos dispone?</div>
                     <ButtonSizes count={toilets} setCount={setToilets}/>
                 </div>
 
                 <div id="Q5">
-                    <span>País:</span>
-                    <input value={country} onChange={e => setCountry(e.target.value)} />
+                    <span className="questionsSpan">País:</span>
+                    <input className="inputfield" value={country} onChange={e => setCountry(e.target.value)} />
 
                 </div>
 
                 <div id="Q6">
-                    <span>Ciudad:</span>
-                    <input value={city} onChange={e => setCity(e.target.value)} />
+                    <span className="questionsSpan">Ciudad:</span>
+                    <input className="inputfield" value={city} onChange={e => setCity(e.target.value)} />
                 </div>
 
                 <div id="Q7">
-                    <span>Dirección:</span>
-                    <input value={address} onChange={e => setAddress(e.target.value)} />
+                    <span className="questionsSpan">Dirección:</span>
+                    <input className="inputfield" value={address} onChange={e => setAddress(e.target.value)} />
                 </div>
 
             </div>
@@ -150,16 +150,19 @@ export default function Questionnaire (props) {
         return(
             <div>
                  <div id="Q8">
-                    <span>Título del alojamiento:</span>
-                     <input value={title} onChange={e => setTitle(e.target.value)} />
+                    <span className="questionsSpan">Título del alojamiento</span>
+                     <input className="inputfield" value={title} onChange={e => setTitle(e.target.value)} />
                  </div>
 
                 <div id="Q9">
-                    <span>Descripción:</span>
-                    <input value={description} onChange={e => setDescription(e.target.value)} />
+                    <span className="questionsSpan">Descripción</span>
+                    <textarea className="textField"   rows="10" value={description} onChange={e => setDescription(e.target.value)} />
+                </div>
+                <div id="10">
+                    <span className="questionsSpan">Añade fotos a tu anuncio</span>
+
                 </div>
 
-                <p>FOTO</p>
 
             </div>
 
@@ -169,16 +172,16 @@ export default function Questionnaire (props) {
     if(props.activeStep===2){
         return(
             <div>
-                <div id="Q10">
-                    <span>Precio del alojamiento:</span>
-                    <input value={price} onChange={e => setPrice(e.target.value)} />
+                <div id="Q11">
+                    <span className="questionsSpan">Precio del alojamiento:</span>
+                    <input className="inputfield" value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
 
-                <div id="Q11">
+                <div id="Q12">
                     <span>CALENDARIO</span>
 
                 </div>
-                <button onClick={handleOnSubmit}>Subir Información </button>
+                {/*<button onClick={handleOnSubmit}>Subir Información </button>*/}
 
             </div>
 
