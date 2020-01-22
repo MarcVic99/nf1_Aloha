@@ -6,7 +6,7 @@ const CommentsList = () => {
     useEffect(() => {
         async function fetchData() {
             setComments(
-                await fetch('http://localhost/api/comment')
+                await fetch('http://localhost/api/comment/${id}')
                     .then(res => res.json())
                     .then(res => res.comments))
         }
@@ -19,7 +19,7 @@ const CommentsList = () => {
             <ul>
                 {comments.map(comment => (
                     <li key={comment.id}>
-                        <p> Contenido</p>
+                        <p> Comentarios</p>
                         {comment.content}
                     </li>
                 ))}

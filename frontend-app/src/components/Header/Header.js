@@ -10,8 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Navbar from "../Profilechange/Navbar";
 import "../Aloha.css"
-import Calendario from "../Calendario";
-import PropertiesSearch from "../Properties/PropertiesSearch";
+import Search from "../Properties/Search";
 
 
 
@@ -87,7 +86,11 @@ const Header = () => {
 
                 <nav id="menu">
                     <ul>
-
+                        <div className="box">
+                            <a href="/RegisterProperties">
+                                <li>Conviértete en anfitrión</li>
+                            </a>
+                        </div>
                         <div className="box">
                             <a href="#">
                                 <li>Hospeda un alojamiento</li>
@@ -129,54 +132,10 @@ const Header = () => {
 
             <div className="container_form">
                 <div className="container_form2">
-                    <div id="form_ini">
-                        <h1>Reserva alojamientos y experiencias únicas.</h1>
-                        <form action="/action_page.php">
-                            <div className="description_input"><b>DÓNDE</b>
-                                
-                            </div>
-                            <div className="div_donde" placeholder="Dónde">
-                                <input type="text" name="location" placeholder="Dónde" className={'inputlocation'}/>
-                            </div>
-
-                            <div className="llegada_salida">
-                                <div className="description_input"><b>LLEGADA</b>
-                                    <Calendario/>
-                                </div>
-                                {/*<div className={'divinputlocation2'}>*/}
-                                {/*    <input className="locat1" type="text" name="location" placeholder="dd/mm/aaaa"/>*/}
-                                {/*</div>*/}
-                            </div>
-                            {/*placeholder="MM/dd/yyyy"*/}
-                            <div className="llegada_salida">
-                                <div className="description_input"><b>SALIDA</b>
-                                    <Calendario/>
-
-                                </div>
-                                {/*<div className="divfecha1">*/}
-                                {/*    <input className="locat2" type="text" name="location" placeholder="dd/mm/aaaa"/>*/}
-                                {/*</div>*/}
-                            </div>
-
-                            <div className="description_input"><b>HUÉPEDES</b>
-                            </div>
-                            <div className="input_huespedes">
-                                <input type="text" name="location" placeholder="Huéspedes" className="inputhuespedes"/>
-                            </div>
-
-
-                            <div className="div_find">
-                                <button id="find" type="submit">
-                                    <span><b>Buscar</b></span>
-                                </button>
-                            </div>
-
-                        </form>
-
-                    </div>
+                    <Search/>
                 </div>
             </div>
-        )}
+
         </section>
     )}
     </div>

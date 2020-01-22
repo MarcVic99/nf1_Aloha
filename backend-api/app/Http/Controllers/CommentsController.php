@@ -67,24 +67,6 @@ class CommentsController extends Controller
 
     public function show($id)
     {
-//        $properties = Property::where('properties.id', '=', $id)
-//            ->join('users', 'users.id', '=', 'properties.user_id')
-//            //->join('properties', 'properties.id'', '=', 'comments.property_id')
-//            ->select('properties.name_header', 'properties.address', 'properties.city',
-//                'users.name')
-//            ->first();
-//
-//        $comments = Comments::where('comments.property_id', '=', $properties->id)
-//            ->join('users', 'users.id', '=', 'comments.user_id')
-//            ->select('users.name', 'users.id', 'comments.content', 'comments.created_at')
-//            ->orderBy('created_at', 'DESC')
-//            ->get();
-//
-//        $properties['comments'] = $comments;
-//        $properties['auth']  = Auth::user()->id;
-//
-//        return response()->json($properties);
-//    }
 
         $comments = Comments::where('property_id', $id)->get();
 
