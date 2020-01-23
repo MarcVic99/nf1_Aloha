@@ -4,63 +4,82 @@ namespace App\Http\Controllers;
 
 use App\Bookings;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Response;
 use Illuminate\Support\Facades\Auth;
 
 class BookingsController extends Controller
 {
     public function index()
     {
-        //
+        $bookings = Bookings::all();
+
+        return response()->json([
+            'code' => 200,
+            'status' => 'success',
+            'bookings' => $bookings
+        ]);
     }
 
     public function store(Request $request)
     {
-        //Recoger los datos por post
-        $params_array = $request->all();
-
-        if (!empty($params_array)) {
-            //Validar los datos
-            $validate = \Validator::make($params_array, [
-                'checkin' => 'required',
-                'checkout' => 'required',
-                'user_id' => 'required',
-                'property_id' => 'required',
-                'status' => 'required',
-                'total' => 'required',
-            ]);
-            //Guardar la propiedad
-            if ($validate->fails()) {
-                $data = [
-                    'code' => 404,
-                    'status' => 'error',
-                    'message' => 'Its already reserved'
-                ];
-            } else {
-                $bookings = new Bookings;
-                $bookings->checkin = $params_array['checkin'];
-                $bookings->checkout = $params_array['checkout'];
-                $bookings->user_id = Auth::user()->id;
-                $bookings->property_id = $params_array['property_id'];
-                $bookings->status = $params_array['status'];
-                $bookings->total = $params_array['total'];
-                $bookings->save();
-            }
-            $data = [
-                'code' => 200,
-                'status' => 'succes',
-                'bookings' => $bookings
-            ];
+        $reserved = $this->reservedDays($request);
+        if ($reserved) {
+            return response()->json(['status'=>400,'message'=>'the property is already reserved']);
         } else {
-            $data = [
-                'code' => 404,
-                'status' => 'error',
-                'message' => 'you have not made any reservation'
-            ];
-        }
+            $bookings = new Bookings();
+            $bookings->status = $request->status;
+            $bookings->checkin = $request->checkin;
+            $bookings->checkout = $request->checkout;
+            $bookings->property_id = $request->property_id;
+            $bookings->user_id = $request->user_id;
+            $bookings->total = $request->total;
 
-        //Devolver resultados
+            $bookings->save();
+        }
+        $data = [
+            'code' => 200,
+            'status' => 'succes',
+            'bookings' => $bookings
+        ];
         return response()->json($data, $data['code']);
     }
+
+    private function reservedDays($request){
+        $reserved = false;
+        $initial_reservation = Bookings::where('property_id',$request->property_id)
+            ->where('checkin','<=',$request->checkin)
+            ->where('checkout','>=',$request->checkout)
+            ->count();
+        if($initial_reservation > 0){
+            $reserved = true;
+        }
+
+        $final_reservation = Bookings::where('property_id',$request->property_id)
+            ->where('checkin','<=',$request->checkin)
+            ->where('checkout','>=',$request->checkout)
+            ->count();
+        if($final_reservation > 0){
+            $reserved = true;
+        }
+
+        $inicial_final_reservation = Bookings::where('property_id',$request->property_id)
+            ->where('checkin','>=',$request->checkin)
+            ->where('checkout','<=',$request->checkout)
+            ->count();
+        if($inicial_final_reservation > 0){
+            $reserved = true;
+        }
+
+        return $reserved;
+
+    }
+
+    //************************************************
+
+
+
+
+
 
     public function show($id)
     {

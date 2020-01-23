@@ -47,7 +47,7 @@ Route::post('/api/property/upload', 'PropertyController@upload');
 Route::get('/api/property/image/{filename}', 'PropertyController@getImage');
 Route::get('/api/property/category/{id}', 'PropertyController@getPropertyByCategory');
 Route::get('/api/property/user/{id}', 'PropertyController@getPropertyByUser');
-
+Route::get('/api/search/property/city/{city}/checkin/{checkin}/checkout/{checkout}', 'PropertyController@search');
 
 
 //Bookings
@@ -63,8 +63,7 @@ Route::resource('/api/comment', 'CommentsController');
 //Map
 Route::resource('/api/maps', 'MapController');
 
-//Buscar
-Route::get('/api/search/city/{city}', 'PropertyController@search');
+
 
 
 

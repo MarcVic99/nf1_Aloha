@@ -65,7 +65,7 @@ class PropertyController extends Controller
                 'toilets'=> 'required',
                 'country' => 'required',
                 'city' => 'required',
-                'address' => 'required',
+                'address' => 'required|unique:properties',
                 'title'=> 'required',
                 'description' => 'required',
                 'price' => 'required',
@@ -280,15 +280,31 @@ class PropertyController extends Controller
         return \response()->json($data, $data['code']);
     }
 
-    public function search($city)
+    public function search($city, $checkin, $checkout)
     {
 
-       $properties = Property::where('properties.city', $city)->get();
+        $booked = Bookings::where('checkin', '<=', $checkout)
+            ->where('checkout', '>=', $checkin)
+            ->pluck('property_id');
 
-       return response()->json([
+        $properties = Property::where('properties.city', $city)
+            ->groupBy('properties.id')
+            ->whereNotIn('properties.id', $booked)
+            ->get();
+
+        return response()->json([
             'status' => 'succes',
             'properties' => $properties
         ], 200);
+
+//       $properties = Property::where('properties.city', $city)->get();
+//
+//       return response()->json([
+//            'status' => 'succes',
+//            'properties' => $properties
+//       ], 200);
+
+
 
     }
 
