@@ -95,6 +95,7 @@ export default function Questionnaire (props) {
 
         return(
 
+
         <div className="questionsMain">
 
             <div className="questionSubMain">
@@ -126,18 +127,18 @@ export default function Questionnaire (props) {
 
                 <div id="Q5">
                     <span className="questionsSpan">País:</span>
-                    <input className="inputfield" value={country} onChange={e => setCountry(e.target.value)} />
+                    <input className="input" value={country} onChange={e => setCountry(e.target.value)} />
 
                 </div>
 
                 <div id="Q6">
                     <span className="questionsSpan">Ciudad:</span>
-                    <input className="inputfield" value={city} onChange={e => setCity(e.target.value)} />
+                    <input className="input" value={city} onChange={e => setCity(e.target.value)} />
                 </div>
 
                 <div id="Q7">
                     <span className="questionsSpan">Dirección:</span>
-                    <input className="inputfield" value={address} onChange={e => setAddress(e.target.value)} />
+                    <input className="input" value={address} onChange={e => setAddress(e.target.value)} />
                 </div>
 
             </div>
@@ -151,7 +152,7 @@ export default function Questionnaire (props) {
             <div>
                  <div id="Q8">
                     <span className="questionsSpan">Título del alojamiento</span>
-                     <input className="inputfield" value={title} onChange={e => setTitle(e.target.value)} />
+                     <input className="input" value={title} onChange={e => setTitle(e.target.value)} />
                  </div>
 
                 <div id="Q9">
@@ -174,14 +175,14 @@ export default function Questionnaire (props) {
             <div>
                 <div id="Q11">
                     <span className="questionsSpan">Precio del alojamiento:</span>
-                    <input className="inputfield" value={price} onChange={e => setPrice(e.target.value)} />
+                    <input className="inputprice" value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
 
                 <div id="Q12">
                     <span>CALENDARIO</span>
 
                 </div>
-                {/*<button onClick={handleOnSubmit}>Subir Información </button>*/}
+                <button  className="changebutton" onClick={handleOnSubmit}>Subir Información </button>
 
             </div>
 

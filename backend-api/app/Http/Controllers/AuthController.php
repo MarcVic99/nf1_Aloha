@@ -154,11 +154,7 @@ class AuthController extends Controller
         $user->where  	= $request->input('where');
         $user->languages  	= $request->input('languages');
         $user->job  	= $request->input('job');
-        //$user->avatar	= $request->input('avatar');
-        $user->about 	= $request->input('about');
-        $user->where 	= $request->input('where');
-        $user->job 	= $request->input('job');
-        $user->languages 	= $request->input('languages');
+        $user->avatar	= $request->input('avatar');
         $user->save();
 
         $data = array(

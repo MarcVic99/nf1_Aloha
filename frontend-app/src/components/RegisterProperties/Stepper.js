@@ -28,13 +28,13 @@ function getSteps() {
 function getStepContent(stepIndex) {
     switch (stepIndex) {
         case 0:
-            return 'Cuéntanos sobre tu hogar ...';
+
         case 1:
-            return 'What is an ad group anyways?';
+
         case 2:
-            return 'This is the bit I really care about!';
+
         default:
-            return 'Unknown stepIndex';
+
     }
 
 }
