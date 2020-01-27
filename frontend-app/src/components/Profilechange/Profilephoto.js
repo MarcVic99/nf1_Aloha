@@ -16,7 +16,7 @@ function Profilephoto() {
 
                 <hr />
                 <div>
-                    <p>Numero de telefono</p>
+                    <p>Número de teléfono</p>
                 </div>
             </div>
         </div>

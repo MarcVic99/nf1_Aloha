@@ -6,7 +6,6 @@ import {initialState, reducer} from "./Reducer";
 
 const Search = (props) => {
 
-
     const SEARCH_CITY = 'SEARCH_CITY';
     const SEARCH_DATE_FROM = 'SEARCH_DATE_FROM';
     const SEARCH_DATE_TO = 'SEARCH_DATE_TO';

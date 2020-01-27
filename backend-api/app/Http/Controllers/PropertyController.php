@@ -69,8 +69,8 @@ class PropertyController extends Controller
                 'title'=> 'required',
                 'description' => 'required',
                 'price' => 'required',
-               // 'category_id' => 'null',
-               // 'image' => 'null'
+                'category_id' => 'null',
+                'image' => 'null'
 
             ]);
 
@@ -79,7 +79,7 @@ class PropertyController extends Controller
                 $data = [
                     'code' => 404,
                     'status' => 'error',
-                    'message' => 'La propiedad ya existe'
+                    'message' => 'Error en la validación de campos introducidos.'
                 ];
             } else {
 

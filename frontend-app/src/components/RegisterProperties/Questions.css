@@ -7,13 +7,21 @@
     outline: none;
     /*the common values for box-sizing*/
     color:inherit;
-}
 
+}
+.questionsMain{
+    background-color: lightblue;
+    margin:0;
+    width:auto;
+    height: auto;
+
+}
 #Q1{
 
     display: flex;
     margin:0;
     padding: 10px 10px 10px 10px;
-    background-color: lightyellow;
+
 
 }
+

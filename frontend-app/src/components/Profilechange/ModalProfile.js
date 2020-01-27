@@ -78,6 +78,7 @@ export default function MenuListComposition() {
                                 <ClickAwayListener onClickAway={handleClose}>
                                     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <MenuItem onClick={handleClose}><a className="box_profile" href="/profile">Profile</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile" href="/property">My Properties</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile" href="/account">Cuenta</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile">Invita a tus amigos</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile">Invita a infitriones</a></MenuItem>
