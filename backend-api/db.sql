@@ -41,6 +41,7 @@ create table properties(
                         description varchar (255),
                         price float,
                         additional_info varchar (255),
+                        title varchar(255),
                         rating float,
                         updated_at timestamp default CURRENT_TIMESTAMP,
                         created_at timestamp default CURRENT_TIMESTAMP,
@@ -49,12 +50,6 @@ create table properties(
                         CONSTRAINT fk_property_user FOREIGN KEY (user_id) REFERENCES users(id)
 
       );
-alter table properties add updated_at timestamp default CURRENT_TIMESTAMP;
-alter table properties add created_at timestamp default CURRENT_TIMESTAMP;
-alter table properties drop rating;
-alter table properties add bedrooms varchar(255) not null;
-alter table properties add bathrooms varchar(255) not null ;
-alter table properties add guest_number varchar(255) not null ;
 
 create table photos(
                        id integer not null primary key auto_increment,
