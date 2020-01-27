@@ -1,18 +1,13 @@
-import React from 'react';
-
-
-import { withStyles } from '@material-ui/core/styles';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import './Profilechange.css';
-import "./Profilemenu.css"
 
-import HeaderLogo from "../Header/HeaderLogo";
-import ModalProfile from "./ModalProfile";
 import {AuthContext} from "../../App";
-
-
+import CloseIcon from '@material-ui/icons/Close';
+import HeaderLogo from "../Header/HeaderLogo";
+import IconButton from '@material-ui/core/IconButton';
+import ModalProfile from "./ModalProfile";
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     root: {
@@ -43,25 +38,7 @@ const DialogTitle = withStyles(styles)(props => {
 
 function Navbar() {
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-
-
-    const [open2, setOpen2] = React.useState(false);
-
-    const handleClickOpen2 = () => {
-        setOpen2(true);
-    };
-    const handleClose2 = () => {
-        setOpen2(false);
-    };
+    
 
 
 

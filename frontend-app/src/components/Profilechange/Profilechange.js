@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
 import './Profilechange.css';
-import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
-import Profilephoto from "./Profilephoto";
-import FooterLinks from "../footer/footer"
-import {AuthContext} from "../../App";
 
+import React, {useEffect, useState} from 'react';
+
+import {AuthContext} from "../../App";
+import FooterLinks from "../footer/footer"
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import Profilephoto from "./Profilephoto";
 
 export default function ChangeProfile() {
     const {state, dispatch} = React.useContext(AuthContext);
@@ -36,7 +37,7 @@ export default function ChangeProfile() {
     const handleOnSubmit = () => {
 
         const fetchdata = async (token) => {
-            const url = `http://localhost/api/update`;
+            const url = `http://localhost/api/profile/edit`;
 
             const options = {
                 method: 'PUT',
@@ -84,157 +85,126 @@ export default function ChangeProfile() {
     }, [state.user]);
 
     return (
-        <div id="main">
-            <section>
+      <div id="main">
+        <section>
+          <div>
+            <Navbar />
+
+            <div className="marginout">
+              <Profilephoto />
+
+              <div className="changeform">
                 <div>
-                    <Navbar />
+                  <div className="intro">
+                    <h1>Hola {name}! </h1>
 
-                    <div className="marginout">
-                        <Profilephoto />
+                  </div>
 
-                        <div className="changeform">
-                            <div>
-                                <div className="intro">
-                                    <h1>Hola:{name} {last_name}</h1>
-                                    <div className="regedit">
-                                        <p>Se registró en 2019</p>
-                                    </div>
-                                </div>
-                                <br />
-
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Nombre</label>
-                                    </div>
-                                    <textarea
-                                        className="aboutinfo"
-                                        name="name"
-                                        rows="4"
-                                        spellCheck={true}
-                                        value={name}
-                                        onChange={event => setName(event.target.value)}
-                                        tabIndex="1"
-                                    />
-                                </div>
-                                <br />
-
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Apellido</label>
-                                    </div>
-                                    <textarea
-                                        className="aboutinfo"
-                                        name="last_name"
-                                        rows="4"
-                                        spellCheck={true}
-                                        value={last_name}
-                                        onChange={event => setLast_name(event.target.value)}
-                                        tabIndex="1"
-                                    />
-                                </div>
-                                <br />
-
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Email</label>
-                                    </div>
-                                    <textarea
-                                        className="aboutinfo"
-                                        name="email"
-                                        rows="4"
-                                        spellCheck={true}
-                                        value={email}
-                                        onChange={event => setEmail(event.target.value)}
-                                        tabIndex="1"
-                                    />
-                                </div>
-                                <br />
-
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Acerca de</label>
-                                    </div>
-                                    <textarea
-                                        className="aboutinfo"
-                                        name="about"
-                                        rows="4"
-                                        spellCheck={true}
-                                        value={about}
-                                        onChange={event => setAbout(event.target.value)}
-                                        tabIndex="1"
-                                    />
-                                </div>
-                                <br />
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Ubicación</label>
-                                    </div>
-                                    <input
-
-                                        className="inputfield"
-                                        name="where"
-                                        value={where}
-                                        onChange={event => setWhere(event.target.value)}
-                                        tabIndex="2"
-                                    />
-                                </div>
-                                <br />
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Idiomas que hablo</label>
-                                    </div>
-                                    <input
-                                        className="inputfield"
-                                        name="languages"
-                                        value={languages}
-                                        onChange={event => setLanguages(event.target.value)}
-                                        tabIndex="3"
-                                    />
-                                </div>
-                                <br />
-                                <div>
-                                    <div className="formlabel">
-                                        <label>Trabajo</label>
-                                    </div>
-                                    <input
-
-                                        className="inputfield"
-                                        name="job"
-                                        type="job"
-                                        value={job}
-                                        onChange={event => setJob(event.target.value)}
-                                        tabIndex="5"
-                                    />
-                                </div>
-                                <br />
-                                <div className="buttonmargin">
-                                    <div>
-                                        <button tabIndex="6" className="changebutton" onClick={handleOnSubmit}>Guardar</button>
-                                        {/*<button tabIndex="7" className="cancelbutton" onClick={handleOnChange}>Cancelar</button>*/}
-                                    </div>
-                                </div>
-                                <div >
-                                    <hr />
-                                    <br />
-                                    <div className="editprofile">
-                                        <Link to='/users/reviews'>Evaluaciones hechas por ti</Link>
-                                    </div>
-                                    <hr />
-                                </div>
-
-                            </div>
-                        </div>
+                  <div>
+                    <div className="formlabel">
+                      <label>Nombre</label>
                     </div>
+                    <input
+                      className="inputfield"
+                      name="name"
+                      spellCheck={true}
+                      value={name}
+                      onChange={event => setName(event.target.value)}
+                      tabIndex="1"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <div className="formlabel">
+                      <label>Apellido</label>
+                    </div>
+                    <input
+                      className="inputfield"
+                      name="last_name"
+                      spellCheck={true}
+                      value={last_name}
+                      onChange={event => setLast_name(event.target.value)}
+                      tabIndex="2"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <div className="formlabel">
+                      <label>Email</label>
+                    </div>
+                    <input
+                      className="inputfield"
+                      name="email"
+                      spellCheck={true}
+                      value={email}
+                      onChange={event => setEmail(event.target.value)}
+                      tabIndex="3"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <div className="formlabel">
+                      <label>Acerca de</label>
+                    </div>
+                    <textarea
+                      className="aboutinfo"
+                      name="about"
+                      rows="4"
+                      spellCheck={true}
+                      value={about}
+                      onChange={event => setAbout(event.target.value)}
+                      tabIndex="4"
+                    />
+                  </div>
+                  <div>
+                    <div className="formlabel">
+                      <label>Ubicación</label>
+                    </div>
+                    <input
+                      className="inputfield"
+                      name="where"
+                      value={where}
+                      onChange={event => setWhere(event.target.value)}
+                      tabIndex="5"
+                    />
+                  </div>
+                  <div>
+                    <div className="formlabel">
+                      <label>Trabajo</label>
+                    </div>
+                    <input
+                      className="inputfield"
+                      name="job"
+                      type="job"
+                      value={job}
+                      onChange={event => setJob(event.target.value)}
+                      tabIndex="7"
+                    />
+                  </div>
+                  <div className="buttonmargin">
+                    <div>
+                      <button
+                        tabIndex="8"
+                        className="changebutton"
+                        onClick={handleOnSubmit}
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </div>
+                  
                 </div>
-            </section>
-            <br/>
-            <footer>
-
-                <FooterLinks />
-
-            </footer>
-        
-        </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer>
+          <FooterLinks />
+        </footer>
+      </div>
     );
 }
 
