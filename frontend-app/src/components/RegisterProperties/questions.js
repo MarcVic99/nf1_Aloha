@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CustomizedButtons from "./Button";
 import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
@@ -86,9 +86,11 @@ export default function Questionnaire (props) {
         fetchdata()
     };
 
-   if (submit) {
-      // handleOnSubmit();
-   }
+   useEffect(() => {
+       if (submit) {
+           handleOnSubmit();
+       }
+   }, [submit]);
 
     if (props.activeStep===0){
 
@@ -182,7 +184,6 @@ export default function Questionnaire (props) {
                     <span>CALENDARIO</span>
 
                 </div>
-                <button  className="changebutton" onClick={handleOnSubmit}>Subir Información </button>
 
             </div>
 
