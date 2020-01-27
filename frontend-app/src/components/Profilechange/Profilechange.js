@@ -111,6 +111,7 @@ export default function ChangeProfile() {
                       value={name}
                       onChange={event => setName(event.target.value)}
                       tabIndex="1"
+                      required
                     />
                   </div>
 
@@ -125,6 +126,7 @@ export default function ChangeProfile() {
                       value={last_name}
                       onChange={event => setLast_name(event.target.value)}
                       tabIndex="2"
+                      required
                     />
                   </div>
 
@@ -139,6 +141,7 @@ export default function ChangeProfile() {
                       value={email}
                       onChange={event => setEmail(event.target.value)}
                       tabIndex="3"
+                      required
                     />
                   </div>
 
