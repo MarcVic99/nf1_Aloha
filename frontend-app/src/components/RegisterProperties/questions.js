@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CustomizedButtons from "./Button";
 import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
@@ -26,9 +26,7 @@ export default function Questionnaire (props) {
     let history = useHistory();
 
     const token = JSON.parse(localStorage.getItem('token'));
-
     const submit = props.submit;
-    const [fetchSubmit, setFetchSubmit] = useState(false);
 
     const data = {
         nameHeader: nameHeader,
@@ -45,8 +43,9 @@ export default function Questionnaire (props) {
         rating: null,
     };
 
-    useEffect(() => {
 
+
+    useEffect(() => {
         const url = 'http://127.0.0.1:80/api/property';
         const options = {
             method: 'POST',
@@ -59,7 +58,8 @@ export default function Questionnaire (props) {
             },
             mode: 'cors',
         };
-        if (fetchSubmit) {
+        if (submit) {
+
             fetch(url, options)
 
                 .then(response => {
@@ -71,20 +71,18 @@ export default function Questionnaire (props) {
                 .then(responseJson => {
                     setDataToRedirect(responseJson);
 
-                    if (fetchSubmit) {
-                        history.push(`/property/${responseJson.id}`);
+                    history.push(`/property`);
 
-                    }
+
 
                 })
                 .catch(error => {
                     setError(error);
-
                 });
 
         }
 
-    }, [fetchSubmit]);
+    }, [submit]);
 
 
     if (props.activeStep === 0) {
