@@ -1,14 +1,4 @@
-#header {
-    border-bottom: 1px solid lightgray;
-}
-
-/* #main {
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: relative;
-  }
-  
+/*
   #main::after {
     content: "";
     background: url(../../img/aloha/luxe2.jpg);
@@ -18,8 +8,13 @@
     bottom: 0;
     right: 0;
     position: absolute;
-    z-index: -1;   
-  } */
+    z-index: -1;
+    }
+ */
+.h1account{
+    margin-bottom:20px;
+    margin-top:40px;
+}
 
 .intro h1 {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
@@ -28,7 +23,9 @@
     color: #484848;
     font-size: 46px;
 }
-
+.regedit{
+    float:left;
+}
 .regedit p {
     margin: 0px;
     word-wrap: break-word;
@@ -43,9 +40,8 @@
 .editprofile {
     font-size: 16px;
     font-weight: 400;
-    display: inline-block;
-    padding-left: 12px;
-
+    padding:12px;
+    color:#008489;
 }
 
 .aboutinfo {
@@ -126,32 +122,61 @@
 }
 
 .profilephoto {
-    border-radius: 50%;
-    border: 7px solid #fff;
-    width: 120px;
-    height: 120px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 120px;
+  height: 120px;
+
+}
+img.profilephoto {
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0)
+}
+img:before {
+  content: url(https://a0.muscache.com/defaults/user_pic-225x225.png?v=3) ;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 120px;
+  height: 120px;
+
+}
+a.photoupdate {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  text-align: left;
+  color: #008489;
+  font-size: 16px;
+  font-weight: 400;
+  overflow: visible;
+
 }
 
 .profilephotos {
-    border-radius: 50%;
-    border: 7px solid #fff;
-    width: 59px;
-    height: 59px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 59px;
+  height: 59px;
 }
 
 .profilecontainer1 {
-    width: 200px;
-    height: 400px;
+  width: 200px;
+  height: 400px;
 }
 
-li {
+.pnumber{
+    margin-top:4px;
+    margin-bottom:4px;
+}
+
+.formlabel {
+    margin: 0px;
+    word-wrap: break-word;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.375em;
     color: #484848;
-}
-
-
-#menu ul li:hover {
-    border-bottom: 2px solid darkgrey;
-    margin-bottom: -10px;
 }
 
 button.changebutton:hover {
@@ -166,6 +191,20 @@ button.cancelbutton:hover {
 
 }
 
+.marginout1{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #484848;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    padding: 45px 24px;
+    max-width: 1080px;
+    height: 714px;
+}
+
 .marginout {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 14px;
@@ -177,7 +216,7 @@ button.cancelbutton:hover {
     width: auto;
     padding: 45px 24px;
     max-width: 1080px;
-    height: 734px;
+    height: 1114px;
 }
 
 .marginin {
@@ -243,4 +282,35 @@ button.cancelbutton:hover {
     align-items: center;
     padding: 30px 0px;
     margin: 30 0px
+}
+
+.father {
+    float:left!important;
+}
+
+.hreditprofile{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.card{
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 200px;
+    min-height: 200px;
+    display:inline-block;
+    margin-left:50px;
+    margin-top:20px;
+    border-top:2px;
+    -webkit-box-shadow: 0px 3px 28px -7px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 3px 28px -7px rgba(0,0,0,0.4);
+    box-shadow: 0px 3px 28px -7px rgba(0,0,0,0.4);
+}
+
+.go{
+    font-size:0.7em;
+    color:#006c70;
 }

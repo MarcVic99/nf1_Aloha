@@ -25,13 +25,9 @@ h4 {
     border-radius: 4px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.letrao{
+
 }
-
-
 
 p {
     font-weight: bold;
@@ -126,6 +122,20 @@ hr {
     margin-bottom:90px;
 }
 
+.kep-login-facebook
+    {
+    padding:6px 4px!important;
+    }
+
+.google > div{
+    margin-right:5px!important;
+    padding:1px 5px!important;
+}
+
+.google{
+    padding:1px!important;
+
+}
 .boton{
     background-color:#FF5A5F!important;
     text-transform:none!important;
@@ -157,6 +167,6 @@ hr {
 .MuiTypography-body1{
     font-size:0.8em!important;
 }
-.contain{
-    margin-bottom:50px!important;
+.contain {
+    margin-bottom: 50px !important;
 }

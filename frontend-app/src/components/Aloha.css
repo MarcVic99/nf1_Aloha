@@ -1,10 +1,8 @@
-
-
 *{ /* reset settings */
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration:none;
+    text-decoration:none!important;
     outline: none;
     box-sizing: border-box;  /*the common values for box-sizing*/
     color:inherit;
@@ -26,7 +24,7 @@ body, html { /* reset settings */
 }
 .section_head{
     width:100%!important;
-    height:833px!important;
+    height:933px!important;
     position:static!important;
     background-image: url("../img/aloha/luxe2.jpg");
     background-size:cover!important;
@@ -34,9 +32,15 @@ body, html { /* reset settings */
     margin-bottom:100px!important;
 }
 
-#header{
+.header1{
     width:100%;
     height:70px;
+}
+
+.header2{
+    width:100%;
+    height:70px;
+    border-bottom: 1px solid lightgray!important;
 }
 
 .father{
@@ -48,40 +52,65 @@ body, html { /* reset settings */
     float:left;
 }
 
+.menuProfile{
+    background: #0cebeb;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 #menu{
     margin:0 auto; /* center automatically */
 }
 
+#menu ul {
+    margin-right:10px!important;
+    display:flex;
+    float:right;
+}
+
 #menu ul a {
-    color: #fff;
+    color:black!important;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
 }
 
-#menu .box{
-    float:right;
+#menu ul span {
+    color:black!important;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
 }
 
-#menu ul{
-    display:flex;
-    float:right;
-}
-
-#menu ul li {
+#menu ul .limenu {
     height:67px;
     padding:0 20px;
     display: flex;
     align-items: center; /* alineacion vertical */
     justify-content: center;     /* alineacion horizontal */
+    color:white;
 }
 
-#menu ul li:hover {
+#menu ul .limenu:hover {
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: white;
-    margin-bottom:-20px;
 }
+
+.header2 #menu ul .limenu {
+    color: #484848!important;
+}
+
+.header2 #menu ul .limenu:hover {
+    border-bottom: 2px solid darkgrey;
+    margin-bottom: -10px;
+}
+
+
+#menu .box{
+    float:right;
+}
+
 
 .container_form{
     width:100%;
@@ -95,6 +124,10 @@ body, html { /* reset settings */
     margin:0 auto;
 }
 
+.container_form3{
+    width:100%;
+    height:400px;
+}
 #form_ini{
     border-radius: 4px;
     -moz-border-radius: 4px;
@@ -309,11 +342,7 @@ input:focus, input.form-control:focus  {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-
 }
-
-
-
 
 .registrarse{
     width:100%;
@@ -341,34 +370,72 @@ input:focus, input.form-control:focus  {
     margin-top:0!important;
 }
 
-#div_recomended_general {
-    text-align:center;
-    min-height:100%;
+.div_rec_general{
     display:block;
 }
+#div_recomended_general {
+    text-align:center!important;
+    width:100%;
+    height:auto;
+    position:relative;
 
-.listimg{
-    float:left;
-    display:inline-block;
 }
 
-.divimg{
-    background: #333944;
-    float:left;
-    display:inline-block;
+.ny{
+    background-image:url('../img/aloha/ny.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    position:relative;
 }
 
-.boximg{
-    width: 320px;
-    height: 380px;
-    float:left;
+
+
+.tailandia{
+    background-image:url('../img/aloha/tailandia.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
     display:inline-block;
+    position:relative;
+}
+
+.japon{
+    background-image:url('../img/aloha/japon.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    display:inline-block;
+    position:relative;
+}
+
+.kenia{
+    background-image:url('../img/aloha/kenia.jpeg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    display:inline-block;
+    position:relative;
 }
 
 .dist_img{
-    margin:0 10px 0 10px;
+    margin:0 20px 0 20px;
+    display:inline-block;
 }
-
+.div_bottom{
+    position:absolute;
+    height: 80px;
+    bottom: 0!important;
+    left:0!important;
+    width: 100%;
+    font-size: 2em;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+}
 
 .boximg>img{width:320px;
     height:380px;}
@@ -383,7 +450,6 @@ footer{
 }
 
 #div_footer_general {
-    display:inline-block;
     background-color: white;
     font-weight: 500;
     margin:0 auto;
@@ -446,3 +512,6 @@ hr{
     padding: 15px;
 }
 
+.modalprofileheader{
+    float:right!important;
+}

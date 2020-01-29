@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './Profilechange.css';
-import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
-import Profilephoto from "./Profilephoto";
+
+import { AuthContext } from "../../App";
 import FooterLinks from "../footer/footer"
-import {AuthContext} from "../../App";
+import HomeIcon from "@material-ui/icons/Home";
+import { Link } from "react-router-dom";
+import Navbar from "../Header/Navbar";
+import Profilephoto from "./Profilephoto";
+import Addphoto from "./Profilephoto2";
+import {APP_PROFILE_EDIT} from "../../routes/routes";
+import WorkIcon from "@material-ui/icons/Work";
 
 
-
-export default function Profile() {
+export default function Profile(props) {
+    const bull = <span>•</span>;
     const {state, dispatch} = React.useContext(AuthContext);
     const [about, setAbout] = useState('');
     const [where, setWhere] = useState('');
@@ -79,12 +84,14 @@ export default function Profile() {
 
     return (
         <div id="main">
-            <section>
-                <div>
-                    <Navbar />
-                    <div className="marginout">
+            <div className="section">
+                <div className="profile">
+                    <Navbar class="header2" />
+                    <div className="marginout1">
 
                         <Profilephoto />
+
+
 
 
                         <div className="changeform">
@@ -93,45 +100,35 @@ export default function Profile() {
                                 <div className="intro">
                                     <h1>Hola:Soy {name} {last_name} </h1>
                                     <div className="regedit">
-                                        <p>Se registró en 2019</p>
+                                        <p>Se registró en 2019 &nbsp; </p>{bull}
 
-                                        <div className="editprofile">
-                                            <Link to="/profile/edit">Editar perfil</Link>
-                                        </div>
+                                            <a className="editprofile" href={APP_PROFILE_EDIT}>Editar perfil</a>
+
                                         <div className="profileform">
-
-
 
                                         </div>
                                         <div className="profileform">
+                                            <HomeIcon id="icon"/>
                                             Vive en: {where}
 
 
                                         </div>
                                         <div className="profileform">
+                                            <WorkIcon fontSize="small" id="icon" />
                                             Trabaja en: {job}
                                         </div>
                                         <div className="profileform">
-                                            Destinos favoritos: Bali, Tailandia
+                                            <Link to="/users/reviews">
+                                                Evaluaciones hechas por ti
+                                            </Link>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
-            {/* Footer */}
-            <footer>
-
-                <FooterLinks />
-
-            </footer>
+            </div>
         </div>
     );
 }

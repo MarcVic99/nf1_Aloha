@@ -109,6 +109,33 @@ img{
 hr{
     border-color: #ebf2eb;
 }
+
+.padre {
+margin-top:40px;
+    /*IMPORTANTE*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido{
+    font-family:sans-serif !important;
+    font-size:1.2em;
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logo-container>img {
+    max-width: 50%;
+    margin-top:50px;
+}
+
+.hijo{
+    font-size: 4em;
+}
 @media (max-width:400px) {
     #copyrightSpan{
 

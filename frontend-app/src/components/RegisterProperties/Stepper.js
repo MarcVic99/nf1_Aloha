@@ -22,19 +22,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-    return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
+    return['Paso 1: Empieza por lo esencial', 'Paso 2: Presenta tu espacio', 'Paso 3:Indica la disponibilidad'];
 }
 
 function getStepContent(stepIndex) {
     switch (stepIndex) {
         case 0:
-            return 'Cuéntanos sobre tu hogar ...';
+
         case 1:
-            return 'What is an ad group anyways?';
+
         case 2:
-            return 'This is the bit I really care about!';
+
         default:
-            return 'Unknown stepIndex';
+
     }
 
 }
@@ -76,7 +76,7 @@ export default function HorizontalLabelPositionBelowStepper() {
 
             <div className="button_style">
 
-            <Questionnaire activeStep={activeStep} submit={submit} />
+                <Questionnaire activeStep={activeStep} submit={submit} />
 
             </div>
             <div>
@@ -88,16 +88,16 @@ export default function HorizontalLabelPositionBelowStepper() {
                 ) : (
                     <div>
                         <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-                        <div>
+                        <div className="back">
                             <Button
                                 disabled={activeStep === 0}
                                 onClick={handleBack}
                                 className={classes.backButton}
                             >
-                                Back
+                                &#060;  Atrás
                             </Button>
                             <Button variant="contained" color="primary" onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}>
-                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
                             </Button>
 
                         </div>

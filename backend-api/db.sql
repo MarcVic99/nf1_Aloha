@@ -1,3 +1,5 @@
+create database AlohaDB;
+
 create table categories
 (
     id         int(255) auto_increment

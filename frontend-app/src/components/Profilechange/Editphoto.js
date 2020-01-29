@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Profilechange.css';
-import Navbar from "./Navbar";
+//import './Profilechange.css';
+import Navbar from "../Header/Navbar";
 import { Link } from "react-router-dom";
 import Profilephoto from "./Profilephoto";
 // import FooterLinks from "../src/"

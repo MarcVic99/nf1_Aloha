@@ -1,37 +1,34 @@
 import React from 'react';
 import './Aloha.css';
-
-import ny from '../img/aloha/ny.jpg';
-import tailandia from '../img/aloha/tailandia.jpg';
-import kenia from '../img/aloha/kenia.jpeg';
-import japon from '../img/aloha/japon.jpg';
-import './signup/SignUp.css';
-import FooterLinks from './footer/footer';
 import Header from "./Header/Header";
 
-export default function Modal() {
+export default function Aloha() {
     return (
         <div>
-        <Header/>
+            <Header/>
 
-        <section>
+                <div className="div_rec_general">
 
-            <div id="div_recomended_general">
+                    <div id="div_recomended_general">
 
-                <img src={ny} height="380" width="320" className="dist_img" alt={"ny"}/>
-                <img src={tailandia} height="380" width="320" className="dist_img" alt={"tailandia"}/>
-                <img src={japon} height="380" width="320" className="dist_img" alt={"japon"}/>
-                <img src={kenia} height="380" width="320" className="dist_img" alt={"kenia"}/>
+                        <div className="ny dist_img">
+                            <div className="div_bottom">New York</div>
+                        </div>
 
-            </div>
+                        <div className="tailandia dist_img">
+                            <div className="div_bottom">Tailandia</div>
+                        </div>
 
-        </section>
+                        <div className="japon dist_img">
+                            <div className="div_bottom">Japón</div>
+                        </div>
 
-        <footer>
+                        <div className="kenia dist_img">
+                            <div className="div_bottom">Kenia</div>
+                        </div>
 
-            <FooterLinks/>
-
-        </footer>
+                    </div>
+                </div>
 
         </div>
 

@@ -1,4 +1,3 @@
-
 *{ /* reset settings */
     margin: 0;
     padding: 0;
@@ -9,11 +8,122 @@
     color:inherit;
 }
 
-#Q1{
+.main_div{
+    padding: 30px 70px;
+}
 
+.button{
+    margin-top:30px!important;
+    margin-bottom:30px!important;
+}
+
+.questionSubMain div{
+    margin-top:10px!important;
+}
+
+.questionsSpan {
+    margin-top:25px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.25em;
+    color: rgb(72, 72, 72);
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+}
+
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary {
+    color: #fff;
+    background-color: #008489;
+    margin: 0px 5px;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedSecondary {
+    color: #fff;
+    background-color: #FF5A5F;
+    margin: 0px 5px;
+}
+.MuiButtonBase-root.MuiFab-root.makeStyles-margin-136.MuiFab-sizeSmall.MuiFab-primary {
+    color: #fff;
+    background-color: #008489;
+}
+.MuiButtonBase-root.MuiFab-root.makeStyles-margin-170.MuiFab-sizeSmall.MuiFab-primary {
+    color: #fff;
+    background-color: #008489;
+}
+.MuiStepIcon-root.MuiStepIcon-active {
+    color: #008489;
+}
+.MuiStepIcon-root.MuiStepIcon-completed {
+    color: #008489;
+}
+.MuiButtonBase-root {
+    color:yellow;
+}
+
+.MuiFab-primary {
+    color: #008489;
+}
+.inputfield {
+    padding:10px 10px;
+    margin:10px 0 20px 0;
+    width: 30%;
+    height:15px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 16px;
+}
+.textField{
+    padding:10px 10px;
+    margin:10px 0 20px 0;
     display: flex;
-    margin:0;
-    padding: 10px 10px 10px 10px;
-    background-color: lightyellow;
+    width: 30%;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 16px;
+    color: #484848;
+    box-sizing: border-box;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+}
 
+.quest{
+    display: flex;
+    width: 30%;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 16px;
+    color: #484848;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+}
+
+.quest:hover {
+    border: 2px solid darkgrey;
+}
+
+#Q1 {
+    margin-top:60px!important;
+}
+
+#Q8{
+    margin-top:60px!important;
+}
+#Q8 input{
+    margin-top:7px!important;
+}
+#Q9{
+    margin-top:20px!important;
+}
+
+#Q11{
+    margin-top:60px!important;
+}
+
+.back{
+    margin-top:40px!important;
 }

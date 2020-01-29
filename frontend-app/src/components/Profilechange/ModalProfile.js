@@ -6,24 +6,17 @@ import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
-import "./Profilemenu.css"
 import Avatarsmall from "./Avatarsmall";
 import "./ModalProfile.css"
 import {AuthContext} from "../../App";
 
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    paper: {
-        marginRight: theme.spacing(2),
-    },
-}));
+import {APP_ROOT,APP_PROFILE,APP_ACCOUNT} from "../../routes/routes";
+
+
 
 export default function MenuListComposition() {
-    const classes = useStyles();
+
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const {state, dispatch} = React.useContext(AuthContext);
@@ -58,8 +51,8 @@ export default function MenuListComposition() {
     }, [open]);
 
     return (
-        <div className={classes.root}>
-            <div>
+        <div>
+            <div className="modalprofile">
                 <Button
                     ref={anchorRef}
                     aria-controls={open ? 'menu-list-grow' : undefined}
@@ -76,21 +69,39 @@ export default function MenuListComposition() {
                         >
                             <Paper id={'paper'}>
                                 <ClickAwayListener onClickAway={handleClose}>
-                                    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <MenuItem onClick={handleClose}><a className="box_profile" href="/profile">Profile</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile" href="/account">Cuenta</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Invita a tus amigos</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Invita a infitriones</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Tu guia</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Rbnair For work</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Espanole</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Moneda</a></MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            {state.booleanAuth &&(<a href="/"
+                                    <MenuList id="menu-list-grow" className="modal1">
+                                        <a href={APP_PROFILE}>
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Profile</span></MenuItem>
+                                        </a>
+                                        <a href={APP_ACCOUNT}>
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile" >Cuenta</span></MenuItem>
+                                        </a>
+                                        <a href="">
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Invita a tus amigos</span></MenuItem>
+                                        </a>
+                                        <a href="">
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Invita a anfitriones</span></MenuItem>
+                                        </a>
+                                        <a href="">
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Tu guia</span></MenuItem>
+                                        </a>
+                                        <a href="">
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Aloha For work</span></MenuItem>
+                                        </a>
+                                        <a href="">
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Español</span></MenuItem>
+                                        </a>
+                                        <a href="">
+                                            <MenuItem className="MenuItem" onClick={handleClose}><span className="box_profile">Moneda</span></MenuItem>
+                                        </a>
+                                        <a href={APP_ROOT}>
+                                            <MenuItem className="MenuItem" onClick={handleClose}>
+                                            {state.booleanAuth &&(<span
                                                      onClick={()=> dispatch(
                                                         {type: "LOGOUT"})}>Cerrar sesion
-                                                     </a>)}
-                                        </MenuItem>
+                                                     </span>)}
+                                            </MenuItem>
+                                        </a>
                                         </MenuList>
                                 </ClickAwayListener>
                             </Paper>

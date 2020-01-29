@@ -28,12 +28,12 @@ export default function MaterialUIPickers({value, onChange}) {
                     format="yyyy/MM/dd"
                     margin="normal"
                     id="date-picker-inline"
+                    //value={selectedDate}
                     value={value}
+                    disablePast={true}
+                    //onChange={handleDateChange}
                     onChange={onChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
-                />
+                                    />
             </Grid>
         </MuiPickersUtilsProvider>
 

@@ -1,4 +1,14 @@
-.box_profile{
-    flex-direction: column!important;
-    color: black!important;
+.MenuItem{
+    height:40px!important;
+    justify-content: left!important;
+}
+
+
+.modal1{
+    border: 2px solid #cfcfcf;
+    margin-left:-50px!important;
+    flex-direction:column!important;
+    background-color:white!important;
+    border-radius: 7px;
+    top:0px!important;
 }

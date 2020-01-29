@@ -1,41 +1,29 @@
 import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Navbar from "./Navbar";
+
+import Navbar from "../Header/Navbar";
 import {AuthContext} from "../../App";
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import "../Profilechange/Profilechange.css";
+
+import {APP_PROFILE} from "../../routes/routes";
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 400,
-        minHeight:250,
         flexDirection: 'column',
-        display: 'inline-block',
+    },
+    header:{
+        marginBottom:40,
+    },
 
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-    header: {
-        marginTop: 30,
-        marginBottom: 50,
-    },
     mothercard: {
-
-        marginLeft: 300,
-        marginRight: 200,
-
-    },
+        marginLeft: 400,
+        marginRight:300,
+          },
 });
+
+
 
 export default function SimpleCard() {
     const {state} = React.useContext(AuthContext);
@@ -56,72 +44,139 @@ export default function SimpleCard() {
 
     return (
         <div>
-          <Navbar/>
+            <Navbar class="header2" />
         <div className={classes.mothercard}>
             <div className={classes.header}>
-                <h1>Cuenta</h1>
-                <h5>{name} {last_name}, {email} · <a href="/profile">Ir al perfil</a></h5>
+                <h1 className="h1account">Cuenta</h1>
+                <h5>{name} {last_name}, {email} {bull} <a className="editprofile" href={APP_PROFILE}>Ir al perfil</a></h5>
             </div>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Informacion personal</Button>
-                    <p>Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo</p>
-                </CardActions>
 
-            </Card>
 
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
 
-            </Card>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
+               <div className="card" variant="outlined">
 
-            </Card>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
 
-            </Card>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+               </div>
 
-            </Card>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
 
-            </Card>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
+            <div className="card" variant="outlined">
 
-            </Card>
-            <Card className={classes.card}>
-                <CardActions>
-                    <Button size="small">Inicio de sesión y seguridad</Button>
-                    <p>Actualiza tu contraseña y protege tu cuenta</p>
-                </CardActions>
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
 
-            </Card>
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+
+            <div className="card" variant="outlined">
+
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+
+            <div className="card" variant="outlined">
+
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+
+            <div className="card" variant="outlined">
+
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+
+            <div className="card" variant="outlined">
+
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+            <div className="card" variant="outlined">
+
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+
+
+            <div className="card" variant="outlined">
+
+                <CardContent>
+                    <Typography variant="h5" component="h2">
+                        Información personal <span className="go">&#10093;</span>
+                    </Typography>
+                </CardContent>
+
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Proporciona tus datos personales e indícanos cómo podemos ponernos en contacto contigo
+                    </Typography>
+                </CardContent>
+            </div>
+
+            </div>
         </div>
 
-        </div>
 
 
     );
