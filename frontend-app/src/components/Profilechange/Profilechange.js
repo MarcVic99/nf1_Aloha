@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 
 import {AuthContext} from "../../App";
 import FooterLinks from "../footer/footer"
-import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Profilephoto from "./Profilephoto";
 
@@ -30,7 +29,7 @@ export default function ChangeProfile() {
         languages: languages,
         job: job,
         token: JSON.parse(localStorage.getItem('token'))
-    }
+    };
 
 
 
@@ -121,6 +120,7 @@ export default function ChangeProfile() {
                     </div>
                     <input
                       className="inputfield"
+                      type="text"
                       name="last_name"
                       spellCheck={true}
                       value={last_name}
@@ -136,6 +136,7 @@ export default function ChangeProfile() {
                     </div>
                     <input
                       className="inputfield"
+                      type="email"
                       name="email"
                       spellCheck={true}
                       value={email}

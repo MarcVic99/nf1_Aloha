@@ -12,7 +12,7 @@
 }
 
 .regedit p {
-  margin: 0px;
+  margin: 0;
   word-wrap: break-word;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
@@ -64,7 +64,7 @@
     Helvetica Neue, sans-serif;
   font-size: 14px;
   line-height: 1.43;
-  padding: 0px 20px;
+  padding: 0 20px;
   color: #484848;
   width: 50%;
   float: right;
@@ -95,12 +95,9 @@
   font-weight: 600;
   line-height: 1.375em;
   color: #484848;
-  margin-bottom: 10px;
-  margin: 0px;
   word-wrap: break-word;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
-  line-height: 1.375em;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -171,7 +168,7 @@ li {
   color: #484848;
 }
 .formlabel {
-  margin: 0px;
+  margin: 0;
   word-wrap: break-word;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
@@ -218,7 +215,7 @@ button.cancelbutton:hover {
   line-height: 1.43;
   color: #484848;
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0;
 }
 
 /* Profilephoto js styles */
@@ -253,21 +250,15 @@ button.cancelbutton:hover {
   box-sizing: border-box;
   font: inherit;
   background: transparent;
-  border: 0px;
+  border: 0;
   cursor: pointer;
   user-select: auto;
   text-align: left;
-  color: var(--color-text-link, #008489);
-  font-family: var(
-    --font-font_family,
-    Circular,
-    -apple-system,
-    BlinkMacSystemFont,
-    Roboto,
-    Helvetica Neue,
-    sans-serif
-  );
-  text-decoration: var(--font-link-text-decoration, none);
+  color: #008489;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+  Helvetica Neue, sans-serif;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .profileform {
@@ -279,13 +270,36 @@ button.cancelbutton:hover {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  margin: 20px 0px;
-  margin: 0px;
   word-wrap: break-word;
-  font-size: 16px;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
   white-space: nowrap;
+}
+
+/*Profilephoto style*/
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border-color: lightgrey;
+  color: #008489;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

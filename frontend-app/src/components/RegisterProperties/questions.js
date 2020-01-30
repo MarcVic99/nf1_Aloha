@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import CustomizedButtons from "./Button";
 import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
 import Button from "@material-ui/core/Button";
 import {AuthContext} from "../../App";
+import Calendar from 'react-calendar';
+
 
 export default function Questionnaire (props) {
  
@@ -16,7 +17,7 @@ export default function Questionnaire (props) {
     const [city, setCity] = useState('');
     const [address, setAddress] = useState('');
     const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('')
+    const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
     const [error, setError] = useState('');
     const array = ['Casa', 'Apartamento', 'Piso', 'Bed & Breakfast', 'Chalet'];
@@ -175,13 +176,17 @@ export default function Questionnaire (props) {
     if(props.activeStep===2){
         return(
             <div>
-                <div id="Q11">
-                    <span className="questionsSpan">Precio del alojamiento:</span>
-                    <input className="inputprice" value={price} onChange={e => setPrice(e.target.value)} />
+                <div id="Q11" style={{margin:"0px"}}>
+                    <span className="questionsSpan" style={{marginBottom:"50px"}}>Precio del alojamiento:</span>
+                    <input type="number" className="inputprice" value={price} onChange={e => setPrice(e.target.value)} />
                 </div>
 
-                <div id="Q12">
-                    <span>CALENDARIO</span>
+                <div id="Q12" >
+                    <span className="questionsSpan" style={{margin:"30px 0px"} }>CALENDARIO</span>
+
+                    <Calendar
+
+                    />
 
                 </div>
 

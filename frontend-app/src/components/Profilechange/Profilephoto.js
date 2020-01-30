@@ -2,8 +2,7 @@ import "./Profilechange.css";
 
 import React, { useState } from "react";
 
-import Avatar from "./Avatar";
-import { Link } from "react-router-dom";
+
 
 export default function Editphoto() {
   const [Image, setImage] = useState("");
@@ -27,17 +26,15 @@ export default function Editphoto() {
       <div className="photocellin">
         <img className="profilephoto" src={Image} alt="Profile photo" />
         <div>
-          <a className="photoupdate" aria-busy="false" style={{fontSize:"16px"}}>Actualizar foto</a>
-          <input
-          type="file"
-          onChange={e => handleChange(e)}
-          id="avatar"
-          name="avatar"
-          accept="image/png, image/jpeg"
-          style={{opacity:"0"} }
-        />
-
-
+          <div className="upload-btn-wrapper">
+            <button className="btn">Actualizar foto</button>
+            <input type="file"
+                   onChange={e => handleChange(e)}
+                   id="avatar"
+                   name="avatar"
+                   accept="image/png, image/jpeg"
+                   style={{opacity:"0"} }/>
+          </div>
         </div>
 
         <hr />
