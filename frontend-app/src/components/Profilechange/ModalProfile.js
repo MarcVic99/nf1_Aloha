@@ -84,7 +84,7 @@ export default function MenuListComposition() {
                                         <MenuItem onClick={handleClose}><a className="box_profile">Invita a infitriones</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile">Tu guia</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile">Rbnair For work</a></MenuItem>
-                                        <MenuItem onClick={handleClose}><a className="box_profile">Espanole</a></MenuItem>
+                                        <MenuItem onClick={handleClose}><a className="box_profile">Españoles</a></MenuItem>
                                         <MenuItem onClick={handleClose}><a className="box_profile">Moneda</a></MenuItem>
                                         <MenuItem onClick={handleClose}>
                                             {state.booleanAuth &&(<a href="/"

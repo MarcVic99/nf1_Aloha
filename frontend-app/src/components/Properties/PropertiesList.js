@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import {Card} from "@material-ui/core";
 
 const user = JSON.parse(localStorage.getItem('user'));
-console.log(user.id);
+
   const PropertiesList = () => {
       const [properties, setProperties] = useState([]);
 
