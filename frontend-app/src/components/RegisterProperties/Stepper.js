@@ -22,19 +22,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-    return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
+    return['Paso 1: Empieza por lo esencial', 'Paso 2: Presenta tu espacio', 'Paso 3:Indica la disponibilidad'];
 }
 
 function getStepContent(stepIndex) {
     switch (stepIndex) {
         case 0:
-            return 'Cuéntanos sobre tu hogar ...';
+
         case 1:
-            return 'What is an ad group anyways?';
+
         case 2:
-            return 'This is the bit I really care about!';
+
         default:
-            return 'Unknown stepIndex';
+
     }
 
 }
@@ -43,6 +43,7 @@ export default function HorizontalLabelPositionBelowStepper() {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [submit, setSubmit] = React.useState(false);
+
     const steps = getSteps();
 
 
@@ -62,6 +63,7 @@ export default function HorizontalLabelPositionBelowStepper() {
 
     const handleFinish = () => {
         setSubmit(true);
+
     };
 
     return (
@@ -96,7 +98,9 @@ export default function HorizontalLabelPositionBelowStepper() {
                             >
                                 Back
                             </Button>
-                            <Button variant="contained" color="primary" onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}>
+                            <Button variant="contained"
+                                    color="primary"
+                                    onClick={activeStep === steps.length - 1 ? handleFinish : handleNext}>
                                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                             </Button>
 

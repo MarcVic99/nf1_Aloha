@@ -69,8 +69,8 @@ class PropertyController extends Controller
                 'title'=> 'required',
                 'description' => 'required',
                 'price' => 'required',
-               // 'category_id' => 'null',
-               // 'image' => 'null'
+                'category_id' => 'null',
+                'image' => 'null'
 
             ]);
 

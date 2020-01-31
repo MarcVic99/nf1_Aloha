@@ -17,7 +17,8 @@ import PropertiesCity from "./components/Properties/PropertiesCity";
 import LogIn from "./components/login/LogIn";
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
-import PropertiesList from "./components/Properties/PropertiesList";
+import PropertiesUser from "./components/Properties/PropertiesUser";
+import Booking from "./components/booking/Booking";
 
 export const AuthContext = React.createContext();
 
@@ -82,14 +83,17 @@ function App() {
             value={{state,dispatch}}>
             <BrowserRouter>
             <Switch>
+                <Route path="/booking" exact>
+                    <Booking/>
+                </Route>
                 <Route path="/RegisterProperties" exact>
                     <RegisterProperties/>
                 </Route>
+                <Route path="/myproperty" exact>
+
+                </Route>
                 <Route path="/" exact>
                     <Aloha />
-                </Route>
-                <Route path="/RegisterProperties" exact>
-                    <RegisterProperties />
                 </Route>
                 <Route exact path="/profile">
                     <Profile />
@@ -140,7 +144,7 @@ function App() {
                     <PropertiesCity />
                 </Route>
                 <Route exact path="/property">
-                    <PropertiesList />
+                    <PropertiesUser />
                 </Route>
 
             </Switch >

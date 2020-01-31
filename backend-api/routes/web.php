@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::post('/api/signUp', 'AuthController@signUp');
 Route::post('/api/login', 'AuthController@login');
-Route::put('/api/update', 'AuthController@update');
+Route::put('/api/profile/edit', 'AuthController@update');
 
 //Mostrar usuaros
 Route::get('/api/user', 'AuthController@getUser');

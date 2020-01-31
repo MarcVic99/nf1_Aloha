@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
 import './Profilechange.css';
-import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
-import Profilephoto from "./Profilephoto";
+
+import React, { useEffect, useState } from 'react';
+
+import { AuthContext } from "../../App";
 import FooterLinks from "../footer/footer"
-import {AuthContext} from "../../App";
-
-
+import HomeIcon from "@material-ui/icons/Home";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import Profilephoto from "./Profilephoto";
+import WorkIcon from "@material-ui/icons/Work";
 
 export default function Profile() {
     const {state, dispatch} = React.useContext(AuthContext);
@@ -78,61 +80,56 @@ export default function Profile() {
 
 
     return (
-        <div id="main">
-            <section>
+      <div id="main">
+        <section>
+          <div>
+            <Navbar />
+            <div className="marginout">
+              <Profilephoto />
+
+              <div className="changeform">
                 <div>
-                    <Navbar />
-                    <div className="marginout">
-
-                        <Profilephoto />
-
-
-                        <div className="changeform">
-                            <div>
-
-                                <div className="intro">
-                                    <h1>Hola:Soy {name} {last_name} </h1>
-                                    <div className="regedit">
-                                        <p>Se registró en 2019</p>
-
-                                        <div className="editprofile">
-                                            <Link to="/profile/edit">Editar perfil</Link>
-                                        </div>
-                                        <div className="profileform">
-
-
-
-                                        </div>
-                                        <div className="profileform">
-                                            Vive en: {where}
-
-
-                                        </div>
-                                        <div className="profileform">
-                                            Trabaja en: {job}
-                                        </div>
-                                        <div className="profileform">
-                                            Destinos favoritos: Bali, Tailandia
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
+                  <div className="intro">
+                    <h1>Hola:Soy {name} </h1>
+                    <div className="regedit">
+                      <p>Se registró en 2019</p>
+                        <div className="editprofile">
+                        <Link to="/profile/edit">Editar perfil</Link>
                         </div>
                     </div>
+                  </div>   
+                      <div className="profileform">
+                        <HomeIcon id="icon"/>
+                        Vive en: {where}
+                      </div>
+
+                      <div className="profileform">
+                        <WorkIcon fontSize="small" id="icon" />
+                        Trabaja en: {job}
+                      </div>
+
+                      <div>
+                        <hr />
+                        <br />
+                        <div className="editprofile">
+                          <Link to="/users/reviews">
+                            Evaluaciones hechas por ti
+                          </Link>
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </section>
+              
+          </div>
+        </section>
 
-            <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
-            {/* Footer */}
-            <footer>
-
-                <FooterLinks />
-
-            </footer>
-        </div>
+        {/* Footer */}
+        <footer>
+          <FooterLinks />
+        </footer>
+      </div>
     );
 }
 
