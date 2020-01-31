@@ -5,13 +5,18 @@
 
 .modal1 {
   border: 1px solid #cfcfcf;
-  margin-left: -1000px;
+
   flex-direction: column !important;
   background-color: white !important;
+  opacity: 0.8;
   border-radius: 4px;
   top: 0 !important;
+  margin-left:50px;
 }
 
 #menu ul li {
   color: black;
+}
+#menu-list-grow{
+  margin-left: -50px
 }
