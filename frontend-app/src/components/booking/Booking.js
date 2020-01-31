@@ -1,18 +1,18 @@
 import React, {useReducer, useState} from "react";
 import Calendario from "../Calendario";
-import {initialState, reducer} from "./Reducer";
 
 
 
-const Search = (props) => {
 
-    const SEARCH_CITY = 'SEARCH_CITY';
+const Booking = (props) => {
+
+    const SEARCH_BEDS = 'SEARCH_BEDS';
     const SEARCH_DATE_FROM = 'SEARCH_DATE_FROM';
     const SEARCH_DATE_TO = 'SEARCH_DATE_TO';
     const RESET = 'RESET';
 
     const initialState = {
-        city: '',
+        beds: '',
         dateFrom: new Date(),
         dateTo: new Date(),
     };
@@ -21,8 +21,8 @@ const Search = (props) => {
         const newState = {...state};
 
         switch (action.type) {
-            case SEARCH_CITY:
-                newState.city = action.city;
+            case SEARCH_BEDS:
+                newState.beds = action.beds;
                 return newState;
             case SEARCH_DATE_FROM:
                 newState.dateFrom = action.dateFrom;
@@ -36,12 +36,14 @@ const Search = (props) => {
             default:
                 return state;
         }
+
+
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const search = searchValue => {
-        fetch(`http://127.0.0.1/api/search/property/city/${searchValue.city}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}`)
+    const booking = searchValue => {
+        fetch(`http://127.0.0.1/api/search/property/city/${searchValue.beds}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}`)
             .then(response => response.json())
             .then(payload => {
                 if (payload.status === 'succes') {
@@ -59,7 +61,7 @@ const Search = (props) => {
     };
 
     const handleSearchInputChangesCity = e => {
-        dispatch({type: SEARCH_CITY, city: e.target.value});
+        dispatch({type: SEARCH_BEDS, city: e.target.value});
     };
 
     const formatDate = date => {
@@ -71,33 +73,34 @@ const Search = (props) => {
     };
 
     const handleSearchInputChangesDateTo = e => {
-        dispatch({type: SEARCH_DATE_TO, dateTo: e});
+        dispatch({type: SEARCH_DATE_TO, dateTo: e})
+        ;
     };
 
     const callSearchFunction = e => {
         e.preventDefault();
         const res = {
-            city: state.city,
+            beds: state.beds,
             dateFrom: formatDate(state.dateFrom),
             dateTo: formatDate(state.dateTo),
         };
-        search(res);
+        booking(res);
         dispatch({type: RESET});
     };
 
     return (
 
         <div id="form_ini">
-            <h1>Reserva alojamientos y experiencias únicas.</h1>
+            <h1>Realiza tu reserva en módico paso</h1>
             <form>
                 <div className="description_input">
-                    <b>DÓNDE</b>
+                    <b>Cuántos huespedes se alojarán?</b>
                 </div>
                 <div className="div_donde" placeholder="Dónde">
                     <input
-                          value={state.city}
-                           onChange={handleSearchInputChangesCity}
-                           type="text" name="location" placeholder="Dónde" className={'inputlocation'}
+                        value={state.beds}
+                        onChange={handleSearchInputChangesCity}
+                        type="text" name="location" placeholder="Cantidad de huespedes" className={'inputlocation'}
                     />
                 </div>
 
@@ -105,7 +108,7 @@ const Search = (props) => {
                     <div className="description_input"
 
                          type="date"
-                     ><b>LLEGADA</b>
+                    ><b>LLEGADA</b>
                         <Calendario
                             value={state.dateFrom}
                             onChange={handleSearchInputChangesDateFrom}
@@ -115,9 +118,10 @@ const Search = (props) => {
                 <div className="llegada_salida">
                     <div className="description_input"
                          type="date"
-                     ><b>SALIDA</b>
+                    ><b>SALIDA</b>
                         <Calendario
                             value={state.dateTo}
+
                             onChange={handleSearchInputChangesDateTo}
                         />
                     </div>
@@ -131,9 +135,9 @@ const Search = (props) => {
 
                 <div className="div_find">
                     <a href="/search/property">
-                    <button id="find" type="submit" value="{SEARCH}"
-                        onClick={callSearchFunction}><b>Buscar</b>
-                    </button>
+                        <button id="find" type="submit" value="{SEARCH}"
+                                onClick={callSearchFunction}><b>Buscar</b>
+                        </button>
                     </a>
                 </div>
 
@@ -143,13 +147,4 @@ const Search = (props) => {
     );
 };
 
-export default Search;
-
-{/*<form className="search">*/}
-{/*    <input*/}
-{/*        value={searchValue}*/}
-{/*        onChange={handleSearchInputChanges}*/}
-{/*        type="text"*/}
-{/*    />*/}
-{/*    <input onClick={callSearchFunction} type="submit" value="SEARCH" />*/}
-{/*</form>*/}
+export default Booking;

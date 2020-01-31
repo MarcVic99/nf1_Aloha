@@ -26,6 +26,7 @@ import LogIn from "./components/login/LogIn";
 import SignUp from "./components/signup/SignUp";
 import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
 import PropertiesList from "./components/Properties/PropertiesList";
+import Booking from "./components/booking/Booking";
 
 import {APP_ROOT, APP_PROPERTY, APP_PROFILE, APP_USER_EDIT_PHOTO, APP_PROFILE_EDIT, APP_REGISTER_PROPERTIES} from "./routes/routes";
 import FooterLinks from "./components/footer/footer";
@@ -100,35 +101,35 @@ function App() {
 
         <AuthContext.Provider
             value={{state,dispatch}}>
-            <Router>
-                <Switch>
+            <BrowserRouter>
+            <Switch>
+                <Route path="/booking" exact>
+                    <Booking/>
+                </Route>
+                <Route path="/RegisterProperties" exact>
+                    <RegisterProperties/>
+                </Route>
+                <Route path="/myproperty" exact>
 
-                    <Route path={APP_ROOT} exact>
-                        <Aloha />
-                    </Route>
-                    <Route exact path={APP_REGISTER_PROPERTIES}>
-                        <RegisterProperties />
-                    </Route>
-                    <Route exact path={APP_PROFILE}>
-                        <Profile />
-                    </Route>
-                    <Route exact path={APP_PROFILE_EDIT}>
-                        <Changeprofile />
-                    </Route>
-                    <Route exact path={APP_USER_EDIT_PHOTO}>
-                        <Editphoto />
-                    </Route>
-
-                    <Route exact path="/login">
-                        <LogIn />
-                    </Route>
-                    <Route exact path="/signup">
-                        <SignUp />
-                    </Route>
-
-                    <Route exact path="/accesibilidad">
-                        <Accesibilidad />
-                    </Route>
+                </Route>
+                <Route path="/" exact>
+                    <Aloha />
+                </Route>
+                <Route exact path="/profile">
+                    <Profile />
+                </Route>
+                <Route exact path="/profile/edit">
+                    <Changeprofile />
+                </Route>
+                <Route exact path="/user/edit-photo">
+                    <Editphoto />
+                </Route>
+                <Route path= '/HeaderLogo'>
+                    <Aloha />
+                </Route>
+                <Route exact path="/login">
+                    <LogIn />
+                </Route>
 
                     {/*<Route exact path="/empleo">
                         <Empleo />
