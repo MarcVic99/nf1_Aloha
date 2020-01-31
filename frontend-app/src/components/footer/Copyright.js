@@ -5,7 +5,7 @@ const CopyrightSpan = () =>(
 
     <div id={'copyrightSpan'} className={"copyright"}>
 
-        <span className={"span_copyright"}><img src={logo} height={30} width={30} alt={"copyright"}/> © 2019 Aloha, Inc. All rights reserved.</span>
+        <span className={"span_copyright"}><img src={logo} height={30} width={30} alt={"copyright"}/> © 2020 Aloha, Inc. All rights reserved.</span>
 
     </div>
 

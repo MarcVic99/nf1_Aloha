@@ -1,4 +1,17 @@
-.box_profile{
-    flex-direction: column!important;
-    color: black!important;
+.MenuItem {
+  height: 40px !important;
+  justify-content: left !important;
+}
+
+.modal1 {
+  border: 1px solid #cfcfcf;
+  margin-left: -1000px;
+  flex-direction: column !important;
+  background-color: white !important;
+  border-radius: 4px;
+  top: 0 !important;
+}
+
+#menu ul li {
+  color: black;
 }

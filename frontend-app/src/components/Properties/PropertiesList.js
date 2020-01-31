@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 //import './PropertiesList.css';
  import CommentsList from "./Comments";
+import Navbar from "../Header/Navbar";
 
   const PropertiesList = () => {
       const [properties, setProperties] = useState([]);
@@ -17,6 +18,8 @@ import React, {useEffect, useState} from 'react';
 
          return (
               <div className="property">
+
+                  <Navbar class="header2" />
                   <h1>List of our better properties</h1>
               <ul>
                  {properties.map(property => (
@@ -38,5 +41,5 @@ import React, {useEffect, useState} from 'react';
              </div>
           );
 
-  }
+  };
 export default PropertiesList;

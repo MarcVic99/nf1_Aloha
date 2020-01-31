@@ -1,207 +1,219 @@
-import React, {useEffect, useState} from 'react';
-import ButtonSizes from "./ButtonCounter";
-import './Questions.css';
+import "./Questions.css";
+
+import React, { useEffect, useState } from "react";
+
+import { AuthContext } from "../../App";
 import Button from "@material-ui/core/Button";
-import {AuthContext} from "../../App";
-import Calendar from 'react-calendar';
+import ButtonSizes from "./ButtonCounter";
+import Calendar from "react-calendar";
 
+export default function Questionnaire(props) {
+  const { state, dispatch } = React.useContext(AuthContext);
+  const [nameHeader, setNameHeader] = useState("");
+  const [rooms, setRooms] = useState(0);
+  const [beds, setBeds] = useState(0);
+  const [toilets, setToilets] = useState(0);
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [error, setError] = useState("");
+  const array = ["Casa", "Apartamento", "Piso", "Bed & Breakfast", "Chalet"];
 
-export default function Questionnaire (props) {
- 
-    const {state, dispatch} = React.useContext(AuthContext);
-    const [nameHeader, setNameHeader] = useState('');
-    const [rooms, setRooms] = useState(0);
-    const [beds, setBeds] = useState(0);
-    const [toilets, setToilets] = useState(0);
-    const [country, setCountry] = useState('');
-    const [city, setCity] = useState('');
-    const [address, setAddress] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0);
-    const [error, setError] = useState('');
-    const array = ['Casa', 'Apartamento', 'Piso', 'Bed & Breakfast', 'Chalet'];
+  const token = JSON.parse(localStorage.getItem("token"));
 
-    const token = JSON.parse(localStorage.getItem('token'));
+  const submit = props.submit;
 
-    const submit = props.submit;
+  const data = {
+    nameHeader: nameHeader,
+    rooms: rooms,
+    beds: beds,
+    toilets: toilets,
+    country: country,
+    city: city,
+    address: address,
+    title: title,
+    description: description,
+    price: price,
+    additional_info: null,
+    rating: null
+  };
 
-    const data = {
-        nameHeader:nameHeader,
-        rooms: rooms,
-        beds:beds,
-        toilets:toilets,
-        country:country,
-        city:city,
-        address:address,
-        title:title,
-        description:description,
-        price:price,
-        additional_info:null,
-        rating:null,
-        };
+  const handleOnSubmit = () => {
+    console.log(data);
+    const fetchdata = async () => {
+      const url = "http://127.0.0.1:80/api/property";
+      const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `bearer ${token}`
+          //'Access-Control-Allow-Headers': 'Authorization',
+        },
+        mode: "cors"
+      };
 
-
-
-    const handleOnSubmit = () => {
-        console.log(data);
-        const fetchdata = async () => {
-            const url = 'http://127.0.0.1:80/api/property';
-            const options = {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `bearer ${token}`
-                    //'Access-Control-Allow-Headers': 'Authorization',
-                },
-                mode: 'cors',
-            };
-
-            fetch(url, options)
-
-                .then(response => {
-                    if (response.status === 404) {
-                        response.json().then((resp => {
-                            return setError(resp.errors);
-                            return (alert(resp.errors))
-                        }))
-                    } else if (response.status === 200) {
-                        response.json().then((resp => {
-                            //console.warn("resp",resp);
-                            setError('');
-                            return Promise.reject(alert(`Property creada ${resp.name} :)`))
-
-                        }))
-
-                    }
-                }).catch(error => {
-                setError(error);
-                alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
-
+      fetch(url, options)
+        .then(response => {
+          if (response.status === 404) {
+            response.json().then(resp => {
+              return setError(resp.errors);
+              return alert(resp.errors);
             });
-
-        };
-
-        fetchdata()
+          } else if (response.status === 200) {
+            response.json().then(resp => {
+              //console.warn("resp",resp);
+              setError("");
+              return Promise.reject(
+                alert(`Enhorabuena {name}! Propiedad creada.  :)`)
+              );
+            });
+          }
+        })
+        .catch(error => {
+          setError(error);
+          alert(error); // Este catch nos ejecuta algo cuándo no hay respuesta
+        });
     };
 
-   useEffect(() => {
-       if (submit) {
-           handleOnSubmit();
-       }
-   }, [submit]);
+    fetchdata();
+  };
 
-    if (props.activeStep===0){
+  useEffect(() => {
+    if (submit) {
+      handleOnSubmit();
+    }
+  }, [submit]);
 
-
-        return(
-
-
-        <div className="questionsMain">
-
-            <div className="questionSubMain">
-                <div id="Q1">
-                    <div className="questionsSpan">¿Que tipo de alojamiento quieres anunciar?? </div>
-                    {array.map(v => (
-                        <Button variant="contained" color={v === nameHeader ? 'Primary' : 'Secondary'}  onClick={() => {setNameHeader(v)}}>
-                            {v}
-                        </Button>
-                    ))}
-
-                </div>
-
-
-                <div id="Q2">
-                <div className="questionsSpan">¿ De cuántas habitaciones dispone?</div>
-                    <ButtonSizes count={rooms} setCount={setRooms}/>
-                 </div>
-
-                <div id="Q3">
-                    <div className="questionsSpan">¿ De cuántas camas dispone?</div>
-                    <ButtonSizes count={beds} setCount={setBeds}/>
-                </div>
-
-                <div id="Q4">
-                    <div className="questionsSpan">¿ De cuántos lavabos dispone?</div>
-                    <ButtonSizes count={toilets} setCount={setToilets}/>
-                </div>
-
-                <div id="Q5">
-                    <span className="questionsSpan">País:</span>
-                    <input className="input" value={country} onChange={e => setCountry(e.target.value)} />
-
-                </div>
-
-                <div id="Q6">
-                    <span className="questionsSpan">Ciudad:</span>
-                    <input className="input" value={city} onChange={e => setCity(e.target.value)} />
-                </div>
-
-                <div id="Q7">
-                    <span className="questionsSpan">Dirección:</span>
-                    <input className="input" value={address} onChange={e => setAddress(e.target.value)} />
-                </div>
-
+  if (props.activeStep === 0) {
+    return (
+      <div className="questionsMain">
+        <div className="questionSubMain">
+          <div id="Q1">
+            <div className="questionsSpan">
+              ¿Que tipo de alojamiento quieres anunciar??{" "}
             </div>
+            {array.map(v => (
+              <Button
+                variant="contained"
+                color={v === nameHeader ? "Primary" : "Secondary"}
+                onClick={() => {
+                  setNameHeader(v);
+                }}
+              >
+                {v}
+              </Button>
+            ))}
+          </div>
+
+          <div id="Q2">
+            <div className="questionsSpan">
+              ¿ De cuántas habitaciones dispone?
+            </div>
+            <ButtonSizes count={rooms} setCount={setRooms} />
+          </div>
+
+          <div id="Q3">
+            <div className="questionsSpan">¿ De cuántas camas dispone?</div>
+            <ButtonSizes count={beds} setCount={setBeds} />
+          </div>
+
+          <div id="Q4">
+            <div className="questionsSpan">¿ De cuántos lavabos dispone?</div>
+            <ButtonSizes count={toilets} setCount={setToilets} />
+          </div>
+
+          <div id="Q5">
+            <span className="questionsSpan">País:</span>
+            <input
+              className="input"
+              value={country}
+              onChange={e => setCountry(e.target.value)}
+            />
+          </div>
+
+          <div id="Q6">
+            <span className="questionsSpan">Ciudad:</span>
+            <input
+              className="input"
+              value={city}
+              onChange={e => setCity(e.target.value)}
+            />
+          </div>
+
+          <div id="Q7">
+            <span className="questionsSpan">Dirección:</span>
+            <input
+              className="input"
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (props.activeStep === 1) {
+    return (
+      <div>
+        <div id="Q8">
+          <span className="questionsSpan">Título del alojamiento</span>
+          <input
+            className="input"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+          />
         </div>
 
+        <div id="Q9">
+          <span className="questionsSpan">Descripción</span>
+          <textarea
+            className="textField"
+            rows="10"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+        </div>
+        <div id="10">
+          <span className="questionsSpan">Añade fotos a tu anuncio</span>
+        </div>
+      </div>
+    );
+  }
 
-    )}
+  if (props.activeStep === 2) {
+    return (
+      <div>
+        <div id="Q11">
+          <div className="questionsSpan">Precio del alojamiento (EUR):</div>
+          <input
+            min={0}
+            type="number"
+            className="inputprice"
+            value={price}
+            onChange={e => setPrice(e.target.value)}
+          />
+        </div>
 
-    if(props.activeStep===1){
-        return(
-            <div>
-                 <div id="Q8">
-                    <span className="questionsSpan">Título del alojamiento</span>
-                     <input className="input" value={title} onChange={e => setTitle(e.target.value)} />
-                 </div>
+        <div id="Q12">
+          <div className="questionsSpan">CALENDARIO</div>
 
-                <div id="Q9">
-                    <span className="questionsSpan">Descripción</span>
-                    <textarea className="textField"   rows="10" value={description} onChange={e => setDescription(e.target.value)} />
-                </div>
-                <div id="10">
-                    <span className="questionsSpan">Añade fotos a tu anuncio</span>
+          <Calendar className="calendar" />
+        </div>
+      </div>
+    );
+  }
 
-                </div>
-
-
-            </div>
-
-        )
-    }
-
-    if(props.activeStep===2){
-        return(
-            <div>
-                <div id="Q11" style={{margin:"0px"}}>
-                    <span className="questionsSpan" style={{marginBottom:"50px"}}>Precio del alojamiento:</span>
-                    <input type="number" className="inputprice" value={price} onChange={e => setPrice(e.target.value)} />
-                </div>
-
-                <div id="Q12" >
-                    <span className="questionsSpan" style={{margin:"30px 0px"} }>CALENDARIO</span>
-
-                    <Calendar
-
-                    />
-
-                </div>
-
-            </div>
-
-        )
-    }
-
-    if(props.activeStep===3){
-        return(
-            <div>
-            <p>Hello!</p>
-            </div>
-
-        )
-    }
-};
-
+  if (props.activeStep === 3) {
+    return (
+      <div>
+        <p>Hello!</p>
+      </div>
+    );
+  }
+}

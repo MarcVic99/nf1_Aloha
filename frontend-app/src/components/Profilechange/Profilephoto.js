@@ -2,8 +2,6 @@ import "./Profilechange.css";
 
 import React, { useState } from "react";
 
-
-
 export default function Editphoto() {
   const [Image, setImage] = useState("");
 
@@ -24,22 +22,26 @@ export default function Editphoto() {
   return (
     <div className="photocellout">
       <div className="photocellin">
-        <img className="profilephoto" src={Image} alt="Profile photo" />
+        <div className="profilephoto">
+          <img src={Image} className="profilephoto" alt="Profile photo" />
+        </div>
         <div>
           <div className="upload-btn-wrapper">
             <button className="btn">Actualizar foto</button>
-            <input type="file"
-                   onChange={e => handleChange(e)}
-                   id="avatar"
-                   name="avatar"
-                   accept="image/png, image/jpeg"
-                   style={{opacity:"0"} }/>
+            <input
+              type="file"
+              onChange={e => handleChange(e)}
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              style={{ opacity: "0" }}
+            />
           </div>
         </div>
 
         <hr />
-        <div>
-          <p>Numero de telefono</p>
+        <div style={{ padding: "5px" }}>
+          <p>Número de telefono</p>
         </div>
       </div>
     </div>

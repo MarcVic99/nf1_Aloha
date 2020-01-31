@@ -1,10 +1,8 @@
 import "./Profilechange.css";
 
-
 import React, { useState } from "react";
 
-
-export default function Editphoto () {
+export default function Editphoto() {
   const [Image, setImage] = useState("");
 
   const handleChange = e => {
@@ -22,12 +20,10 @@ export default function Editphoto () {
   };
 
   return (
-      <div>
+    <div>
+      <input type="file" onChange={e => handleChange(e)} />
 
-          <input type="file" onChange={e => handleChange(e)} />
-
-        <img className="profilephoto" src={Image} alt="Profile photo" />
-      </div>
+      <img className="profilephoto" src={Image} alt="Profile photo" />
+    </div>
   );
-};
-
+}
