@@ -5,7 +5,7 @@ import CommentsList from "./Comments";
 import spinner from "./ajax-loader.gif"
 import Search from "./Search";
 import { initialState, reducer } from "./Reducer";
-import "./PropertiesList.css"
+import "./PropertiesUser.css"
 import Property from "./Property.js"
 
 

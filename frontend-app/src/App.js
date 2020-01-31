@@ -17,7 +17,7 @@ import PropertiesSearch from "./components/Properties/PropertiesSearch";
 import LogIn from "./components/login/LogIn";
 import {BrowserRouter} from 'react-router-dom';
 import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
-import PropertiesList from "./components/Properties/PropertiesList";
+import PropertiesUser from "./components/Properties/PropertiesUser";
 import Booking from "./components/booking/Booking";
 
 export const AuthContext = React.createContext();
@@ -141,7 +141,7 @@ function App() {
                     <PropertiesSearch />
                 </Route>
                 <Route exact path="/property">
-                    <PropertiesList />
+                    <PropertiesUser />
                 </Route>
 
             </Switch >
