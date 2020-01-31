@@ -1,0 +1,10 @@
+.PropertyContainer{
+
+    float: left;
+    padding: 20px;
+}
+.headerProperty{
+    float: top;
+    margin-top: 10px;
+    padding-top: 10px;
+}

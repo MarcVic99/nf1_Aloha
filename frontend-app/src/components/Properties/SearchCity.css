@@ -1,0 +1,14 @@
+.search{
+    float: top;
+    margin-top: 10px;
+    margin-left: 15px;
+
+}
+.inputSearch{
+    width: 300px;
+    height: 40px;
+}
+.inputSearch2{
+    width: 100px;
+    height: 40px;
+}

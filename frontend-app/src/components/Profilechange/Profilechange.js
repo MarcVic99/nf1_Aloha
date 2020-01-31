@@ -35,7 +35,7 @@ export default function ChangeProfile() {
 
     const handleOnSubmit = () => {
 
-        const fetchdata = async (token) => {
+        const fetchdata = async () => {
             const url = `http://localhost/api/update`;
 
             const options = {

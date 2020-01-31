@@ -1,71 +1,68 @@
 import React, {useReducer, useState} from "react";
 import Calendario from "../Calendario";
-import {initialState, reducer} from "./Reducer";
 
 
+const SEARCH_CITY = 'SEARCH_CITY';
+const SEARCH_DATE_FROM = 'SEARCH_DATE_FROM';
+const SEARCH_DATE_TO = 'SEARCH_DATE_TO';
+const RESET = 'RESET';
+
+const initialState = {
+    city: '',
+    dateFrom: new Date(),
+    dateTo: new Date(),
+};
+
+const reducer = (state, action) => {
+    const newState = {...state};
+
+    switch (action.type) {
+        case SEARCH_CITY:
+            newState.city = action.city;
+            return newState;
+        case SEARCH_DATE_FROM:
+            newState.dateFrom = action.dateFrom;
+            return newState;
+        case SEARCH_DATE_TO:
+            newState.dateTo = action.dateTo;
+            return newState;
+        case RESET:
+            return initialState;
+
+        default:
+            return state;
+    }
+};
+const useSearchFormReducer = () => useReducer(reducer, initialState);
 
 const Search = (props) => {
 
 
-    const SEARCH_CITY = 'SEARCH_CITY';
-    const SEARCH_DATE_FROM = 'SEARCH_DATE_FROM';
-    const SEARCH_DATE_TO = 'SEARCH_DATE_TO';
-    const RESET = 'RESET';
-
-    const initialState = {
-        city: '',
-        dateFrom: new Date(),
-        dateTo: new Date(),
-    };
-
-    const reducer = (state, action) => {
-        const newState = {...state};
-
-        switch (action.type) {
-            case SEARCH_CITY:
-                newState.city = action.city;
-                return newState;
-            case SEARCH_DATE_FROM:
-                newState.dateFrom = action.dateFrom;
-                return newState;
-            case SEARCH_DATE_TO:
-                newState.dateTo = action.dateTo;
-                return newState;
-            case RESET:
-                return initialState;
-
-            default:
-                return state;
-        }
-    };
-
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useSearchFormReducer();
 
     const search = searchValue => {
         fetch(`http://127.0.0.1/api/search/property/city/${searchValue.city}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}`)
             .then(response => response.json())
-            .then(payload => {
-                if (payload.status === 'succes') {
-                    dispatch({
-                        type: 'SEARCH_PROPERTIES_SUCCESS',
-                        payload: payload.properties
-                    });
-                } else {
-                    dispatch({
-                        type: 'SEARCH_PROPERTIES_FAILURE',
-                        error: payload
-                    });
-                }
-            });
+            .then(response => props.onNewProperties(response.properties));
     };
 
     const handleSearchInputChangesCity = e => {
         dispatch({type: SEARCH_CITY, city: e.target.value});
     };
 
-    const formatDate = date => {
-        return `${date.getDay()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-    };
+    function appendLeadingZeroes(n){
+        if(n <= 9){
+            return "0" + n;
+        }
+        return n
+    }
+
+    let current_datetime = new Date()
+    //console.log(current_datetime.toString());
+    let formatted_date = current_datetime.getFullYear() + "-" + appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + appendLeadingZeroes(current_datetime.getDate())
+
+    //console.log(formatted_date);
+
 
     const handleSearchInputChangesDateFrom = e => {
         dispatch({type: SEARCH_DATE_FROM, dateFrom: e});
@@ -79,11 +76,11 @@ const Search = (props) => {
         e.preventDefault();
         const res = {
             city: state.city,
-            dateFrom: formatDate(state.dateFrom),
-            dateTo: formatDate(state.dateTo),
+            dateFrom: appendLeadingZeroes(state.dateFrom),
+            dateTo: appendLeadingZeroes(state.dateTo),
         };
         search(res);
-        dispatch({type: RESET});
+        //dispatch({type: RESET});
     };
 
     return (
@@ -131,11 +128,10 @@ const Search = (props) => {
 
 
                 <div className="div_find">
-                    <a href="/search/property">
                     <button id="find" type="submit" value="{SEARCH}"
                         onClick={callSearchFunction}><b>Buscar</b>
                     </button>
-                    </a>
+
                 </div>
 
             </form>
@@ -146,11 +142,3 @@ const Search = (props) => {
 
 export default Search;
 
-{/*<form className="search">*/}
-{/*    <input*/}
-{/*        value={searchValue}*/}
-{/*        onChange={handleSearchInputChanges}*/}
-{/*        type="text"*/}
-{/*    />*/}
-{/*    <input onClick={callSearchFunction} type="submit" value="SEARCH" />*/}
-{/*</form>*/}

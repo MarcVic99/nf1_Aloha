@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import './App.css';
 import Aloha from './components/Aloha';
 import Profile from "./components/Profilechange/Profile";
-import { Route, Switch } from "react-router-dom";
 import Changeprofile from "./components/Profilechange/Profilechange";
 import Editphoto from "./components/Profilechange/Editphoto"
 import Empleo from "./components/footer/footer_components/Empleo";
@@ -14,8 +13,9 @@ import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
 import DatosDeLaEmpresa from "./components/footer/footer_components/DatosDeLaEmpresa";
 import Account from "./components/Profilechange/Account";
 import PropertiesSearch from "./components/Properties/PropertiesSearch";
+import PropertiesCity from "./components/Properties/PropertiesCity";
 import LogIn from "./components/login/LogIn";
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
 import PropertiesList from "./components/Properties/PropertiesList";
 
@@ -135,6 +135,9 @@ function App() {
                 </Route>
                 <Route exact path="/search/property">
                     <PropertiesSearch />
+                </Route>
+                <Route exact path="/search/property/city">
+                    <PropertiesCity />
                 </Route>
                 <Route exact path="/property">
                     <PropertiesList />

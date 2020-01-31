@@ -15,7 +15,7 @@ class PropertyController extends Controller
         $this->middleware('auth:api',
             ['except' =>
             ['index', 'show', 'getPropertyByCategory',
-            'getPropertyByUser', 'getImage', 'search',]]);
+            'getPropertyByUser', 'getImage', 'search', 'searchCity']]);
     }
 
     public function index()
@@ -79,7 +79,7 @@ class PropertyController extends Controller
                 $data = [
                     'code' => 404,
                     'status' => 'error',
-                    'message' => 'La propiedad ya existe'
+                    'message' => 'Error en la validacion de los campos'
                 ];
             } else {
 
@@ -128,12 +128,17 @@ class PropertyController extends Controller
         if (!empty($params_array)) {
             //Validar los datos
             $validate = \Validator::make($params_array, [
-                'name_header' => 'required',
+                'nameHeader' => 'required',
+                'rooms' => 'required',
+                'beds' => 'required',
+                'toilets' => 'required',
                 'country' => 'required',
                 'city' => 'required',
                 'address' => 'required',
-                'category_id' => 'required',
-                'image' => 'required',
+                //'category_id' => 'required',
+                //'image' => 'required',
+                'title' => 'required',
+                'price' => 'required',
             ]);
 
             if($validate->fails()) {
@@ -288,6 +293,7 @@ class PropertyController extends Controller
             ->pluck('property_id');
 
         $properties = Property::where('properties.city', $city)
+           // ->where('beds', '>=', $beds)
             ->groupBy('properties.id')
             ->whereNotIn('properties.id', $booked)
             ->get();
@@ -307,5 +313,14 @@ class PropertyController extends Controller
 
 
     }
+    public function searchCity($city)
+    {
+        $properties = Property::where('properties.city', $city)->get();
+
+        return response()->json([
+            'status' => 'succes',
+            'properties' => $properties
+         ], 200);
+}
 
 }

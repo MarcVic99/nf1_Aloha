@@ -67,6 +67,7 @@ const Header = () => {
 
     return (
     <div>
+
             {state.booleanAuth &&(
                 <div className="box">
                     <li><Navbar/></li>
