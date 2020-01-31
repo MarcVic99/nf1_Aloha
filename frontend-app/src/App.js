@@ -160,8 +160,13 @@ function App() {
                     <PropertiesUser />
                 </Route>
 
+
+
             </Switch >
             </BrowserRouter>
+            <footer>
+                <FooterLinks/>
+            </footer>
         </AuthContext.Provider>
 
     )
