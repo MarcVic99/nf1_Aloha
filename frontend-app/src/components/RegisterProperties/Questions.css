@@ -10,17 +10,18 @@
 }
 
 .main_div {
-  padding: 35px 70px;
+  padding: 0 70px;
 }
 .questionSubMain {
   margin-top: 70px;
   width: 35%;
   align-items: self-start;
+  min-width: 586px;
 }
 
 .questionsSpan {
-  margin-top: 25px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 5px;
   box-sizing: border-box;
   overflow-wrap: break-word;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,

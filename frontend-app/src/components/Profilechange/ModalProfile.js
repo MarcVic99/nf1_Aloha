@@ -1,6 +1,6 @@
 import "./ModalProfile.css";
 
-import { APP_ACCOUNT, APP_PROFILE, APP_ROOT } from "../../routes/routes";
+import { APP_ACCOUNT, APP_PROFILE, APP_ROOT, APP_PROPERTY } from "../../routes/routes";
 
 import { AuthContext } from "../../App";
 import Avatarsmall from "./Avatarsmall";
@@ -78,7 +78,12 @@ export default function MenuListComposition() {
                   <MenuList id="menu-list-grow" className="modal1">
                     <a href={APP_PROFILE}>
                       <MenuItem className="MenuItem" onClick={handleClose}>
-                        <span className="box_profile">Profile</span>
+                        <span className="box_profile">Perfil</span>
+                      </MenuItem>
+                    </a>
+                    <a href={APP_PROPERTY}>
+                      <MenuItem className="MenuItem" onClick={handleClose}>
+                        <span className="box_profile">Mis propiedades</span>
                       </MenuItem>
                     </a>
                     <a href={APP_ACCOUNT}>

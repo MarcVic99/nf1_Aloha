@@ -8,7 +8,7 @@ import FooterLinks from "../footer/footer";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import Navbar from "../Header/Navbar";
-import Profilephoto from "./Profilephoto";
+import Editphoto from "./Profilephoto";
 import WorkIcon from "@material-ui/icons/Work";
 
 export default function Profile() {
@@ -77,7 +77,7 @@ export default function Profile() {
         <div>
           <Navbar class="header2" />
           <div className="marginout">
-            <Profilephoto />
+            <Editphoto />
 
             <div className="changeform">
               <div>

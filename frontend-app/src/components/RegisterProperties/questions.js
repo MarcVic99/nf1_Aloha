@@ -94,7 +94,7 @@ export default function Questionnaire (props) {
 
             <div className="questionSubMain">
                 <div id="Q1">
-                    <div className="questionsSpan">¿Que tipo de alojamiento quieres anunciar?? </div>
+                    <div style={{marginBottom:"10px"}} className="questionsSpan">¿Que tipo de alojamiento quieres anunciar? </div>
                     {array.map(v => (
                         <Button variant="contained" color={v === nameHeader ? 'Primary' : 'Secondary'}  onClick={() => {setNameHeader(v)}}>
                             {v}
