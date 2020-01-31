@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bookings;
+use App\Property;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Response;
 use Illuminate\Support\Facades\Auth;
@@ -22,16 +23,17 @@ class BookingsController extends Controller
 
     public function store(Request $request)
     {
-        $reserved = $this->reservedDays($request);
+        $reserved = $this->reservedDaysBeds($request);
         if ($reserved) {
-            return response()->json(['status'=>400,'message'=>'the property is already reserved']);
+            return response()->json(['status'=>400,'message'=>'the property is already reserved or the number of beds is lower']);
         } else {
             $bookings = new Bookings();
+            $bookings->user_id = Auth::user()->id;
             $bookings->status = $request->status;
             $bookings->checkin = $request->checkin;
             $bookings->checkout = $request->checkout;
+            $bookings->beds = $request->beds;
             $bookings->property_id = $request->property_id;
-            $bookings->user_id = $request->user_id;
             $bookings->total = $request->total;
 
             $bookings->save();
@@ -44,7 +46,7 @@ class BookingsController extends Controller
         return response()->json($data, $data['code']);
     }
 
-    private function reservedDays($request){
+    private function reservedDaysBeds($request){
         $reserved = false;
         $initial_reservation = Bookings::where('property_id',$request->property_id)
             ->where('checkin','<=',$request->checkin)
@@ -67,6 +69,13 @@ class BookingsController extends Controller
             ->where('checkout','<=',$request->checkout)
             ->count();
         if($inicial_final_reservation > 0){
+            $reserved = true;
+        }
+
+        $number_of_beds = Property::where('id',$request->property_id)
+            ->where('beds','<',$request->beds)
+            ->count();
+        if($number_of_beds > 0){
             $reserved = true;
         }
 

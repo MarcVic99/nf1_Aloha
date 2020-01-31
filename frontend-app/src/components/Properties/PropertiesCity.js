@@ -2,18 +2,34 @@ import React, { useReducer, useEffect } from "react";
 
 import CommentsList from "./Comments";
 import spinner from "./ajax-loader.gif"
-import Search from "./Search";
-import { usePropertiesReducer } from "./Reducer";
-import "./PropertiesUser.css"
+import SearchCity from "./SearchCity";
+import { initialState, reducerData } from "./Reducer";
+import "./PropertiesList.css"
 import Property from "./Property.js"
 
 
-const PropertiesSearch = () => {
-    const [state, dispatch] = usePropertiesReducer();
+const PropertiesCity = () => {
+    const [state, dispatch] = useReducer(reducerData, initialState);
     const { properties, errorMessage, loading } = state;
 
     useEffect(() => {
         fetch('http://127.0.0.1:80//api/search/city/barcelona')
+            .then(response => response.json())
+            .then(jsonResponse => {
+                dispatch({
+                    type: "SEARCH_PROPERTIES_SUCCESS",
+                    payload: jsonResponse.SearchCity
+                });
+            });
+    }, []);
+
+
+    const searchCity = searchValue => {
+        dispatch({
+            type: "SEARCH_PROPERTIES_REQUEST"
+        });
+
+        fetch(`http://127.0.0.1:80/api/search/city/${searchValue}`)
             .then(response => response.json())
             .then(payload => {
                 if (payload.status === 'succes') {
@@ -28,9 +44,7 @@ const PropertiesSearch = () => {
                     });
                 }
             });
-
-    }, [])
-
+    };
 
     let retrievedProperties = <div />;
     if (loading && !errorMessage) {
@@ -47,16 +61,11 @@ const PropertiesSearch = () => {
     return (
         <div className="propertiesCity">
             <div className="m-container">
-                <Search onNewProperties={properties => {
-                    dispatch({
-                        type: "SEARCH_PROPERTIES_SUCCESS",
-                        payload: properties
-                    });
-                }}/>
+                <SearchCity searchCity={searchCity}/>
                 <div className="properties">{retrievedProperties}</div>
             </div>
         </div>
     );
 };
 
-export default PropertiesSearch;
+export default PropertiesCity;

@@ -24,13 +24,14 @@ Route::put('/api/profile/edit', 'AuthController@update');
 Route::get('/api/user', 'AuthController@getUser');
 Route::get('/api/users', 'AuthController@showUser');
 Route::get('/api/users/{id}', 'AuthController@showUserByid');
+Route::post('/api/upload/avatar', 'AuthController@upload');
 
 
 Route::group([
     'prefix' => 'auth',
 ], function () {
 
-    Route::post('uploade', 'AuthController@upload');
+
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
@@ -48,7 +49,7 @@ Route::get('/api/property/image/{filename}', 'PropertyController@getImage');
 Route::get('/api/property/category/{id}', 'PropertyController@getPropertyByCategory');
 Route::get('/api/property/user/{id}', 'PropertyController@getPropertyByUser');
 Route::get('/api/search/property/city/{city}/checkin/{checkin}/checkout/{checkout}', 'PropertyController@search');
-
+Route::get('/api/search/city/{city}', 'PropertyController@searchCity');
 
 //Bookings
 Route::resource('/api/booking', 'BookingsController');

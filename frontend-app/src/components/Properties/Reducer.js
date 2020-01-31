@@ -1,10 +1,12 @@
+import {useReducer} from "react";
+
 export const initialState = {
     loading: true,
     properties: [],
     errorMessage: null
 };
 
-export const reducer = (state, action) => {
+export const reducerData = (state, action) => {
     switch (action.type) {
         case "SEARCH_PROPERTIES_REQUEST":
             return {
@@ -29,3 +31,4 @@ export const reducer = (state, action) => {
             return state;
     }
 };
+export const usePropertiesReducer = () => useReducer(reducerData, initialState);
