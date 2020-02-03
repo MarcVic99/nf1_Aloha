@@ -57,6 +57,16 @@ function Navbar(props) {
                                 </a>
                             </div>
                             <div className="box">
+                                <a href="/search/property/city">
+                                    <li className="limenu">Búscar alojamientos</li>
+                                </a>
+                            </div>
+                            <div className="box">
+                                <a href="/search/property">
+                                    <li className="limenu">¡Empieza tú reserva!</li>
+                                </a>
+                            </div>
+                            <div className="box">
                                 <a href="#">
                                     <li className="limenu">Guardados</li>
                                 </a>

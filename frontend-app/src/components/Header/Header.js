@@ -1,12 +1,21 @@
-
+import { useHistory } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import "../Aloha.css"
 import Calendario from "../Calendario";
 import PropertiesList from "../Properties/PropertiesList";
 import ModalProfile from "../Profilechange/ModalProfile";
+import Search from "../Properties/Search";
+import SearchCity from "../Properties/SearchCity";
 
 const Header = () => {
+
+    let history = useHistory();
+
+
+    const HandleOfSubmit =() =>{
+        history.push("/search/property")
+    };
 
     return (
         <div className="section_head">
@@ -52,11 +61,10 @@ const Header = () => {
 
 
                             <div className="div_find">
-                                <button id="find" type="submit">
+                                <button id="find" type="submit" onClick={HandleOfSubmit}>
                                     <span><b>Buscar</b></span>
                                 </button>
                             </div>
-
                         </form>
 
                     </div>

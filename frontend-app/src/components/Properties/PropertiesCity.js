@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+    import React, { useReducer, useEffect } from "react";
 
 import CommentsList from "./Comments";
 import spinner from "./ajax-loader.gif"

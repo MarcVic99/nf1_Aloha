@@ -4,7 +4,7 @@ import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
 import Button from "@material-ui/core/Button";
 import {AuthContext} from "../../App";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 export default function Questionnaire (props) {
  
@@ -71,7 +71,7 @@ export default function Questionnaire (props) {
                 .then(responseJson => {
                     setDataToRedirect(responseJson);
 
-                    history.push(`/property`);
+                    history.push(`/property/`);
 
 
 
