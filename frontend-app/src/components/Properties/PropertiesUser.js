@@ -77,7 +77,6 @@ const PropertiesUser = () => {
 
             ))}
 
-            {/*    <div>{JSON.stringify(comments)}</div>;*/}
         </div>
         </div>
     );

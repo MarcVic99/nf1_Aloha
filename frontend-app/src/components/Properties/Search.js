@@ -134,10 +134,15 @@ const Search = (props) => {
                         />
                     </div>
                 </div>
-                <div className="description_input"><b>HUÉPEDES</b>
+                <div className="description_input">
+                    <b>HUÉPEDES</b>
                 </div>
                 <div className="input_huespedes">
-                    <input type="text" name="location" placeholder="Huéspedes" className="inputhuespedes"/>
+                    <input
+                        value={state.beds}
+                        onChange={handleSearchInputChangesBeds}
+                        type="text" name="Huéspedes" placeholder="Huéspedes" className="inputhuespedes"
+                    />
                 </div>
 
 

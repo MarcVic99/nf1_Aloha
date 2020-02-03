@@ -19,6 +19,8 @@ import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import RegisterProperties from "./components/RegisterProperties/RegisterProperties";
 import PropertiesUser from "./components/Properties/PropertiesUser";
 import Booking from "./components/booking/Booking";
+import PropertyID from "./components/Properties/PropertyID";
+import PropertiesList from "./components/Properties/PropertiesList";
 
 import {APP_ROOT, APP_PROPERTY, APP_PROFILE, APP_USER_EDIT_PHOTO, APP_PROFILE_EDIT, APP_REGISTER_PROPERTIES} from "./routes/routes";
 import FooterLinks from "./components/footer/footer";
@@ -158,6 +160,12 @@ function App() {
                 </Route>
                 <Route exact path="/property">
                     <PropertiesUser />
+                </Route>
+                <Route exact path="/property/id">
+                    <PropertyID />
+                </Route>
+                <Route exact path="/property/all">
+                    <PropertiesList />
                 </Route>
 
 

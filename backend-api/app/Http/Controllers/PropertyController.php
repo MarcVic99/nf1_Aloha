@@ -285,7 +285,7 @@ class PropertyController extends Controller
         return \response()->json($data, $data['code']);
     }
 
-    public function search($city, $checkin, $checkout)
+    public function search($city, $checkin, $checkout, $beds)
     {
 
         $booked = Bookings::where('checkin', '<=', $checkout)
@@ -293,7 +293,7 @@ class PropertyController extends Controller
             ->pluck('property_id');
 
         $properties = Property::where('properties.city', $city)
-           // ->where('beds', '>=', $beds)
+            ->where('beds', '>=', $beds)
             ->groupBy('properties.id')
             ->whereNotIn('properties.id', $booked)
             ->get();
@@ -303,16 +303,9 @@ class PropertyController extends Controller
             'properties' => $properties
         ], 200);
 
-//       $properties = Property::where('properties.city', $city)->get();
-//
-//       return response()->json([
-//            'status' => 'succes',
-//            'properties' => $properties
-//       ], 200);
-
-
-
     }
+
+
     public function searchCity($city)
     {
         $properties = Property::where('properties.city', $city)->get();
