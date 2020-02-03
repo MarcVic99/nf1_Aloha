@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from 'react';
 import './PropertiesUser.css';
-import CommentsList from "./Comments";
-import CardContent from "@material-ui/core/CardContent";
+
+import React, {useEffect, useState} from 'react';
+
 import {Card} from "@material-ui/core";
+import CardContent from "@material-ui/core/CardContent";
+import CarouselItem from "./CarouselItem";
+import CommentsList from "./Comments";
+import Navbar from "../Header/Navbar";
 
 const user = JSON.parse(localStorage.getItem('user'));
 
@@ -24,47 +28,57 @@ const PropertiesUser = () => {
 
 
     return (
-        <div className="property">
-            <div className="mis_chozas"><h1>Las chozas de aloha</h1></div>
+
+        <div id="main">
+            <Navbar class="header2"/>
+
+        <div className="main_div">
+            <div className="intro h1" ><h1>Mis propiedades</h1></div>
 
             {properties.map(property => (
+                <div className="pack-rooms">
                 <div className="mapDivProperties">
                     <div className="subDivProperties">
+
                         <CardContent>
+                            <CarouselItem/>
                             <div className="propertyDivTitle"><span>{property.title}</span></div>
+                            <div className="propertyDiv"> <span>{property.description}</span></div>
                         </CardContent>
+                        <CardContent className="cardContent">
+                            <h3>Dirección</h3>
+                            <div className="propertyDiv"> <span>{property.address}</span></div>
+                            <div className="propertyDiv"> <span>{property.city}</span></div>
+                            <div className="propertyDiv"> <span> {property.country}</span></div>
+
+                            </CardContent>
+
+
+                            <CardContent className="cardContent">
+
+                                <h3>Servicios</h3>
+                                <div> Habitaciones: <span>{property.rooms}</span></div>
+                                <div> Camas: <span>{property.beds}</span></div>
+                                <div> Baños: <span> {property.toilets}</span></div>
+
+
+                            </CardContent>
                         <CardContent>
-                            <div className="propertyDiv"> Ciudad: <span>{property.city}</span></div>
-                            <div className="propertyDiv"> País: <span> {property.country}</span></div>
-                            <div className="propertyDiv"> Dirección: <span>{property.address}</span></div>
+                            <div className="propertyDiv"> <h3>Precio:</h3> <span>{property.price} EUR/noche</span></div>
 
 
-                            <CommentsList/>
-
-
-                            <div className="servicesDiv">
-
-                                <div className="propertyDivRooms"> Habitaciones: <span>{property.rooms}</span></div>
-                                <div className="propertyDivBeds"> Camas: <span>{property.beds}</span></div>
-                                <div className="propertyDivToilets"> Baños: <span> {property.toilets}</span></div>
-
-                                <CommentsList/>
-                            </div>
-
-
-                            <div className="propertyDiv"> Descripción: <span>{property.description}</span></div>
-                            <div className="propertyDiv"> Precio: <span>{property.price}</span></div>
-                        </CardContent>
+                            </CardContent>
                         <CommentsList/>
                     </div>
 
 
                 </div>
-
+                </div>
 
             ))}
 
             {/*    <div>{JSON.stringify(comments)}</div>;*/}
+        </div>
         </div>
     );
 

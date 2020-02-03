@@ -122,9 +122,7 @@ export default function Profile() {
       </section>
 
       {/* Footer */}
-      <footer>
-        <FooterLinks />
-      </footer>
+
     </div>
   );
 }

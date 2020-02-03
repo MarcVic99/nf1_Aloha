@@ -101,7 +101,7 @@ hr {
     border: 1px solid #EBEBEB;
     border-radius: 4px;
 }
-º
+
 .buttonmargin {
     padding-top: 30px;
     text-align: center;
@@ -126,6 +126,20 @@ hr {
     margin-bottom:90px;
 }
 
+.kep-login-facebook
+    {
+    padding:6px 4px!important;
+    }
+
+.google > div{
+    margin-right:5px!important;
+    padding:1px 5px!important;
+}
+
+.google{
+    padding:1px!important;
+
+}
 .boton{
     background-color:#FF5A5F!important;
     text-transform:none!important;
