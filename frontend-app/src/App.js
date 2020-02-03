@@ -21,8 +21,7 @@ import PropertiesUser from "./components/Properties/PropertiesUser";
 import Booking from "./components/booking/Booking";
 import PropertiesList from "./components/Properties/PropertiesList";
 import PropertyID from "./components/Properties/PropertyID";
-import PropertyID from "./components/Properties/PropertyID";
-import PropertiesList from "./components/Properties/PropertiesList";
+
 
 import {APP_ROOT, APP_PROPERTY, APP_PROFILE, APP_USER_EDIT_PHOTO, APP_PROFILE_EDIT, APP_REGISTER_PROPERTIES} from "./routes/routes";
 import FooterLinks from "./components/footer/footer";
