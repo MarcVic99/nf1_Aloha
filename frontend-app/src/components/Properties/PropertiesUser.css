@@ -65,4 +65,7 @@
 display:inline-block;
     width:50%;
 }
+.m-container {
+    padding: 80px 60px;
+}
 

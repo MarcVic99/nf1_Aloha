@@ -6,6 +6,7 @@ import SearchCity from "./SearchCity";
 import { initialState, reducerData } from "./Reducer";
 import "./PropertiesList.css"
 import Property from "./Property.js"
+import Navbar from "../Header/Navbar";
 
 
 const PropertiesCity = () => {
@@ -59,11 +60,15 @@ const PropertiesCity = () => {
     }
 
     return (
+        <div>
+        <Navbar className="header2"/>
+
         <div className="propertiesCity">
             <div className="m-container">
                 <SearchCity searchCity={searchCity}/>
                 <div className="properties">{retrievedProperties}</div>
             </div>
+        </div>
         </div>
     );
 };

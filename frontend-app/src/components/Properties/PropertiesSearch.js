@@ -6,6 +6,7 @@ import Search from "./Search";
 import { usePropertiesReducer } from "./Reducer";
 import "./PropertiesUser.css"
 import Property from "./Property.js"
+import Navbar from "../Header/Navbar";
 
 
 const PropertiesSearch = () => {
@@ -45,6 +46,8 @@ const PropertiesSearch = () => {
     }
 
     return (
+        <div>
+            <Navbar className="header2"/>
         <div className="propertiesCity">
             <div className="m-container">
                 <Search onNewProperties={properties => {
@@ -56,6 +59,7 @@ const PropertiesSearch = () => {
                 <div className="properties">{retrievedProperties}</div>
             </div>
         </div>
+            </div>
     );
 };
 
