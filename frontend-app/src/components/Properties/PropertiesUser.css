@@ -13,23 +13,18 @@
 
     align-content: center;
     justify-content: center;
-    display: flex;
-    width: 100%;
     padding-bottom: 40px;
+    display:inline-block;
+    font-size: 16px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
 
 }
 
 .subDivProperties {
 
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    -webkit-border-radius: 10px 10px 10px 10px;
-    width: 80%;
-    margin-left:50px;
-    margin-top:20px;
-    border-top:2px;
-    -webkit-box-shadow: 0px 3px 28px -7px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 3px 28px -7px rgba(0,0,0,0.4);
+    border-radius: 4px;
+
     box-shadow: 0px 3px 28px -7px rgba(0,0,0,0.4);
 }
 .mis_chozas{
@@ -39,22 +34,38 @@
     margin: 40px 0px 10px 0px;
 }
 .servicesDiv{
-    display: flex;
+
     padding: 5px;
     margin: 0px 20px 0px 20px;
-    float:right;
+    float:left;
+    display:block
 }
 
-.propertyDivToilets{
-    padding: 5px 3px 5px 2px;
-}
-.propertyDivBeds{
-    padding: 5px 3px 5px 2px;
-}
-.propertyDivRooms{
-    padding: 5px 3px 5px 2px;
-}
+
+
 .propertyDivTitle span{
     font-size: 1.5em;
     font-weight: bold;
 }
+.pack-rooms {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+     font-size: 14px;
+     -webkit-font-smoothing: antialiased;
+     color: #333333;
+     box-sizing: border-box;
+     padding: 15px 15px 15px 12px;
+    display: inline-grid;
+
+    width:500px;
+ }
+.cardContent {
+display:inline-block;
+    width:50%;
+}
+.m-container {
+    padding: 80px 60px;
+}
+

@@ -1,6 +1,8 @@
 import React, {useReducer, useState} from "react";
 import Calendario from "../Calendario";
 
+import "../Profilechange/Profilechange.css";
+
 
 const SEARCH_CITY = 'SEARCH_CITY';
 const SEARCH_BEDS = 'SEARCH_BEDS';
@@ -97,7 +99,7 @@ const Search = (props) => {
 
     return (
 
-        <div id="form_ini">
+        <div id="form_ini" style={{border: "1px solid black"}}>
             <h1>Reserva alojamientos y experiencias únicas.</h1>
             <form>
                 <div className="description_input">

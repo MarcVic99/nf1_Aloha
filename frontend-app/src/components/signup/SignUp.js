@@ -6,79 +6,21 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import './SignUp.css';
-import LogIn from '../login/LogIn';
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import clsx from "clsx";
 import InputAdornment from "@material-ui/core/InputAdornment";
+
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+
+import './SignUp.css';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const useStyles = makeStyles(theme => ({
-    '@global': {
-        body: {
-            backgroundColor: theme.palette.common.white,
-        },
-    },
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
 
-const styles = theme => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500],
-    },
-});
+export default function SignUp( props) {
 
-const DialogTitle = withStyles(styles)(props => {
-    const { children, classes, onClose, ...other } = props;
-    return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            {onClose ? (
-                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon/>
-                </IconButton>
-            ) : null}
-        </MuiDialogTitle>
-    );
-});
-
-export default function SignUp() {
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const classes = useStyles();
+    const { handleOpenLogIn } = props;
 
 
     const [name, setName] = useState('');
@@ -88,7 +30,8 @@ export default function SignUp() {
     const [confirm_pass, setConfirmPass] = useState();
     const [hasagreed, setHasAgreed] = useState('');
     const [error, setError] = useState('');
-
+    const [showPassword, setshowPassword] = React.useState(false);
+    const [showPassword2, setshowPassword2] = React.useState(false);
 
     const data = {
         name: name,
@@ -98,21 +41,12 @@ export default function SignUp() {
         confirm_pass: confirm_pass
     }
 
-    const [values, setValues] = React.useState({
-        showPassword: false,
-    });
-
-
-    const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setshowPassword({...showPassword, showPassword: !showPassword.showPassword});
     };
 
-    const handleMouseDownPassword = event => {
-        event.preventDefault();
+    const handleClickShowPassword2 = () => {
+        setshowPassword2({ ...showPassword2, showPassword2: !showPassword2.showPassword2});
     };
 
 
@@ -131,17 +65,18 @@ export default function SignUp() {
             };
 
             fetch(url, options)
+
                 .then(response => {
                     if (response.status === 404) {
                         response.json().then((resp => {
                             return setError(resp.errors);
-                            return (alert(resp.errors))
+                            //return Promise.reject(alert(resp.errors))
                         }))
                     } else if (response.status === 200) {
                         response.json().then((resp => {
                             //console.warn("resp",resp);
                             setError('');
-                            return Promise.reject(alert(`Aloha ${resp.name} :)`))
+                            return Promise.reject(alert(`Bienvenido ${name} `))
 
                         }))
 
@@ -151,24 +86,48 @@ export default function SignUp() {
                 alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
 
             });
+
         };
+
         fetchdata()
     }
+
 
     return (
         <Container component="main" maxWidth="xs" className={'contain'}>
             <div>
-
-                <form className={classes.form}>
+                <form>
                     <Grid container spacing={2}>
 
                         <Grid item xs={12} align={"center"} className={"o"}>
-                            <hr/>
-                            o
+                            <hr className="hr"/>
+                            <p className="letrao">o</p>
+
                         </Grid>
 
                         <Typography component="h1" variant="h5" className={"titleSignUp"}>
-                            Regístrate con <Link href="#" className={"LoginOut"}>Facebook</Link> o <Link href="#" className={"LoginOut"}>Google</Link>
+                            Regístrate con &nbsp;
+
+                            <FacebookLogin
+                                id="facebook"
+                                appId="1088597931155576"
+                                autoLoad={false}
+                                textButton="Facebook"
+                                fields="name,email,picture"
+                                scope="public_profile,user_friends,user_actions.books"
+                                size="200px"
+
+                            />
+                            &nbsp;
+                            <GoogleLogin
+                                className="google"
+                                clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                                buttonText="Google"
+                                onSuccess={''}
+                                onFailure={''}
+                                cookiePolicy={'single_host_origin'}
+                            />
+
                         </Typography>
 
                         <Grid item xs={12}>
@@ -215,8 +174,7 @@ export default function SignUp() {
                                 required
                                 fullWidth
                                 id="password"
-                                className={clsx(classes.margin, classes.textField)}
-                                type={values.showPassword ? 'text' : 'password'}
+                                type={showPassword.showPassword? 'text' : 'password'}
                                 value={password}
                                 autoComplete="current-password"
                                 onChange={event => setPassword(event.target.value)}
@@ -225,10 +183,9 @@ export default function SignUp() {
                                         <IconButton
                                             aria-label="toggle password visibility"
                                             onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
                                             size={"small"}
                                         >
-                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            {showPassword.showPassword ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 }}
@@ -237,12 +194,11 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                label="Establece una contraseña"
+                                label="Repite la contraseña"
                                 required
                                 fullWidth
                                 id="password"
-                                className={clsx(classes.margin, classes.textField)}
-                                type={values.showPassword ? 'text' : 'password'}
+                                type={showPassword2.showPassword2 ? 'text' : 'password'}
                                 value={confirm_pass}
                                 autoComplete="current-password"
                                 onChange={event => setConfirmPass(event.target.value)}
@@ -250,20 +206,22 @@ export default function SignUp() {
                                     endAdornment: <InputAdornment position="end">
                                         <IconButton
                                             aria-label="toggle password visibility"
-                                            onClick={handleClickShowPassword}
-                                            onMouseDown={handleMouseDownPassword}
+                                            onClick={handleClickShowPassword2}
                                             size={"small"}
                                         >
-                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            {showPassword2.showPassword2 ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 }}
                                 variant="outlined"
                             />
                         </Grid>
+
                         <Grid item xs={12} >
+
                             <p className={"error"}> {error} </p>
                         </Grid>
+
                         <Grid item xs={12}>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary"/>}
@@ -274,8 +232,6 @@ export default function SignUp() {
                             />
                         </Grid>
                     </Grid>
-
-
                 </form>
 
                 <Button
@@ -295,20 +251,11 @@ export default function SignUp() {
                     <Grid item>
                         <span>¿Ya tienes una cuenta de Airbnb? </span>
 
-                        <Link onClick={handleClickOpen} className="open">
+                        <Link onClick={handleOpenLogIn} className="open link">
                             Inicia sesión
                         </Link>
                     </Grid>
                 </Grid>
-
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        <hr/>
-                    </DialogTitle>
-
-                    <LogIn/>
-
-                </Dialog>
             </div>
 
         </Container>

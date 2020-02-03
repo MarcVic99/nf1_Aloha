@@ -1,0 +1,27 @@
+
+.container {
+    width: 300px;
+    height: 150px;
+    background-color: #ccc;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.scroller {
+    position: absolute;
+    transition: transform 350ms;
+    height: 100%;
+    display: flex;
+}
+
+.slide {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: opacity 350ms;
+}

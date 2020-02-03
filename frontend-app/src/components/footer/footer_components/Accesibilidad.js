@@ -1,24 +1,26 @@
 import React from "react";
-import HeaderLogo from "../../Header/HeaderLogo";
-import FooterLinks from "../footer";
-
-
+import Navbar from "../../Header/Navbar";
+import "../FooterStyle.css";
+// import acces from "../../../img/aloha/footer/acces.jpg";
 
 const Accesibilidad = () =>{
 
     return(
         <div className="components_footer">
-            <HeaderLogo/>
-            <h2>Airbnb es para todos</h2>
+            <Navbar class="header2" />
+            <div className="padre">
+                <h1 className="hijo">Aloha es para todos</h1>
+            </div>
+            <div className="padre">
+                <p className="contenido"> Así es como estamos construyendo un Aloha más accesible </p>
+            </div>
 
-            <p>Así es como estamos construyendo un Airbnb más accesible
-            </p>
-            <footer>
-                <FooterLinks />
-            </footer>
+            <div id="logo-container">
+                {/*<img src={acces} alt="Logo" />*/}
+            </div>
         </div>
     );
 
-}
+};
 
 export default Accesibilidad;

@@ -12,7 +12,7 @@
 }
 
 .regedit p {
-  margin: 0px;
+  margin: 0;
   word-wrap: break-word;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
@@ -27,7 +27,9 @@
   font-size: 16px;
   font-weight: 400;
   display: inline-block;
-  padding-left: 12px;
+}
+.editprofile:hover {
+  color: rgb(255, 90, 95);
 }
 
 .aboutinfo {
@@ -38,11 +40,13 @@
   font-size: 16px;
   color: #484848;
   box-sizing: border-box;
-  padding: 12px;
-  border: 1px solid lightgrey;
-  margin-top:10px;
-  margin-bottom:15px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
   border-radius: 4px;
+  transition: box-shadow 200ms ease-in;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .aboutinfo:hover {
@@ -58,13 +62,14 @@
 }
 #icon {
   margin-right: 20px;
+  justify-items: flex-start;
 }
 .changeform {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
   font-size: 14px;
   line-height: 1.43;
-  padding: 0px 20px;
+  padding: 0 20px;
   color: #484848;
   width: 50%;
   float: right;
@@ -82,12 +87,24 @@
   margin-top: 10px;
   margin-bottom: 15px;
   padding: 5px 5px;
-  border: 1px solid lightgrey;
   border-radius: 4px;
+  transition: box-shadow 200ms ease-in;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
 }
 
 .inputfield:hover {
   border: 2px solid darkgrey;
+}
+.inputfield:focus {
+  outline: none;
+}
+.input:hover {
+  border: 2px solid darkgrey;
+}
+.input:focus {
+  outline: none;
 }
 
 .formlabel {
@@ -95,20 +112,17 @@
   font-weight: 600;
   line-height: 1.375em;
   color: #484848;
-  margin-bottom: 10px;
-  margin: 0px;
   word-wrap: break-word;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
-  line-height: 1.375em;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
   white-space: nowrap;
+  margin: 0;
 }
 
-.changebutton,
-.cancelbutton {
+.changebutton {
   cursor: pointer;
   border-radius: 4px;
   text-align: center;
@@ -125,34 +139,15 @@
   width: 30%;
 }
 
-.profilephoto {
+img.profilephoto ::before {
+  content: url(https://a0.muscache.com/defaults/user_pic-225x225.png?v=3);
   border-radius: 50%;
   border: 7px solid #fff;
-  width: 120px;
-  height: 120px;
-
-}
-img.profilephoto {
-  border-radius: 50%;
-  color: rgba(0, 0, 0, 0)
-}
-img:before {
-  content: url(https://a0.muscache.com/defaults/user_pic-225x225.png?v=3) ;
-  border-radius: 50%;
-  border: 7px solid #fff;
-  width: 120px;
-  height: 120px;
-
-}
-a.photoupdate {
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  text-align: left;
-  color: #008489;
-  font-size: 16px;
-  font-weight: 400;
-  overflow: visible;
-
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  margin-right: 5px;
+  background-size: 100%;
 }
 
 .profilephotos {
@@ -161,24 +156,21 @@ a.photoupdate {
   width: 59px;
   height: 59px;
 }
-
-.profilecontainer1 {
-  width: 200px;
-  height: 400px;
+.profilephoto {
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 120px;
+  height: 120px;
+  justify-content: center;
+  display: inline-block;
 }
 
 li {
   color: #484848;
 }
-.formlabel {
-  margin: 0px;
-  word-wrap: break-word;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-    Helvetica Neue, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.375em;
-  color: #484848;
+
+#main {
+  margin-top: 0;
 }
 
 #menu ul li:hover {
@@ -191,11 +183,6 @@ li {
   background-color: #ff5a5f;
 }
 
-button.cancelbutton:hover {
-  border: 2px solid darkgrey;
-  background-color: #ff5a5f;
-}
-
 .marginout {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
     Helvetica Neue, sans-serif;
@@ -203,12 +190,11 @@ button.cancelbutton:hover {
   line-height: 1.43;
   color: #484848;
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
   width: auto;
-  padding: 45px 24px;
+  padding: 70px 24px;
   max-width: 1080px;
   height: 1000px;
+  margin: 20px auto;
 }
 
 .marginin {
@@ -218,7 +204,7 @@ button.cancelbutton:hover {
   line-height: 1.43;
   color: #484848;
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0;
 }
 
 /* Profilephoto js styles */
@@ -253,21 +239,15 @@ button.cancelbutton:hover {
   box-sizing: border-box;
   font: inherit;
   background: transparent;
-  border: 0px;
+  border: 0;
   cursor: pointer;
   user-select: auto;
   text-align: left;
-  color: var(--color-text-link, #008489);
-  font-family: var(
-    --font-font_family,
-    Circular,
-    -apple-system,
-    BlinkMacSystemFont,
-    Roboto,
-    Helvetica Neue,
-    sans-serif
-  );
-  text-decoration: var(--font-link-text-decoration, none);
+  color: #008489;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .profileform {
@@ -278,14 +258,37 @@ button.cancelbutton:hover {
   color: #484848;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
-  margin: 20px 0px;
-  margin: 0px;
   word-wrap: break-word;
-  font-size: 16px;
   font-weight: 400;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
   max-width: 100%;
-  white-space: nowrap;
+  align-items: flex-start;
+  margin: 20px 0;
+  text-align: justify;
+}
+
+/*Profilephoto style*/
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border-color: lightgrey;
+  color: #008489;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

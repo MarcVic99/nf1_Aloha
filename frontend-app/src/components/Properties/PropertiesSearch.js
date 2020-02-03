@@ -6,6 +6,7 @@ import Search from "./Search";
 import { usePropertiesReducer } from "./Reducer";
 import "./PropertiesUser.css"
 import Property from "./Property.js"
+import Navbar from "../Header/Navbar";
 
 
 const PropertiesSearch = () => {
@@ -39,12 +40,14 @@ const PropertiesSearch = () => {
         retrievedProperties = <div className="errorMessage">{errorMessage}</div>;
     } else if (properties) {
 
-        retrievedProperties = properties.map((property, index) => (
-            <Property key={`${index}`} property={property} />
+        retrievedProperties = properties.map((property) => (
+            <Property key={`${property.id}`} property={property} />
         ));
     }
 
     return (
+        <div>
+            <Navbar className="header2"/>
         <div className="propertiesCity">
             <div className="m-container">
                 <Search onNewProperties={properties => {
@@ -56,6 +59,7 @@ const PropertiesSearch = () => {
                 <div className="properties">{retrievedProperties}</div>
             </div>
         </div>
+            </div>
     );
 };
 

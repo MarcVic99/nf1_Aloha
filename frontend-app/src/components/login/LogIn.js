@@ -18,39 +18,12 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import {AuthContext} from "../../App";
-import Dialog from "@material-ui/core/Dialog";
-import {withStyles} from "@material-ui/core";
-import MuiDialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
-import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import SignUp from "../signup/SignUp";
-
-const styles = theme => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500],
-    },
-});
-
-const DialogTitle = withStyles(styles)(props => {
-    const { children, classes, onClose, ...other } = props;
-    return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            {onClose ? (
-                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon/>
-                </IconButton>
-            ) : null}
-        </MuiDialogTitle>
-    );
-});
 
 function LogIn(props) {
+
+
+    const { handleOpenSignUp } = props;
+
     const history = props.history;
     const {dispatch}=React.useContext(AuthContext);
     const [open, setOpen] = React.useState(false);
@@ -69,7 +42,7 @@ function LogIn(props) {
         errorMessage: null,
         isSubmitting:false
     };
-
+    const [error,setError]=useState('');
     const [data, setData] = React.useState(initialState);
 
     const [values, setValues] = useState({
@@ -102,7 +75,6 @@ function LogIn(props) {
                     'Content-Type': 'application/json',
                 },
                 mode: 'cors'
-
             };
 
             fetch(url, options)
@@ -123,8 +95,9 @@ function LogIn(props) {
                     setData({
                         ...data,
                         isSubmitting: false,
-                        errorMessage: error.message || error.statusText
+                        errorMessage: error.message || error.statusText,
                     });
+                    return setError('Usuario o contraseña incorrectos');
                 });
 
         };
@@ -193,7 +166,7 @@ function LogIn(props) {
 
                         </Grid>
                         <Grid item xs={12} >
-                            {/*} <p className={"error"}> {formData.errorMessage} </p>*/}
+                            <p className={"error"}> {error} </p>
                         </Grid>
 
                         <Grid item xs={12}>
@@ -209,6 +182,7 @@ function LogIn(props) {
                     </Grid>
 
                 </form>
+
                 <Button
                     type="submit"
                     disabled={data.isSubmitting}
@@ -226,21 +200,13 @@ function LogIn(props) {
 
                 <Grid container justify="flex-start" className={"fatherLink"}>
                     <Grid item>
-                        <span>¿No tienes cuenta ? </span>
+                        <span>¿ No tienes cuenta ? </span>
 
-                        <Link onClick={handleClickOpen} className="open">
+                        <Link onClick={handleOpenSignUp} className="open link">
                             Registrate
                         </Link>
                     </Grid>
                 </Grid>
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} className={"modalblack"}>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        <hr/>
-                    </DialogTitle>
-
-                    <SignUp/>
-
-                </Dialog>
 
             </div>
 
