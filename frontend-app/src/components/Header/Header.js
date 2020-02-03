@@ -133,7 +133,7 @@ const Header = () => {
 
             <div className="container_form">
                 <div className="container_form2">
-                    <Search/>
+                    <Search />
                 </div>
             </div>
 

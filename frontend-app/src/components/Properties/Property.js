@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './Property.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 });
 
 const Property = ({ property }) => {
+    const [id, setId] = useState([]);
     const classes = useStyles();
 
     return (
@@ -28,9 +29,12 @@ const Property = ({ property }) => {
         <div>
             <div >
                 <div className="PropertyContainer">
+                    <a href={`property/${id}`}>
                     <Card className={classes.card}>
                         <CardActionArea>
                             <CardMedia
+                                value={id}
+                                onChange={event => setId(event.target.value)}
                                 className={classes.media}
                                 image={property.image}
                                 title="Contemplative Reptile"
@@ -45,11 +49,10 @@ const Property = ({ property }) => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
                                 {property.price} euros
-                            </Button>
                         </CardActions>
                     </Card>
+                    </a>
                 </div>
             </div>
         </div>

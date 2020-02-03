@@ -39,8 +39,8 @@ const PropertiesSearch = () => {
         retrievedProperties = <div className="errorMessage">{errorMessage}</div>;
     } else if (properties) {
 
-        retrievedProperties = properties.map((property, index) => (
-            <Property key={`${index}`} property={property} />
+        retrievedProperties = properties.map((property) => (
+            <Property key={`${property.id}`} property={property} />
         ));
     }
 
