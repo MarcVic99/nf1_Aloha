@@ -3,12 +3,14 @@ import Calendario from "../Calendario";
 
 
 const SEARCH_CITY = 'SEARCH_CITY';
+const SEARCH_BEDS = 'SEARCH_BEDS';
 const SEARCH_DATE_FROM = 'SEARCH_DATE_FROM';
 const SEARCH_DATE_TO = 'SEARCH_DATE_TO';
 const RESET = 'RESET';
 
 const initialState = {
     city: '',
+    beds: '',
     dateFrom: new Date(),
     dateTo: new Date(),
 };
@@ -20,6 +22,11 @@ const reducer = (state, action) => {
         case SEARCH_CITY:
             newState.city = action.city;
             return newState;
+
+        case SEARCH_BEDS:
+            newState.beds = action.beds;
+            return newState;
+
         case SEARCH_DATE_FROM:
             newState.dateFrom = action.dateFrom;
             return newState;
@@ -41,13 +48,17 @@ const Search = (props) => {
     const [state, dispatch] = useSearchFormReducer();
 
     const search = searchValue => {
-        fetch(`http://127.0.0.1/api/search/property/city/${searchValue.city}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}`)
+        fetch(`http://127.0.0.1/api/search/property/city/${searchValue.city}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}/beds/${searchValue.beds}`)
             .then(response => response.json())
             .then(response => props.onNewProperties(response.properties));
     };
 
     const handleSearchInputChangesCity = e => {
         dispatch({type: SEARCH_CITY, city: e.target.value});
+    };
+
+    const handleSearchInputChangesBeds = e => {
+        dispatch({type: SEARCH_BEDS, beds: e.target.value});
     };
 
     function appendLeadingZeroes(n){
@@ -58,10 +69,10 @@ const Search = (props) => {
     }
 
     let current_datetime = new Date()
-    //console.log(current_datetime.toString());
+    console.log(current_datetime.toString());
     let formatted_date = current_datetime.getFullYear() + "-" + appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + appendLeadingZeroes(current_datetime.getDate())
 
-    //console.log(formatted_date);
+    console.log(formatted_date);
 
 
     const handleSearchInputChangesDateFrom = e => {
@@ -76,11 +87,12 @@ const Search = (props) => {
         e.preventDefault();
         const res = {
             city: state.city,
-            dateFrom: appendLeadingZeroes(state.dateFrom),
-            dateTo: appendLeadingZeroes(state.dateTo),
+            beds: state.beds,
+            dateFrom: state.dateFrom,
+            dateTo: state.dateTo,
         };
         search(res);
-        //dispatch({type: RESET});
+        dispatch({type: RESET});
     };
 
     return (
@@ -93,9 +105,9 @@ const Search = (props) => {
                 </div>
                 <div className="div_donde" placeholder="Dónde">
                     <input
-                          value={state.city}
-                           onChange={handleSearchInputChangesCity}
-                           type="text" name="location" placeholder="Dónde" className={'inputlocation'}
+                        value={state.city}
+                        onChange={handleSearchInputChangesCity}
+                        type="text" name="location" placeholder="Dónde" className={'inputlocation'}
                     />
                 </div>
 
@@ -103,7 +115,7 @@ const Search = (props) => {
                     <div className="description_input"
 
                          type="date"
-                     ><b>LLEGADA</b>
+                    ><b>LLEGADA</b>
                         <Calendario
                             value={state.dateFrom}
                             onChange={handleSearchInputChangesDateFrom}
@@ -113,17 +125,22 @@ const Search = (props) => {
                 <div className="llegada_salida">
                     <div className="description_input"
                          type="date"
-                     ><b>SALIDA</b>
+                    ><b>SALIDA</b>
                         <Calendario
                             value={state.dateTo}
                             onChange={handleSearchInputChangesDateTo}
                         />
                     </div>
                 </div>
-                <div className="description_input"><b>HUÉPEDES</b>
+                <div className="description_input">
+                    <b>HUÉPEDES</b>
                 </div>
                 <div className="input_huespedes">
-                    <input type="text" name="location" placeholder="Huéspedes" className="inputhuespedes"/>
+                    <input
+                        value={state.beds}
+                        onChange={handleSearchInputChangesBeds}
+                        type="text" name="Huéspedes" placeholder="Huéspedes" className="inputhuespedes"
+                    />
                 </div>
 
 

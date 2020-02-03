@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './Property.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 });
 
 const Property = ({ property }) => {
+    const [id, setId] = useState([]);
     const classes = useStyles();
 
     return (
@@ -28,28 +29,30 @@ const Property = ({ property }) => {
         <div>
             <div >
                 <div className="PropertyContainer">
-                    <Card className={classes.card}>
-                        <CardActionArea>
-                            <CardMedia
-                                className={classes.media}
-                                image={property.image}
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {property.nameHeader}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {property.city}.rooms: {property.rooms}.beds: {property.beds}.toilets: {property.toilets}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
+                    <a href={"/property/id"}>
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardMedia
+                                    value={id}
+                                    onChange={event => setId(event.target.value)}
+                                    className={classes.media}
+                                    image={property.image}
+                                    title="Contemplative Reptile"
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {property.nameHeader}
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p">
+                                        {property.city}.rooms: {property.rooms}.beds: {property.beds}.toilets: {property.toilets}
+                                    </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                            <CardActions>
                                 {property.price} euros
-                            </Button>
-                        </CardActions>
-                    </Card>
+                            </CardActions>
+                        </Card>
+                    </a>
                 </div>
             </div>
         </div>
