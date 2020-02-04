@@ -3,13 +3,14 @@ import React, { useReducer, useEffect } from "react";
 import CommentsList from "./Comments";
 import spinner from "./ajax-loader.gif"
 import SearchCity from "./SearchCity";
-import { initialState, reducerData } from "./Reducer";
+import { usePropertiesReducer} from "./Reducer";
 import "./PropertiesList.css"
 import Property from "./Property.js"
+import Navbar from "../Header/Navbar";
 
 
 const PropertiesCity = () => {
-    const [state, dispatch] = useReducer(reducerData, initialState);
+    const [state, dispatch] = usePropertiesReducer();
     const { properties, errorMessage, loading } = state;
 
     useEffect(() => {
@@ -53,17 +54,21 @@ const PropertiesCity = () => {
         retrievedProperties = <div className="errorMessage">{errorMessage}</div>;
     } else if (properties) {
 
-        retrievedProperties = properties.map((property, index) => (
-            <Property key={`${index}`} property={property} />
+        retrievedProperties = properties.map((property, id) => (
+            <Property key={`${property.id}`} property={property} />
         ));
     }
 
     return (
+        <div>
+        <Navbar className="header2"/>
+
         <div className="propertiesCity">
             <div className="m-container">
                 <SearchCity searchCity={searchCity}/>
                 <div className="properties">{retrievedProperties}</div>
             </div>
+        </div>
         </div>
     );
 };

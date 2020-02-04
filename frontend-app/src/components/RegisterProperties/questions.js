@@ -71,7 +71,7 @@ export default function Questionnaire (props) {
                 .then(responseJson => {
                     setDataToRedirect(responseJson);
 
-                    history.push(`/property`);
+                    history.push(`/property/`);
 
 
 

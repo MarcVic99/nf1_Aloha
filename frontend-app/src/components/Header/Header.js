@@ -1,63 +1,73 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import "../Aloha.css"
-import Calendario from "../Calendario";
 import PropertiesList from "../Properties/PropertiesList";
 import ModalProfile from "../Profilechange/ModalProfile";
+import Search from "../Properties/Search";
+import {usePropertiesReducer} from "../Properties/Reducer";
+import spinner from "../Properties/ajax-loader.gif";
+import Property from "../Properties/Property";
+import PropertiesSearch from "../Properties/PropertiesSearch";
 
 const Header = () => {
 
-return (
+    const [state, dispatch] = usePropertiesReducer();
+    const { properties, errorMessage, loading } = state;
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:80//api/search/city/barcelona')
+            .then(response => response.json())
+            .then(payload => {
+                if (payload.status === 'succes') {
+                    dispatch({
+                        type: 'SEARCH_PROPERTIES_SUCCESS',
+                        payload: payload.properties
+                    });
+                } else {
+                    dispatch({
+                        type: 'SEARCH_PROPERTIES_FAILURE',
+                        error: payload
+                    });
+                }
+            });
+
+    }, [])
+
+
+    let retrievedProperties = <div/>;
+    if (loading && !errorMessage) {
+        retrievedProperties = <img className="spinner" src={spinner} alt="Loading spinner"/>;
+    } else if (errorMessage) {
+        retrievedProperties = <div className="errorMessage">{errorMessage}</div>;
+    } else if (properties) {
+
+        retrievedProperties = properties.map((property) => (
+            <Property key={`${property.id}`} property={property}/>
+        ));
+    }
+
+
+    return (
     <div className="section_head">
 
                 <Navbar class="header1"/>
 
             <div className="container_form">
                 <div className="container_form2">
-                    <div id="form_ini">
-                        <h1>Reserva alojamientos y experiencias únicas.</h1>
-                        <form action="/action_page.php">
-                            <div className="description_input"><b>DÓNDE</b>
 
-                            </div>
-                            <div className="div_donde" placeholder="Dónde">
-                                <input type="text" name="location" placeholder="Dónde" className={'inputlocation'}/>
-                            </div>
+                    <div className="propertiesCity">
+                        <div className="m-container">
 
-                            <div className="llegada_salida">
-                                <div className="description_input"><b>LLEGADA</b>
-                                    <Calendario/>
-                                </div>
-                                {/*<div className={'divinputlocation2'}>*/}
-                                {/*    <input className="locat1" type="text" name="location" placeholder="dd/mm/aaaa"/>*/}
-                                {/*</div>*/}
-                            </div>
-                            {/*placeholder="MM/dd/yyyy"*/}
-                            <div className="llegada_salida">
-                                <div className="description_input"><b>SALIDA</b>
-                                    <Calendario/>
+                                <Search onNewProperties={properties => {
+                                    dispatch({
+                                        type: "SEARCH_PROPERTIES_SUCCESS",
+                                        payload: properties
+                                    });
+                                }}/>
+                                {/*<PropertiesSearch retrievedPropertiesRedirect = {retrievedProperties}/>*/}
 
-                                </div>
-                                {/*<div className="divfecha1">*/}
-                                {/*    <input className="locat2" type="text" name="location" placeholder="dd/mm/aaaa"/>*/}
-                                {/*</div>*/}
-                            </div>
-
-                            <div className="description_input"><b>HUÉPEDES</b>
-                            </div>
-                            <div className="input_huespedes">
-                                <input type="text" name="location" placeholder="Huéspedes" className="inputhuespedes"/>
-                            </div>
-
-
-                            <div className="div_find">
-                                <button id="find" type="submit">
-                                    <span><b>Buscar</b></span>
-                                </button>
-                            </div>
-
-                        </form>
-
+                            <div className="properties">{retrievedProperties}</div>
+                        </div>
                     </div>
                 </div>
             </div>
