@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 
 import { AuthContext } from "../../App";
 import FaceIcon from "@material-ui/icons/Face";
-import FooterLinks from "../footer/footer";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import Navbar from "../Header/Navbar";
@@ -121,10 +120,6 @@ export default function Profile() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer>
-        <FooterLinks />
-      </footer>
     </div>
   );
 }
