@@ -3,14 +3,10 @@ import React, {useEffect, useReducer, useState} from 'react';
 import './PropertiesList.css'
 import spinner from "./ajax-loader.gif"
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import PropertiesCity from "./PropertiesCity";
+import CarouselItem from "./CarouselItem";
+import CommentsList from "./Comments";
 
 
 const useStyles = makeStyles({
@@ -90,35 +86,72 @@ function PropertiesList(props) {
     const hasData = state.properties !== '';
     if (hasData) {
         return(
-            <div>
+            <div id="main">
                 <header className="headerProperty">
                   <PropertiesCity/>
                 </header>
-                <div >{state.properties.map(property =>
-                    <div className="PropertyContainer">
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image={property.image}
-                                    title="Contemplative Reptile"
-                                />
+                <div >{state.properties.map(property => (
+
+
+                    <div className="pack-rooms">
+                        <div className="mapDivProperties">
+                            <div className="subDivProperties">
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {property.nameHeader}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {property.city}.rooms: {property.rooms}.beds: {property.beds}.toilets: {property.toilets}
-                                    </Typography>
+                                    <CarouselItem />
+                                    <div className="propertyDivTitle">
+                                        <span>{property.title}</span>
+                                    </div>
+                                    <div className="propertyDiv">
+                                        {" "}
+                                        <span>{property.description}</span>
+                                    </div>
                                 </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary">
-                                    {property.price} €
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </div>)}
+                                <div className="propertydetails">
+                                    <CardContent className="cardContent">
+                                        <h3>Dirección</h3>
+                                        <div className="propertyDiv">
+                                            {" "}
+                                            <span>{property.address}</span>
+                                        </div>
+                                        <div className="propertyDiv">
+                                            {" "}
+                                            <span>{property.city}</span>
+                                        </div>
+                                        <div className="propertyDiv">
+                                            {" "}
+                                            <span> {property.country}</span>
+                                        </div>
+                                    </CardContent>
+
+                                    <CardContent className="cardContent">
+                                        <h3>Servicios</h3>
+                                        <div>
+                                            {" "}
+                                            Habitaciones: <span>{property.rooms}</span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            Camas: <span>{property.beds}</span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            Baños: <span> {property.toilets}</span>
+                                        </div>
+                                    </CardContent>
+                                </div>
+                                <CardContent>
+                                    <div className="propertyDiv">
+                                        {" "}
+                                        <h3>Precio:</h3> <span>{property.price} EUR/noche</span>
+                                    </div>
+                                </CardContent>
+                                <CommentsList />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+
                 </div>
             </div>
         );

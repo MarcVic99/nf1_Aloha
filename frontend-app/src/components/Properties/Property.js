@@ -3,20 +3,19 @@ import './Property.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
+import CarouselItem from "./CarouselItem";
 
 
 const useStyles = makeStyles({
     card: {
-        width: 395,
+        width: 400,
+
     },
     media: {
-        height: 140,
+        height: 170,
+        marginBottom: 30,
     },
 });
 
@@ -26,9 +25,9 @@ const Property = ({ property }) => {
 
     return (
 
-        <div>
-            <div >
-                <div className="PropertyContainer">
+        <div className="pack-rooms">
+            <div className="mapDivProperties">
+                <div className="subDivProperties" >
                     <a href={"/property/id"}>
                         <Card className={classes.card}>
                             <CardActionArea>
@@ -40,17 +39,56 @@ const Property = ({ property }) => {
                                     title="Contemplative Reptile"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {property.nameHeader}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {property.city}.rooms: {property.rooms}.beds: {property.beds}.toilets: {property.toilets}
-                                    </Typography>
+                                    {/*<CarouselItem*/}
+                                    {/*/>*/}
+                                    <div className="propertyDivTitle">
+                                        <span>{property.title}</span>
+                                    </div>
+                                    <div className="propertyDiv">
+                                        {" "}
+                                        <span>{property.description}</span>
+                                    </div>
+                                </CardContent>
+                                <div className="propertydetails">
+                                    <CardContent className="cardContent">
+                                        <h3>Dirección</h3>
+                                        <div className="propertyDiv">
+                                            {" "}
+                                            <span>{property.address}</span>
+                                        </div>
+                                        <div className="propertyDiv">
+                                            {" "}
+                                            <span>{property.city}</span>
+                                        </div>
+                                        <div className="propertyDiv">
+                                            {" "}
+                                            <span> {property.country}</span>
+                                        </div>
+                                    </CardContent>
+
+                                    <CardContent className="cardContent">
+                                        <h3>Servicios</h3>
+                                        <div>
+                                            {" "}
+                                            Habitaciones: <span>{property.rooms}</span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            Camas: <span>{property.beds}</span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            Baños: <span> {property.toilets}</span>
+                                        </div>
+                                    </CardContent>
+                                </div>
+                                <CardContent>
+                                    <div className="propertyDiv">
+                                        {" "}
+                                        <h3>Precio:</h3> <span>{property.price} EUR/noche</span>
+                                    </div>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
-                                {property.price} euros
-                            </CardActions>
                         </Card>
                     </a>
                 </div>

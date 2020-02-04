@@ -126,7 +126,7 @@ export default function MenuListComposition() {
                     <a href={APP_ROOT}>
                       <MenuItem className="MenuItem" onClick={handleClose}>
                         {state.booleanAuth && (
-                          <span onClick={() => dispatch({ type: "LOGOUT" })}>
+                          <span className="box_profile" onClick={() => dispatch({ type: "LOGOUT" })}>
                             Cerrar sesion
                           </span>
                         )}

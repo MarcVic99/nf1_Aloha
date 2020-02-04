@@ -1,8 +1,7 @@
-import "./Carousel.css"
+import "./Carousel.css";
 
 import Carousel from "./Carousel";
 import React from "react";
-import ReactDOM from "react-dom";
 
 const slides = [
   {
@@ -16,7 +15,8 @@ const slides = [
   {
     title: "Property photo 3",
     color: "#FBA434",
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgeeTmhqRAOsP7wZ5zPj0PpJ0Myxf0CbGDjUyvPhe7HMqeca5baw&s"
+    src:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgeeTmhqRAOsP7wZ5zPj0PpJ0Myxf0CbGDjUyvPhe7HMqeca5baw&s"
   }
 ];
 
@@ -26,31 +26,28 @@ export default function CarouselItem() {
     total: slides.length,
     enabled: true,
     useLoaded: false,
-    speed: 2000
+    speed: 4000
   });
 
   return (
-    
-      
-      <div className="container">
-        <div
-          className="scroller"
-          style={{
-            transform: `translate3d(-${offset * 300}px,0,0)`,
-            width: `${slides.length * 300}px`
-          }}
-        >
-          {slides.map((slide, index) => (
-            <div
-              key={slide.title}
-              className="slide"
-              style={{ href: "slide.src"}}
-            >
-              {slide.title}
-            </div>
-          ))}
-        </div>
+    <div className="container">
+      <div
+        className="scroller"
+        style={{
+          transform: `translate3d(-${offset * 300}px,0,0)`,
+          width: `${slides.length * 300}px`
+        }}
+      >
+        {slides.map((slide, index) => (
+          <div
+            key={slide.title}
+            className="slide"
+            style={{ href: "slide.src" }}
+          >
+            {slide.title}
+          </div>
+        ))}
       </div>
-    
+    </div>
   );
 }

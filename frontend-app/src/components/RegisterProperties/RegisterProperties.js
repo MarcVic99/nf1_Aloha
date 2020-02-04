@@ -6,7 +6,7 @@ import React from "react";
 
 export default function RegisterProperties() {
   return (
-    <div>
+    <div id="main">
       <Navbar class="header2" />
       <div className="main_div">
         <div>

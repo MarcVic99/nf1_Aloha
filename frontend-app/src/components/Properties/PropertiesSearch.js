@@ -30,7 +30,7 @@ const PropertiesSearch = () => {
                 }
             });
 
-    }, [])
+    }, []);
 
 
     let retrievedProperties = <div/>;
@@ -56,7 +56,9 @@ const PropertiesSearch = () => {
                             payload: properties
                         });
                     }}/>
+
                     <div className="properties">{retrievedProperties}</div>
+
                 </div>
             </div>
         </div>
