@@ -1,8 +1,10 @@
+
+
 *{ /* reset settings */
     margin: 0;
     padding: 0;
     list-style: none;
-    text-decoration:none;
+    text-decoration:none!important;
     outline: none;
     box-sizing: border-box;  /*the common values for box-sizing*/
     color:inherit;
@@ -17,14 +19,16 @@ body, html { /* reset settings */
     height: 100%!important; /*default width and height*/
     font-family: 'Open Sans', sans-serif;
 }
-
+#main {
+    padding-bottom: 100px;
+}
 .modalblack{
     background-color:rgba(0,0,0,0.7);
 
 }
 .section_head{
     width:100%!important;
-    height:833px!important;
+    height:933px!important;
     position:static!important;
     background-image: url("../img/aloha/luxe2.jpg");
     background-size:cover!important;
@@ -32,54 +36,94 @@ body, html { /* reset settings */
     margin-bottom:100px!important;
 }
 
-#header{
+.header1{
     width:100%;
     height:70px;
+    padding: 15px 10px;
+}
+
+
+.header2 {
+    height: 80px;
+    margin: 0 10px 20px 10px;
+    border-bottom: 1px solid lightgrey;
+    color: #484848;
+
+}
+
+.m2-container{
+    width:40%;
+    float:left;
 }
 
 .father{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
     width:100px;
     height:70px;
     float:left;
 }
 
+.menuProfile{
+    background: #0cebeb;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 #menu{
     margin:0 auto; /* center automatically */
 }
 
-#menu ul a {
-    color:#fff;
-    font-size:15px;
-    font-family:Arial;
-    font-weight:bold;
-}
-
-#menu .box{
-    float:right;
-}
-
-#menu ul{
+#menu ul {
+    margin-right:10px!important;
     display:flex;
     float:right;
 }
 
-#menu ul li {
+#menu ul a {
+    color:black!important;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
+#menu ul span {
+    color:black!important;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+#menu ul .limenu {
     height:67px;
     padding:0 20px;
     display: flex;
     align-items: center; /* alineacion vertical */
     justify-content: center;     /* alineacion horizontal */
+    color:white;
 }
 
-#menu ul li:hover {
+#menu ul .limenu:hover {
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: white;
-    margin-bottom:-20px;
 }
+
+.header2 #menu ul .limenu {
+    color: #484848!important;
+}
+
+.header2 #menu ul .limenu:hover {
+    border-bottom: 2px solid darkgrey;
+    margin-bottom: -10px;
+}
+
+
+#menu .box{
+    float:right;
+}
+
 
 .container_form{
     width:100%;
@@ -93,20 +137,23 @@ body, html { /* reset settings */
     margin:0 auto;
 }
 
+.container_form3{
+    width:40%;
+    height:400px;
+}
 #form_ini{
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    border: 0px solid #000000;
     background-color:white;
     width:360px;
-    height:500px;
+    height:480px;
     padding:38px 38px 50px 38px;
     font-family: Verdana, Arial, Helvetica, sans-serif;color:#423F3E;
 }
 
 #form_ini h1{
-    font-size:2em;
+    font-size:1.55em;
     margin-bottom:30px;
 }
 
@@ -119,7 +166,7 @@ body, html { /* reset settings */
     margin-left:-2px!important;
 }
 .inputlocation2{
-    border-radius:4px 0px 0px 4px;
+    border-radius:4px 0 0 4px;
 }
 .inputhuespedes{
     font-size:1em;
@@ -144,7 +191,7 @@ body, html { /* reset settings */
     font-size:1em;
     width:100%;
     border:1px solid #D4D1D0;
-    border-radius:0px 4px 4px 0px;
+    border-radius:0 4px 4px 0;
     border-left:none;
 }
 
@@ -188,23 +235,21 @@ body, html { /* reset settings */
     display:block;
     text-align:right;
 }
-.dist_img{
-    margin-left:20px;
+
+.nuevo{
+    height:320px;
+    width:320px;
+    display:inline-block;
+    float:left;
 }
 #find{
     background-color:#FF5A5F;
     color:white;
     padding:14px;
-    border:0px;
+    border:0;
     border-radius:4px;
     font-size:1em;
 }
-
-
-
-
-
-
 
 /* Modal container*/
 .modal {
@@ -269,11 +314,9 @@ body, html { /* reset settings */
 
 
 .mode-exit{
-    top: 0px;
+    top: 0;
     right: 30px;
     font-size: 30px;
-
-
     font-weight: bold;
     text-decoration: none;
     color: #C0BCBB;
@@ -311,11 +354,7 @@ input:focus, input.form-control:focus  {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
-
 }
-
-img{max-width:100%;}
-
 
 .registrarse{
     width:100%;
@@ -328,38 +367,106 @@ img{max-width:100%;}
     background-color:#FF5A5F;
     color:white;
     padding:14px;
-    border:0px;
+    border:0;
     border-radius:4px;
     font-size:1em;
 }
 
 
 
-
-
-
-#div_recomended_general {
-    margin-bottom:60px;
-    width:100%;
-
+.makeStyles-paper-1651 {
+    margin-top:0!important;
 }
 
-
-.div_recomended{
-    width:220px;
-    height:300px;
-    background-color: blue;
-
+.makeStyles-paper-69{
+    margin-top:0!important;
 }
 
-
-footer{
+.div_rec_general{
     display:block;
-    margin:25px 0 25px 0;
+}
+#div_recomended_general {
+    text-align:center!important;
+    width:100%;
+    height:auto;
+    position:relative;
+
+}
+
+.ny{
+    background-image:url('../img/aloha/ny.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    position:relative;
+}
+
+
+
+.tailandia{
+    background-image:url('../img/aloha/tailandia.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    display:inline-block;
+    position:relative;
+}
+
+.japon{
+    background-image:url('../img/aloha/japon.jpg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    display:inline-block;
+    position:relative;
+}
+
+.kenia{
+    background-image:url('../img/aloha/kenia.jpeg');
+    background-size:cover;
+    background-position: center;
+    width:320px;
+    height:380px!important;
+    display:inline-block;
+    position:relative;
+}
+
+.dist_img{
+    margin:0 20px 0 20px;
+    display:inline-block;
+}
+.div_bottom{
+    position:absolute;
+    height: 80px;
+    bottom: 0!important;
+    left:0!important;
+    width: 100%;
+    font-size: 2em;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+}
+
+.boximg>img{width:320px;
+    height:380px;}
+
+footer {
+    display: block;
+    clear: both;
+    width: 100%;
+    position: relative;
+    height: 500px;
+    padding-top: 300px;
+
+}
+
+.div_footer li{
+    margin:10px!important;
 }
 
 #div_footer_general {
-    display:inline-block;
     background-color: white;
     font-weight: 500;
     margin:0 auto;
@@ -367,9 +474,6 @@ footer{
     text-align:left;
     display:flex;
     justify-content:center;
-}
-li_footer_title{
-    color:red;
 }
 
 .div_footer{
@@ -398,7 +502,7 @@ h4
 
 hr{
     border-top:10px;
-    color: #939391;
+    color: #939391!important;
     margin-top:25px;
 }
 
@@ -421,6 +525,27 @@ hr{
     padding-top:20px;
 }
 
-.copyright span{
-    padding:15px;
+.copyright span {
+    padding: 15px;
+}
+
+.modalprofileheader{
+    float:right!important;
+}
+
+#main {
+    padding-bottom: 100px;
+}
+
+.propertiesheader{
+    background-color: #F7F3F3!important;
+    width:500px!important;
+    max-height:620px!important;
+    float:left;
+    overflow-y: scroll;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border: 0px solid #000000;
+
 }

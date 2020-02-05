@@ -1,4 +1,6 @@
 <?php
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,13 +15,59 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/property/{id}', 'GetsController@getProperty');
-Route::get('/users/{id}', 'GetsController@getUsers');
-Route::post('/login','PostsController@logIn');
-Route::get('/info/{email}/pass/{password}', 'GetsController@ShowUserInfo');
-Route::post('/post', 'PostsController@createUser');
-Route::post('/signup', 'PostsController@signUp');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/api/signUp', 'AuthController@signUp');
+Route::post('/api/login', 'AuthController@login');
+Route::put('/api/profile/edit', 'AuthController@update');
+
+//Mostrar usuaros
+Route::get('/api/user', 'AuthController@getUser');
+Route::get('/api/users', 'AuthController@showUser');
+Route::get('/api/users/{id}', 'AuthController@showUserByid');
+Route::post('/api/upload/avatar', 'AuthController@upload');
+
+
+Route::group([
+    'prefix' => 'auth',
+], function () {
+
+
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::get('me', 'AuthController@me');
+
 });
+
+//Ctegories
+Route::resource('/api/category', 'CategoryController');
+
+//Properties
+
+Route::resource('/api/property', 'PropertyController');
+Route::post('/api/property/upload', 'PropertyController@upload');
+Route::get('/api/property/image/{filename}', 'PropertyController@getImage');
+Route::get('/api/property/category/{id}', 'PropertyController@getPropertyByCategory');
+Route::get('/api/property/user/{id}', 'PropertyController@getPropertyByUser');
+Route::get('/api/search/property/city/{city}/checkin/{checkin}/checkout/{checkout}/beds/{beds}', 'PropertyController@search');
+Route::get('/api/search/city/{city}', 'PropertyController@searchCity');
+
+//Bookings
+Route::resource('/api/booking', 'BookingsController');
+
+
+//Messages
+Route::resource('/api/message', 'MessagesController');
+
+//Cmments
+Route::resource('/api/comment', 'CommentsController');
+
+//Map
+Route::resource('/api/maps', 'MapController');
+
+
+
+
+
+
+
+

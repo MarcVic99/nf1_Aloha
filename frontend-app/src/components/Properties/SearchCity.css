@@ -1,0 +1,36 @@
+.search {
+    float: top;
+    margin: 50px 30px;
+    border-radius: 4px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+    font-size: 16px;
+
+
+}
+.inputSearch {
+    width: 300px;
+    height: 40px;
+    border-radius: 4px;
+    color: #484848;
+    padding: 0 10px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+    font-size: 16px;
+
+}
+.inputSearch2 {
+    color: #fff;
+    margin: 0 30px;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    background: #008489;
+    font-size: 16px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+
+}
+#main {
+    padding-bottom: 100px;
+}

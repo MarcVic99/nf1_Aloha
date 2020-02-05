@@ -1,0 +1,29 @@
+.MenuItem {
+  height: 40px !important;
+  justify-content: left !important;
+}
+
+.modal1 {
+  border: 1px solid #cfcfcf;
+
+  flex-direction: column !important;
+  background-color: white !important;
+  opacity: 0.8;
+  border-radius: 4px;
+  top: 0 !important;
+  margin-left:50px;
+}
+{/*
+#menu ul li {
+  color: black;
+}
+#menu-list-grow{
+  margin-left: -50px*/}
+
+.box_profile {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+  Helvetica Neue, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+
+}

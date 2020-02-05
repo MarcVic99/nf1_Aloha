@@ -1,0 +1,100 @@
+* {
+    /* reset settings */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box; /*the common values for box-sizing*/
+    color: inherit;
+}
+
+.mapDivProperties {
+    align-content: center;
+    justify-content: center;
+    padding-bottom: 40px;
+    display: inline-block;
+    font-size: 16px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+    color: #484848;
+}
+
+.subDivProperties {
+    border-radius: 4px;
+
+    box-shadow: 0 3px 28px -7px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border: 3px solid lightgrey;
+}
+
+.mis_chozas {
+    text-align: center;
+    font-size: 2em;
+    margin: 40px 0 10px 0;
+}
+
+.servicesDiv {
+    padding: 5px;
+    margin: 0 20px 0 20px;
+    float: left;
+    display: block;
+}
+
+.propertyDivTitle span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #484848;
+}
+
+.pack-rooms {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    padding: 15px 15px 15px 12px;
+    display: inline-grid;
+    align-content: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #484848;
+
+    width: 500px;
+}
+
+.cardContent {
+    display: inline-block;
+    width: 50%;
+}
+
+.m2-container {
+    padding: 80px 60px;
+
+
+}
+
+.m-container {
+    padding: 80px 60px;
+    width: 100%;
+
+}
+
+.propertydetails {
+    display: flex;
+    align-content: flex-start;
+}
+
+.pack-rooms h3 {
+    color: #008489;
+}
+
+.properties {
+    height: auto;
+}
+
+#main {
+    padding-bottom: 100px;
+}

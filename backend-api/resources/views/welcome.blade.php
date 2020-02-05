@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Proyecto original de Aloha Laravel
                 </div>
 
                 <div class="links">

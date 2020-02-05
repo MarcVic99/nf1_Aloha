@@ -1,120 +1,217 @@
-import React, { useState,useEffect } from 'react';
-import './LogIn.css'
+import React, { useState, useEffect } from 'react';
 
-function LogIn() {
+import './LogIn.css';
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [remember, setRemember] = useState('');
-    const [error, setError] = useState('');
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Button from "@material-ui/core/Button";
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Link from "@material-ui/core/Link";
 
-    const data = {
-        email: email,
-        password: password
-    }
+import {withRouter} from 'react-router-dom';
 
-    const handleSubmit = () => {
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import {AuthContext} from "../../App";
+
+function LogIn(props) {
+
+
+    const { handleOpenSignUp } = props;
+
+    const history = props.history;
+    const {dispatch}=React.useContext(AuthContext);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const initialState = {
+        email: '',
+        password: '',
+        errorMessage: null,
+        isSubmitting:false
+    };
+    const [error,setError]=useState('');
+    const [data, setData] = React.useState(initialState);
+
+    const [values, setValues] = useState({
+        showPassword: false,
+    });
+
+    const handleClickShowPassword = () => {
+        setValues({...values, showPassword: !values.showPassword});
+    };
+
+    const handleMouseDownPassword = event => {
+        event.preventDefault();
+    };
+    const handleInputChange = (event) => {
+        setData({...data,[event.target.name]:event.target.value})
+    };
+
+    const handleOnSubmit = event => {
+        event.preventDefault();
+        setData({...data, isSubmitting: true, errorMessage: null
+        });
         const fetchdata = async () => {
-            const url ='https://127.0.0.1:8080/login';
+
+            const url = "http://127.0.0.1:80/api/login";
             const options = {
-                method: 'POST',
-                body: JSON.stringify(data),
-                header: new Headers({
-                    Accept:'application/json',
-                    'Content-type': 'application/json',
-                }),
-                mode:'cors'
-            }
+                method: 'post',
+                body: JSON.stringify({email: data.email, password: data.password}),
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors'
+            };
 
-            return fetch(url, options)
+            fetch(url, options)
+
                 .then(response => {
-                    if (response.status == 200) {
-                        alert();
-                        console.log(response);
+                    if (response.ok) {
+                        return response.json();
                     }
-                    return Promise.reject(response.status);
-                }).catch(error => {
-                    setError(error);
-                    alert(error);// Este catch nos ejecuta algo cuándo no hay respuesta
-
+                    throw response;
+                })
+                .then(responseJson => {
+                    dispatch({
+                        type: "LOGIN",
+                        payload: responseJson
+                    })
+                })
+                .catch(error => {
+                    setData({
+                        ...data,
+                        isSubmitting: false,
+                        errorMessage: error.message || error.statusText,
+                    });
+                    return setError('Usuario o contraseña incorrectos');
                 });
 
-        }
+        };
+
         fetchdata()
-    }
+    };
 
     return (
-        <div>
-            <div className="borde">
-                <div className="marginout">
-                    <div className="marginin">
+        <Container component="main" maxWidth="xs">
 
-                        <div className="mainform">
-                            <form method="post" action='/backend-api/app/Http/Controllers/GetsController.php'>
+            <div>
+                <form>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} align={"center"} className={"h1login"}>
+                            Inicia Sesión
+                            <hr></hr>
+                        </Grid>
 
-                                <div>
-                                    <h4> ~ Aloha ~</h4>
-                                    <br/>
-                                    <hr></hr>
-                                </div>
-                                <br/>
-                                <br/>
-                                <input
-                                    className="inputfield"
-                                    name="email"
-                                    placeholder="Dirección de correo electrónico"
-                                    value={email}
-                                    onChange={event => setEmail(event.target.value)}
-                                    required
+                        <Grid item xs={12}>
+                            <TextField
 
-                                />
-                                <br/>
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Dirección de correo electrónico"
+                                name="email"
+                                autoComplete="email"
+                                type="email"
+                                value={data.email}
+                                onChange={event => handleInputChange(event)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <AccountCircle/>
+                                    </InputAdornment>
+                                }}
+                            />
+                        </Grid>
 
-                                <input
-                                    className="inputfield"
-                                    name="name"
-                                    placeholder="Contraseña"
-                                    value={password}
-                                    onChange={event => setPassword(event.target.value)}
-                                    required
+                        <Grid item xs={12}>
 
+                            <TextField
+                                label="Contraseña"
+                                required
+                                fullWidth
+                                id="password"
+                                type={values.showPassword ? 'text' : 'password'}
+                                value={data.password}
+                                name = "password"
+                                autoComplete="current-password"
+                                onChange={event => handleInputChange(event)}
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            size={"small"}
+                                        >
+                                            {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }}
+                                variant="outlined"
+                            />
 
-                                />
-                                <br/>
-                                <label>
-                                    <input type="checkbox"
-                                           name="hasAgreed"
-                                           value={remember}
-                                           onChange={event => setRemember(event.target.value)}
+                        </Grid>
+                        <Grid item xs={12} >
+                            <p className={"error"}> {error} </p>
+                        </Grid>
 
-                                    />
-                                    <p2>Recordarme</p2>
-                                </label>
+                        <Grid item xs={12}>
+                            <FormControlLabel
+                                type="checkbox"
+                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
+                                label="Recordarme"
+                                name="Remember"
+                                //value={remember}
+                                //onChange={event => setRemember(event.target.value)}
+                            />
+                        </Grid>
+                    </Grid>
 
-                            </form>
-                            <div className="buttonmargin">
+                </form>
 
-                                <div>
+                <Button
+                    type="submit"
+                    disabled={data.isSubmitting}
+                    fullWidth
+                    variant="contained"
+                    text-transform="none"
+                    color="secondary"
+                    size="medium"
+                    className={'botonlogin'}
+                    onClick={handleOnSubmit}
+                >
+                    Inicia Sesión
 
-                                    <button type="submit" onClick={handleSubmit} className="submitbutton">Inicia
-                                        Sesión
-                                    </button>
+                </Button>
 
+                <Grid container justify="flex-start" className={"fatherLink"}>
+                    <Grid item>
+                        <span>¿ No tienes cuenta ? </span>
 
-                                </div>
+                        <Link onClick={handleOpenSignUp} className="open link">
+                            Registrate
+                        </Link>
+                    </Grid>
+                </Grid>
 
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-        </div>
-
-    )
-
+        </Container>
+    );
 }
 
-
-export default LogIn;
+export default withRouter(LogIn);

@@ -1,0 +1,152 @@
+@font-face {
+    font-family: 'Pacifico';
+    src: url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    box-sizing: border-box;
+    color:inherit;
+}
+
+
+
+#footerGeneralDiv {
+    height:auto;
+    width: auto;
+    display: block;
+    position:absolute;
+    left: 10vh;
+    margin-top:400px;
+
+}
+#FooterLinksGeneral li{
+    margin: 3px 0;
+}
+
+#FooterLinksGeneral{
+
+    display: flex;
+    text-align: center;
+
+}
+
+#C1{
+    text-align: left;
+    padding:5vmin;
+
+}
+
+#C2{
+    text-align: left;
+    padding:5vmin;
+
+}
+
+#C3{
+    text-align: left;
+    padding:5vmin;
+
+}
+
+#C4{
+    text-align: left;
+    padding:5vmin;
+
+}
+
+li{
+    list-style-type: none;
+
+}
+
+a{
+    color: #80807c;
+
+}
+
+h4 {
+    font-weight: bold;
+    color: #5e5e5c;
+    padding-bottom: 10px;
+}
+
+#copyrightSpan {
+  /*  background-color: lightseagreen;*/
+    color: #80807c;
+
+}
+#pruebadiv{
+    margin: auto
+
+}
+#SocialNetworks{
+    display: flex;
+
+}
+
+.iconsCont ul {
+    display: flex;
+    padding: 15px;
+
+}
+
+.iconsCont li {
+    padding: 2px;
+
+}
+
+img{
+    size: 2px;
+    margin: 10px 0 1px 0;
+}
+hr{
+    border-color: #ebf2eb;
+}
+
+.padre {
+margin-top:40px;
+    /*IMPORTANTE*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido{
+    font-family:sans-serif !important;
+    font-size:1.2em;
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logo-container>img {
+    max-width: 50%;
+    margin-top:50px;
+}
+
+.hijo{
+    font-size: 4em;
+}
+@media (max-width:400px) {
+    #copyrightSpan{
+
+    }
+    #FooterLinksGeneral{
+        display:none;
+    }
+    hr{
+        display: none;
+    }
+
+
+}
+
+
+

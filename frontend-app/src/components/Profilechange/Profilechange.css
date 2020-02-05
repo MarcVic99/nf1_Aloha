@@ -1,0 +1,294 @@
+#header {
+  border-bottom: 1px solid lightgray;
+}
+
+.intro h1 {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  word-wrap: break-word;
+  font-weight: 400;
+  color: #484848;
+  font-size: 46px;
+}
+
+.regedit p {
+  margin: 0;
+  word-wrap: break-word;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.375em;
+  color: #484848;
+  display: inline-block;
+}
+
+.editprofile {
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-block;
+}
+.editprofile:hover {
+  color: rgb(255, 90, 95);
+}
+
+.aboutinfo {
+  display: flex;
+  width: 100%;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 16px;
+  color: #484848;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  transition: box-shadow 200ms ease-in;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.aboutinfo:hover {
+  border: 2px solid darkgrey;
+}
+
+.profilemargin {
+  width: 100%;
+  float: right;
+}
+.intro {
+  margin-bottom: 40px;
+}
+#icon {
+  margin-right: 20px;
+  justify-items: flex-start;
+}
+.changeform {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+  padding: 0 20px;
+  color: #484848;
+  width: 50%;
+  float: right;
+}
+
+.inputfield {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 16px;
+  color: #484848;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 5px 5px;
+  border-radius: 4px;
+  transition: box-shadow 200ms ease-in;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.inputfield:hover {
+  border: 2px solid darkgrey;
+}
+.inputfield:focus {
+  outline: none;
+}
+.input:hover {
+  border: 2px solid darkgrey;
+}
+.input:focus {
+  outline: none;
+}
+
+.formlabel {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.375em;
+  color: #484848;
+  word-wrap: break-word;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.changebutton {
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  padding: 10px;
+  font-weight: bold;
+  background: rgb(0, 132, 137);
+  border-color: transparent;
+  color: #fff;
+  margin: 20px;
+  min-width: 90px;
+  width: 30%;
+}
+
+img.profilephoto ::before {
+  content: url(https://a0.muscache.com/defaults/user_pic-225x225.png?v=3);
+  border-radius: 50%;
+  border: 7px solid #fff;
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  margin-right: 5px;
+  background-size: 100%;
+}
+
+.profilephotos {
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 59px;
+  height: 59px;
+}
+.profilephoto {
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 120px;
+  height: 120px;
+  justify-content: center;
+  display: inline-block;
+}
+
+li {
+  color: #484848;
+}
+
+#main {
+  margin-top: 0;
+}
+
+#menu ul li:hover {
+  border-bottom: 2px solid darkgrey;
+  margin-bottom: -10px;
+}
+
+.changebutton:hover {
+  border: 2px solid darkgrey;
+  background-color: #ff5a5f;
+}
+
+.marginout {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  box-sizing: border-box;
+  width: auto;
+  padding: 70px 24px;
+  max-width: 1080px;
+  height: 1000px;
+  margin: 20px auto;
+}
+
+.marginin {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Profilephoto js styles */
+
+.photocellout {
+  line-height: 1.43;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-right: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  min-height: 1px;
+  position: relative;
+  width: 33.33333333%;
+  float: left;
+}
+
+.photocellin {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  box-sizing: border-box;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 24px;
+  text-align: center;
+}
+
+.editprofile a {
+  box-sizing: border-box;
+  font: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  user-select: auto;
+  text-align: left;
+  color: #008489;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.profileform {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  font-size: 16px;
+  line-height: 1.43;
+  color: #484848;
+  box-sizing: border-box;
+  display: flex;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: visible;
+  max-width: 100%;
+  align-items: flex-start;
+  margin: 20px 0;
+  text-align: justify;
+}
+
+/*Profilephoto style*/
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border-color: lightgrey;
+  color: #008489;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
