@@ -13,13 +13,13 @@
   top: 0 !important;
   margin-left:50px;
 }
-
+{/*
 #menu ul li {
-  color: #484848;
+  color: black;
 }
 #menu-list-grow{
-  margin-left: -50px
-}
+  margin-left: -50px*/}
+
 .box_profile {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
   Helvetica Neue, sans-serif;

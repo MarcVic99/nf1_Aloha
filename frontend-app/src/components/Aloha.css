@@ -51,51 +51,79 @@ body, html { /* reset settings */
 
 }
 
-
+.m2-container{
+    width:40%;
+    float:left;
+}
 
 .father{
     display: flex!important;
-    justify-content: center;
-    align-items: center;
+    justify-content: center!important;
+    align-items: center!important;
     width:100px;
     height:70px;
     float:left;
 }
 
+.menuProfile{
+    background: #0cebeb;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 #menu{
     margin:0 auto; /* center automatically */
 }
 
+#menu ul {
+    margin-right:10px!important;
+    display:flex;
+    float:right;
+}
+
 #menu ul a {
-    color: #fff;
+    color:black!important;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
 }
 
-#menu .box{
-    float:right;
+#menu ul span {
+    color:black!important;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
 }
 
-#menu ul{
-    display:flex;
-    float:right;
-}
-
-#menu ul li {
+#menu ul .limenu {
     height:67px;
     padding:0 20px;
     display: flex;
     align-items: center; /* alineacion vertical */
     justify-content: center;     /* alineacion horizontal */
+    color:white;
 }
 
-#menu ul li:hover {
+#menu ul .limenu:hover {
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: white;
-    margin-bottom:-20px;
 }
+
+.header2 #menu ul .limenu {
+    color: #484848!important;
+}
+
+.header2 #menu ul .limenu:hover {
+    border-bottom: 2px solid darkgrey;
+    margin-bottom: -10px;
+}
+
+
+#menu .box{
+    float:right;
+}
+
 
 .container_form{
     width:100%;
@@ -109,11 +137,14 @@ body, html { /* reset settings */
     margin:0 auto;
 }
 
+.container_form3{
+    width:40%;
+    height:400px;
+}
 #form_ini{
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    border: 0 solid #000000;
     background-color:white;
     width:360px;
     height:480px;
@@ -504,4 +535,17 @@ hr{
 
 #main {
     padding-bottom: 100px;
+}
+
+.propertiesheader{
+    background-color: #F7F3F3!important;
+    width:500px!important;
+    max-height:620px!important;
+    float:left;
+    overflow-y: scroll;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border: 0px solid #000000;
+
 }

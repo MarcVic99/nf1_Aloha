@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../Header/Navbar";
 import "../FooterStyle.css";
-// import acces from "../../../img/aloha/footer/acces.jpg";
+//import acces from "../../../img/aloha/footer/acces.jpg";
 
 const Accesibilidad = () =>{
 
@@ -16,7 +16,7 @@ const Accesibilidad = () =>{
             </div>
 
             <div id="logo-container">
-                {/*<img src={acces} alt="Logo" />*/}
+                {/* <img src={acces} alt="Logo" />*/}
             </div>
         </div>
     );
