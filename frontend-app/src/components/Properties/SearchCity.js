@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./SearchCity.css";
 import { Link } from 'react-router-dom';
+import Navbar from "../Header/Navbar";
 
 
 const SearchCity = ({ searchCity }) => {
@@ -22,6 +23,7 @@ const SearchCity = ({ searchCity }) => {
 
     return (
         <div className="search">
+
         <form>
             <input className="inputSearch"
                    value={searchValue}

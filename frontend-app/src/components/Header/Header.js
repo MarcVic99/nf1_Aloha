@@ -64,8 +64,9 @@ const Header = () => {
                                         payload: properties
                                     });
                                 }}/>
-                                {/*<PropertiesSearch retrievedPropertiesRedirect = {retrievedProperties}/>*/}
 
+                        </div>
+                        <div className="propertiesheader">
                             <div className="properties">{retrievedProperties}</div>
                         </div>
                     </div>

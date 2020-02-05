@@ -22,7 +22,7 @@ import Booking from "./components/booking/Booking";
 import PropertyID from "./components/Properties/PropertyID";
 import PropertiesList from "./components/Properties/PropertiesList";
 
-import {APP_ROOT, APP_PROPERTY, APP_PROFILE, APP_USER_EDIT_PHOTO, APP_PROFILE_EDIT, APP_REGISTER_PROPERTIES} from "./routes/routes";
+import {APP_ROOT, APP_PROPERTY, APP_PROFILE, APP_USER_EDIT_PHOTO, APP_PROFILE_EDIT, APP_REGISTER_PROPERTIES, APP_ACCOUNT} from "./routes/routes";
 import FooterLinks from "./components/footer/footer";
 
 
@@ -107,16 +107,16 @@ function App() {
                 <Route path="/myproperty" exact>
 
                 </Route>
-                <Route path="/" exact>
+                <Route path={APP_ROOT} exact>
                     <Aloha />
                 </Route>
-                <Route exact path="/profile">
+                <Route exact path={APP_PROFILE}>
                     <Profile />
                 </Route>
-                <Route exact path="/profile/edit">
+                <Route exact path={APP_PROFILE_EDIT}>
                     <Changeprofile />
                 </Route>
-                <Route exact path="/user/edit-photo">
+                <Route exact path={APP_USER_EDIT_PHOTO}>
                     <Editphoto />
                 </Route>
                 <Route path= '/HeaderLogo'>
@@ -149,7 +149,7 @@ function App() {
                 <Route exact path="/datos de la empresa">
                     <DatosDeLaEmpresa />
                 </Route>
-                <Route exact path="/account">
+                <Route exact path={APP_ACCOUNT}>
                     <Account />
                 </Route>
                 <Route exact path="/search/property">

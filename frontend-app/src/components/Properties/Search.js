@@ -99,7 +99,7 @@ const Search = (props) => {
 
     return (
 
-        <div id="form_ini" style={{border: "1px solid black"}}>
+        <div id="form_ini">
             <h1>Reserva alojamientos y experiencias únicas.</h1>
             <form>
                 <div className="description_input">
