@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./SearchCity.css";
-import { Link } from 'react-router-dom';
 
 
 const SearchCity = ({ searchCity }) => {
@@ -21,16 +20,19 @@ const SearchCity = ({ searchCity }) => {
     };
 
     return (
-        <div className="search">
-        <form>
-            <input className="inputSearch"
-                   value={searchValue}
-                    onChange={handleSearchInputChanges}
-                    type="text"
-            />
-            <input onClick={callSearchFunction} className="inputSearch2" type="submit" value="SEARCH"  />
-        </form>
-        </div>
+
+
+            <div className="search">
+            <form>
+                <input className="inputSearch"
+                       value={searchValue}
+                        onChange={handleSearchInputChanges}
+                        type="text"
+                />
+                <input onClick={callSearchFunction} className="inputSearch2" type="submit" value="SEARCH"  />
+            </form>
+            </div>
+
     );
 };
 
