@@ -15,7 +15,7 @@ class PropertyController extends Controller
         $this->middleware('auth:api',
             ['except' =>
             ['index', 'show', 'getPropertyByCategory',
-            'getPropertyByUser', 'getImage', 'search', 'searchCity']]);
+            'getPropertyByUser', 'getImage', 'search', 'searchCity','upload']]);
     }
 
     public function index()

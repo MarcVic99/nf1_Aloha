@@ -2,7 +2,6 @@ import "./Carousel.css"
 
 import Carousel from "./Carousel";
 import React from "react";
-import ReactDOM from "react-dom";
 
 const slides = [
   {
@@ -10,7 +9,7 @@ const slides = [
     color: "#56777A"
   },
   {
-    title: "Property photo2",
+    title: "Property photo 2",
     color: "#84ACAC"
   },
   {

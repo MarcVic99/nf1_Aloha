@@ -278,6 +278,16 @@ img.profilephoto ::before {
     display: inline-block;
 }
 
+.input2 {
+    border-color: lightgrey;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    width:190px;
+}
+
 .btn {
     border-color: lightgrey;
     color: #008489;

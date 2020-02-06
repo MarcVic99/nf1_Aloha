@@ -5,7 +5,8 @@ import React, { useEffect, useState } from "react";
 import { AuthContext } from "../../App";
 import { Link } from "react-router-dom";
 import Navbar from "../Header/Navbar";
-import Profilephoto from "./Profilephoto";
+import Uploadfile from "./Uploadfile";
+
 
 export default function ChangeProfile() {
   const { state, dispatch } = React.useContext(AuthContext);
@@ -80,7 +81,9 @@ export default function ChangeProfile() {
 
       <section>
         <div className="marginout">
-          <Profilephoto />
+
+          <Uploadfile/>
+
 
           <div className="changeform">
             <div>

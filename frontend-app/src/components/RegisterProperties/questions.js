@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import CustomizedButtons from "./Button";
 import ButtonSizes from "./ButtonCounter";
 import './Questions.css';
 import Button from "@material-ui/core/Button";
 import {AuthContext} from "../../App";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
+import {Calendar} from "@material-ui/pickers/views/Calendar/Calendar";
 
 export default function Questionnaire (props) {
  
@@ -119,21 +119,21 @@ export default function Questionnaire (props) {
                     <ButtonSizes count={toilets} setCount={setToilets}/>
                 </div>
 
-                <div id="Q5">
-                    <span className="questionsSpan">País:</span>
-                    <input className="input" value={country} onChange={e => setCountry(e.target.value)} />
+                    <div id="Q5">
+                        <span className="questionsSpan">País:</span>
+                        <input className="input" value={country} onChange={e => setCountry(e.target.value)} />
 
-                </div>
+                    </div>
+                    <div id="Q6">
+                        <span className="questionsSpan">Ciudad:</span>
+                        <input className="input" value={city} onChange={e => setCity(e.target.value)} />
+                    </div>
 
-                <div id="Q6">
-                    <span className="questionsSpan">Ciudad:</span>
-                    <input className="input" value={city} onChange={e => setCity(e.target.value)} />
-                </div>
+                    <div id="Q7">
+                        <span className="questionsSpan">Dirección:</span>
+                        <input className="input" value={address} onChange={e => setAddress(e.target.value)} />
+                    </div>
 
-                <div id="Q7">
-                    <span className="questionsSpan">Dirección:</span>
-                    <input className="input" value={address} onChange={e => setAddress(e.target.value)} />
-                </div>
 
             </div>
         </div>
@@ -170,7 +170,8 @@ export default function Questionnaire (props) {
             <div>
                 <div id="Q11">
                     <span className="questionsSpan">Precio del alojamiento:</span>
-                    <input className="inputprice" value={price} onChange={e => setPrice(e.target.value)} />
+                    <input type="number" min="1" className="inputprice" value={price} onChange={e => setPrice(e.target.value)} />
+
                 </div>
 
                 <div id="Q12">

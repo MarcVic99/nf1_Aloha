@@ -7,7 +7,7 @@ import Search from "../Properties/Search";
 import {usePropertiesReducer} from "../Properties/Reducer";
 import spinner from "../Properties/ajax-loader.gif";
 import Property from "../Properties/Property";
-import PropertiesSearch from "../Properties/PropertiesSearch";
+
 
 const Header = () => {
 
@@ -56,7 +56,7 @@ const Header = () => {
                 <div className="container_form2">
 
                     <div className="propertiesCity">
-                        <div className="m-container">
+                        <div className="m-container2">
 
                                 <Search onNewProperties={properties => {
                                     dispatch({

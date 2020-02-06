@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect } from "react";
 
-import CommentsList from "./Comments";
 import spinner from "./ajax-loader.gif"
 import SearchCity from "./SearchCity";
 import { usePropertiesReducer} from "./Reducer";
@@ -60,8 +59,8 @@ const PropertiesCity = () => {
     }
 
     return (
-        <div>
-        <Navbar className="header2"/>
+        <div id="main">
+        <Navbar class="header2"/>
 
         <div className="propertiesCity">
             <div className="m-container">

@@ -15,7 +15,7 @@ export default function Editphoto() {
 
       setImage(`${fileBase}`);
 
-      console.log(fileBase);
+      //console.log(fileBase);
     };
   };
 
@@ -41,7 +41,7 @@ export default function Editphoto() {
 
         <hr />
         <div style={{ padding: "5px" }}>
-          <p>Número de telefono</p>
+          <p>Número de teléfono</p>
         </div>
       </div>
     </div>

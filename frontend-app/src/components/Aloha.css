@@ -19,7 +19,9 @@ body, html { /* reset settings */
     height: 100%!important; /*default width and height*/
     font-family: 'Open Sans', sans-serif;
 }
-
+#main {
+    padding-bottom: 100px;
+}
 .modalblack{
     background-color:rgba(0,0,0,0.7);
 
@@ -47,8 +49,8 @@ body, html { /* reset settings */
     border-bottom: 1px solid lightgray!important;
 }
 
-.m-container{
-    width:40%;
+.m-container2{
+    width:30%;
     float:left;
 }
 
@@ -89,6 +91,10 @@ body, html { /* reset settings */
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
+}
+
+#menu .box{
+    float:right;
 }
 
 #menu ul .limenu {
@@ -162,7 +168,7 @@ body, html { /* reset settings */
     margin-left:-2px!important;
 }
 .inputlocation2{
-    border-radius:4px 0px 0px 4px;
+    border-radius:4px 0 0 4px;
 }
 .inputhuespedes{
     font-size:1em;
@@ -187,7 +193,7 @@ body, html { /* reset settings */
     font-size:1em;
     width:100%;
     border:1px solid #D4D1D0;
-    border-radius:0px 4px 4px 0px;
+    border-radius:0 4px 4px 0;
     border-left:none;
 }
 
@@ -242,7 +248,7 @@ body, html { /* reset settings */
     background-color:#FF5A5F;
     color:white;
     padding:14px;
-    border:0px;
+    border:0;
     border-radius:4px;
     font-size:1em;
 }
@@ -310,7 +316,7 @@ body, html { /* reset settings */
 
 
 .mode-exit{
-    top: 0px;
+    top: 0;
     right: 30px;
     font-size: 30px;
     font-weight: bold;
@@ -363,7 +369,7 @@ input:focus, input.form-control:focus  {
     background-color:#FF5A5F;
     color:white;
     padding:14px;
-    border:0px;
+    border:0;
     border-radius:4px;
     font-size:1em;
 }
@@ -448,9 +454,14 @@ input:focus, input.form-control:focus  {
 .boximg>img{width:320px;
     height:380px;}
 
-footer{
-    display:block;
-    margin:60px 0 25px 0;
+footer {
+    display: block;
+    clear: both;
+    width: 100%;
+    position: relative;
+    height: 500px;
+    padding-top: 300px;
+
 }
 
 .div_footer li{
@@ -526,13 +537,16 @@ hr{
 
 .propertiesheader{
     background-color: #F7F3F3!important;
-    width:890px!important;
+    width:1050px!important;
     max-height:620px!important;
     float:left;
     overflow-y: scroll;
     border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
-    border: 0px solid #000000;
+    border: 0 solid #000000;
+}
 
+#main {
+    padding-bottom: 100px;
 }

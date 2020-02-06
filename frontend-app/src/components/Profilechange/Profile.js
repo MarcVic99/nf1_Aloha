@@ -7,8 +7,8 @@ import FaceIcon from "@material-ui/icons/Face";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import Navbar from "../Header/Navbar";
-import Editphoto from "./Profilephoto";
 import WorkIcon from "@material-ui/icons/Work";
+import Uploadfile from "./Uploadfile";
 
 export default function Profile() {
   const { state, dispatch } = React.useContext(AuthContext);
@@ -76,7 +76,7 @@ export default function Profile() {
         <div>
           <Navbar class="header2" />
           <div className="marginout">
-            <Editphoto />
+            <Uploadfile />
 
             <div className="changeform">
               <div>

@@ -12,7 +12,6 @@ import DiversidadEInclusion from "./components/footer/footer_components/Diversid
 import Accesibilidad from "./components/footer/footer_components/Accesibilidad";
 import DatosDeLaEmpresa from "./components/footer/footer_components/DatosDeLaEmpresa";
 import Account from "./components/Profilechange/Account";
-import PropertiesSearch from "./components/Properties/PropertiesSearch";
 import PropertiesCity from "./components/Properties/PropertiesCity";
 import LogIn from "./components/login/LogIn";
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
@@ -77,8 +76,6 @@ function App() {
 
         const user = JSON.parse(localStorage.getItem('user'));
         const token = JSON.parse(localStorage.getItem('token'));
-        console.log('user');
-        console.log('token');
 
         if (user && token) {
             dispatch({
@@ -152,9 +149,7 @@ function App() {
                 <Route exact path={APP_ACCOUNT}>
                     <Account />
                 </Route>
-                <Route exact path="/search/property">
-                    <PropertiesSearch />
-                </Route>
+
                 <Route exact path="/search/property/city">
                     <PropertiesCity />
                 </Route>
