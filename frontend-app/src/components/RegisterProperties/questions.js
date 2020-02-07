@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import {AuthContext} from "../../App";
 import {useHistory} from "react-router-dom";
 import {Calendar} from "@material-ui/pickers/views/Calendar/Calendar";
+import Uploadfileproperty from "./Uploadfileproperty";
 
 export default function Questionnaire (props) {
  
@@ -153,12 +154,12 @@ export default function Questionnaire (props) {
                     <span className="questionsSpan">Descripción</span>
                     <textarea className="textField"   rows="10" value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
-                <div id="10">
+                <div id="10" className="lastquestion">
                     <span className="questionsSpan">Añade fotos a tu anuncio</span>
 
                 </div>
 
-                <p>FOTO</p>
+                <Uploadfileproperty/>
 
             </div>
 
