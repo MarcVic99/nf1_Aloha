@@ -22,7 +22,7 @@ class SimpleReactFileUpload extends React.Component {
         this.setState({file0:e.target.files[0]})
     }
     fileUpload(file0){
-        const url = 'http://127.0.0.1:80/api/property/upload';
+        const url = 'http://api.aloha-app.xyz/api/property/upload';
         const formData = new FormData();
         formData.append('file0',file0);
         const config = {

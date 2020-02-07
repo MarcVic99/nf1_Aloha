@@ -42,7 +42,7 @@ export default function Profile() {
 
   const handleOnChange = () => {
     const fetchdata = async () => {
-      const url = "localhost:80/api/profile/";
+      const url = "api.aloha-app.xyz/api/profile/";
 
       const options = {
         method: "POST",

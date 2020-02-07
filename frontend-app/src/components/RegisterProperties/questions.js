@@ -47,7 +47,7 @@ export default function Questionnaire (props) {
 
 
     useEffect(() => {
-        const url = 'http://127.0.0.1:80/api/property';
+        const url = 'http://api.aloha-app.xyz/api/property';
         const options = {
             method: 'POST',
             body: JSON.stringify(data),

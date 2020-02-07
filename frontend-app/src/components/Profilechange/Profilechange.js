@@ -31,7 +31,7 @@ export default function ChangeProfile() {
 
   const handleOnSubmit = () => {
     const fetchdata = async token => {
-      const url = `http://localhost/api/profile/edit`;
+      const url = `http://api.aloha-app.xyz/api/profile/edit`;
 
       const options = {
         method: "PUT",

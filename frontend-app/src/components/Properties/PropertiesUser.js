@@ -16,7 +16,7 @@ const PropertiesUser = () => {
   useEffect(() => {
     async function fetchData() {
       setProperties(
-        await fetch(`http://localhost/api/property/user/${user.id}`)
+        await fetch(`http://api.aloha-app.xyz/api/property/user/${user.id}`)
           .then(res => res.json())
           .then(res => res.properties)
       );

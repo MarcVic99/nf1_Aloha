@@ -29,7 +29,7 @@ const PropertyID = () => {
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:80/api/property/${id}`)
+        fetch(`http://api.aloha-app.xyz/api/property/${id}`)
             .then(response => response.json())
             .then(payload => {
                 if (payload.status === 'succes') {

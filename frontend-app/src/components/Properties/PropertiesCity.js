@@ -13,7 +13,7 @@ const PropertiesCity = () => {
     const { properties, errorMessage, loading } = state;
 
     useEffect(() => {
-        fetch('http://127.0.0.1:80//api/search/city/barcelona')
+        fetch('http://api.aloha-app.xyz//api/search/city/barcelona')
             .then(response => response.json())
             .then(jsonResponse => {
                 dispatch({
@@ -29,7 +29,7 @@ const PropertiesCity = () => {
             type: "SEARCH_PROPERTIES_REQUEST"
         });
 
-        fetch(`http://127.0.0.1:80/api/search/city/${searchValue}`)
+        fetch(`http://api.aloha-app.xyz/api/search/city/${searchValue}`)
             .then(response => response.json())
             .then(payload => {
                 if (payload.status === 'succes') {

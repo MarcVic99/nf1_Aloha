@@ -50,7 +50,7 @@ const Search = (props) => {
     const [state, dispatch] = useSearchFormReducer();
 
     const search = searchValue => {
-        fetch(`http://127.0.0.1/api/search/property/city/${searchValue.city}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}/beds/${searchValue.beds}`)
+        fetch(`http://api.aloha-app.xyz/api/search/property/city/${searchValue.city}/checkin/${searchValue.dateFrom}/checkout/${searchValue.dateTo}/beds/${searchValue.beds}`)
             .then(response => response.json())
             .then(response => props.onNewProperties(response.properties));
     };

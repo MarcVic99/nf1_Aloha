@@ -53,7 +53,7 @@ function PropertiesList(props) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = 'http://localhost/api/property';
+            const url = 'http://api.aloha-app.xyz/api/property';
             const options = {
                 method: 'GET',
                 headers: new Headers({
@@ -66,7 +66,7 @@ function PropertiesList(props) {
 
             return fetch(url, options)
                 .then(response => {
-                    if (response.status === 200) {
+                   if (response.status === 200) {
                         return response.json();
                     }
                     return Promise.reject(response.status);

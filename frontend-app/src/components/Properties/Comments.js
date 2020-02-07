@@ -6,7 +6,7 @@ const CommentsList = () => {
     useEffect(() => {
         async function fetchData() {
             setComments(
-                await fetch('http://localhost/api/comment/${id}')
+                await fetch('http://api.aloha-app.xyz/api/comment/${id}')
                     .then(res => res.json())
                     .then(res => res.comments))
         }
