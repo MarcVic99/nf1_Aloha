@@ -17,19 +17,12 @@ const Header = () => {
     useEffect(() => {
         fetch('http://127.0.0.1:80//api/search/city/barcelona')
             .then(response => response.json())
-        {/*  .then(payload => {
-                if (payload.status === 'succes') {
-                    dispatch({
-                        type: 'SEARCH_PROPERTIES_SUCCESS',
-                        payload: payload.properties
-                    });
-                } else {
-                    dispatch({
-                        type: 'SEARCH_PROPERTIES_FAILURE',
-                        error: payload
-                    });
-                }
-            }); */}
+            .then(jsonResponse => {
+                dispatch({
+                    type: "SEARCH_PROPERTIES_SUCCESS",
+                    payload: jsonResponse.SearchCity
+                });
+            });
 
     }, [])
 
