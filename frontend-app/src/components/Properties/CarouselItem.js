@@ -6,17 +6,19 @@ import React from "react";
 const slides = [
   {
     title: "Property photo 1",
-    color: "#56777A"
+    color: "#56777A",
+      src:"https://res.cloudinary.com/dkfwkusnd/image/upload/v1581070767/Alohaimages/ue201lqxqypokccb8kof.jpg"
   },
   {
     title: "Property photo 2",
-    color: "#84ACAC"
+    color: "#84ACAC",
+      src:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgeeTmhqRAOsP7wZ5zPj0PpJ0Myxf0CbGDjUyvPhe7HMqeca5baw&s"
   },
   {
     title: "Property photo 3",
     color: "#FBA434",
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgeeTmhqRAOsP7wZ5zPj0PpJ0Myxf0CbGDjUyvPhe7HMqeca5baw&s"
-  }
+      src: "https://res.cloudinary.com/dkfwkusnd/image/upload/v1581073476/Alohaimages/lgvsgfqg21nohiolqrth.jpg"
+  },
 ];
 
 export default function CarouselItem() {
@@ -45,7 +47,7 @@ export default function CarouselItem() {
               className="slide"
               style={{ href: "slide.src"}}
             >
-              {slide.title}
+                <img src={slide.src} className="photo1" alt="Photo1"/>
             </div>
           ))}
         </div>

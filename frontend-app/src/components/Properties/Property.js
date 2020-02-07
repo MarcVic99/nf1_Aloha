@@ -31,6 +31,7 @@ const Property = ({ property }) => {
                     <a href={"/property/id"}>
                         <Card className={classes.card}>
                             <CardActionArea>
+                                {/*
                                 <CardMedia
                                     value={id}
                                     onChange={event => setId(event.target.value)}
@@ -38,9 +39,9 @@ const Property = ({ property }) => {
                                     image={property.image}
                                     title="Contemplative Reptile"
                                 />
+                                */}
                                 <CardContent>
-                                    {/*<CarouselItem*/}
-                                    {/*/>*/}
+                                    <CarouselItem/>
                                     <div className="propertyDivTitle">
                                         <span>{property.title}</span>
                                     </div>

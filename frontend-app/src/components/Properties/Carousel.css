@@ -25,3 +25,7 @@
     position: relative;
     transition: opacity 350ms;
 }
+
+.photo1{
+    width:100%;
+}
