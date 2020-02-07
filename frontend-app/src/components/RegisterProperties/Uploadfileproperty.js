@@ -12,7 +12,7 @@ function Uploadfileproperty() {
         data.append('upload_preset', 'Alohaimages')
         setLoading(true)
         const res = await fetch(
-            '	https://api.cloudinary.com/v1_1/dkfwkusnd/image/upload',
+            '	\thttps://api.cloudinary.com/v1_1/dkfwkusnd/image/upload',
             {
                 method: 'POST',
                 body: data
